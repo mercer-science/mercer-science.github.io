@@ -42,19 +42,27 @@
 // proportions on a phone as well as a laptop. The text stays real and
 // selectable; only the box it sits in changes size.
 (function () {
-  var wrap = document.querySelector('.resume-wrap');
-  if (!wrap) return;
-  var sheet = wrap.querySelector('.sheet');
+  var wraps = Array.prototype.slice.call(document.querySelectorAll('.sheet-wrap'));
+  if (!wraps.length) return;
 
   function fit() {
-    sheet.style.transform = 'none';
-    wrap.style.height = 'auto';
-    var scale = Math.min(1, wrap.clientWidth / sheet.offsetWidth);
-    sheet.style.transform = 'scale(' + scale + ')';
-    wrap.style.height = sheet.offsetHeight * scale + 'px';
+    wraps.forEach(function (wrap) {
+      var sheet = wrap.querySelector('.sheet');
+      sheet.style.transform = 'none';
+      wrap.style.height = 'auto';
+      // A sheet on a tab that is not showing has no width to measure.
+      if (!wrap.clientWidth) return;
+      var scale = Math.min(1, wrap.clientWidth / sheet.offsetWidth);
+      sheet.style.transform = 'scale(' + scale + ')';
+      wrap.style.height = sheet.offsetHeight * scale + 'px';
+    });
   }
 
   fit();
   window.addEventListener('resize', fit);
+  // A hidden tab has no width to measure, so refit when one is opened.
+  document.addEventListener('click', function (e) {
+    if (e.target.closest && e.target.closest('.tab')) setTimeout(fit, 0);
+  });
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
 })();

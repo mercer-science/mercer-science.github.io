@@ -16,20 +16,35 @@ That reads every markdown file in `content/` plus the tab tables in `content\tab
 writes the four role pages and `index.html`, and prints a list of whatever still needs
 your sign-off. Nothing else in the repo is touched, so re-running it is always safe.
 
-To rebuild the four resume PDFs:
+To rebuild the four resume PDFs and the CV PDF:
 
 ```
 python tools\make_resumes.py
 ```
 
-It prints each one through headless Edge into `assets\pdf\`. The intermediate HTML stays
-beside the PDFs so you can open it in a browser and check the layout before printing.
+```
+python tools\make_cv.py
+```
 
-The resume facts live in `tools\make_resumes.py`, and the Resume tab on each role page
-renders that same markup, so the page and the PDF cannot drift apart. Change a bullet
-there, rerun both scripts, and the page and the download update together. `build.py` also
-regenerates `assets/css/resume-sheet.css` from the resume's own print stylesheet; do not
-edit that file by hand.
+Each prints through headless Edge into `assets\pdf\`. The intermediate HTML stays beside
+the PDFs so you can open it in a browser and check the layout before printing.
+
+## The Resume and the CV
+
+Both are documents rather than page copy, so they work differently from `content/`. The
+resume facts live in `tools\make_resumes.py` and the CV facts in `tools\make_cv.py`. The
+Resume and CV tabs render that same markup as a white sheet on the page, and the PDFs
+print from it, so the page and the download cannot drift apart. Change a line in one of
+those files, rerun that script and `build.py`, and the page and the download both update.
+
+`build.py` also regenerates `assets/css/resume-sheet.css` from those two print
+stylesheets; do not edit that file by hand.
+
+The CV was ported from `Russell Mercer CV.docx`. Three things changed on the way over,
+because the site is public: the draft's `[TODO: authors and title]` markers are gone and
+each entry says what the work is and where it stands, the phlebotomy certification carries
+its end date since it has expired, and the phone number is left off. `CONTACT` at the top
+of `make_cv.py` is where the phone number goes if you want it back.
 
 Python needs `pyyaml`, which is already installed.
 

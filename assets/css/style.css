@@ -12,7 +12,9 @@
   --ongoing-bg: #fdf1dd;
   --ongoing-ink: #7a4f12;
   --radius: 10px;
-  --maxw: 44rem;
+  /* Wide enough that long pages do not turn into endless scrolling, and wide
+     enough to hold a letter-size sheet without shrinking it. */
+  --maxw: 60rem;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -217,6 +219,14 @@ main { max-width: var(--maxw); margin: 0 auto; }
 .block li { margin: 0.35rem 0; }
 
 .placeholder { border-style: dashed; color: var(--ink-faint); }
+
+/* The resume and the CV bring their own page, so no card goes behind them. */
+.block-bare {
+  background: none;
+  border: 0;
+  padding: 0;
+  margin-top: 0.6rem;
+}
 
 /* ---- buttons, figures ---- */
 
