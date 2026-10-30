@@ -1,73 +1,54 @@
 ---
-title: Diffusion MRI Pipeline and Web App
+title: Diffusion MRI Pipeline and Web Application
 roles: [igem, coding, design, wildcard]
 tabs: [clinical-research, clinical-research-software]
-status: Handed to the clinical software team
-dates: May 2026 to present
+status: Handed off to the clinical software team
+dates: May 2026 – Present
 images:
-  - src: assets/img/pipeline-before.png
+  - id: before
+    src: assets/img/pipeline-before.png
     alt: The inherited pipeline interface, which ran one patient through one step at a time.
     caption: Before. The inherited tool ran one patient at a time, with every step started by hand.
-  - src: assets/img/pipeline-after.png
+  - id: after
+    src: assets/img/pipeline-after.png
     alt: The rebuilt bulk runner, with a tab per patient and a queue of processing steps.
     caption: After. The bulk runner queues patients, schedules CPU and GPU work, and flags errors on its own.
-  - src: assets/img/fit-checker.png
-    alt: The fit checker, showing a voxel's measured signal with biexponential IVIM and monoexponential ADC fits.
-    caption: The fit checker. Click any point on a map to see its measured signal with both model fits, then export the figure and the data behind it.
   - src: assets/img/dwi-viewer.png
     alt: The MRI viewer, showing the same slice across four treatment sessions with a diffusion map overlaid, and a whole-tumor histogram under each one.
-    caption: The viewer. The same slice across treatment sessions, with the diffusion map overlaid and a whole-tumor histogram under each. Scan dates are removed from these screenshots.
+    caption: The MRI viewer. Scan dates are removed from these screenshots.
+  - src: assets/img/dwi-threshold.png
+    alt: The threshold creator, showing five sessions with a threshold contour drawn on the diffusion map of each.
+    caption: The threshold creator.
+  - src: assets/img/fit-checker.png
+    alt: The fit checker, showing a voxel's measured signal with biexponential IVIM and monoexponential ADC fits.
+    caption: The fit checker.
   - size: wide
     src: assets/img/spri-poster.png
     alt: A conference poster titled From Bench to Beam, laid out in five numbered panels covering biology-guided radiotherapy, radiolucent immobilization, adaptive conventional treatment, adaptive SABR, and on-board diffusion imaging.
     caption: The poster covering all five studies, presented at the BYU Medical Society conference in August 2026 with the other intern. Click it to read the panels.
-  - src: assets/img/dwi-threshold.png
-    alt: The threshold creator, showing five sessions with a threshold contour drawn on the diffusion map of each.
-    caption: The threshold creator. A cutoff outlines the treatment-resistant core, and the contours export to the treatment planning system.
 ---
 
-### Problem
+I joined the Radiation Oncology department at UT Southwestern in May 2026 and took over a diffusion MRI processing pipeline that had been developed by several graduate students. When the last student left, the software was still running from his personal account on a single GPU workstation. Its dependencies were tied to virtual environments that were difficult to reproduce, and the account was scheduled for deletion. A postdoctoral researcher hired for a different project was expected to take over the work, but the existing lung study could not be rerun without access to the original backend.
 
-The department's diffusion MRI processing pipeline had passed through several graduate
-students. When the last one left it was sitting in his personal account on one GPU
-workstation, held together by virtual environments nobody could rebuild, and the account
-was scheduled for deletion. A postdoc hired for different work was about to inherit it,
-and the earlier lung study could not be rerun without back-end access.
+I rebuilt the pipeline web interface and made the pipeline much more streamlined, using Claude Code as a development assistant while reviewing and verifying the scientific and computational decisions myself. The application handles the processing workflow from raw hospital imaging files through final analysis. It retrieves patient scans from hospital network shares, repairs corrupted files, converts DICOM images to NIfTI, identifies acquisition protocols, corrects geometric distortion, applies two neural-network denoising steps, fits intravoxel incoherent motion (IVIM) and apparent diffusion coefficient (ADC) models, and registers images across treatment sessions. It also checks intermediate results and flags potential errors.
 
-### Solution
+I built a bulk-processing system around the pipeline so researchers no longer have to run each patient and processing step individually. Users enter patient identifiers and select the processing steps they need. Each patient gets a separate tab showing progress through the workflow, while the application manages CPU and GPU scheduling, monitors available disk space, archives completed studies to department servers, and packages the results for export. These upgrades allowed us to process patient data much quicker, advancing the rate of research in the department.
 
-I rebuilt it as a web application, working with the Claude Code agent and checking every
-scientific decision myself. It collects each patient's imaging from the hospital network
-shares, repairs broken files, converts DICOM to NIfTI, detects the pulse protocol, corrects
-distortion, runs two neural-network denoising steps, fits the IVIM and ADC models, and
-registers the images across treatment days, flagging anything that looks wrong as it goes.
-A bulk runner sits on top: enter the patient identifiers, pick the steps, and each patient
-gets a tab that moves through the chain while the runner schedules CPU and GPU work,
-watches disk space, archives finished patients to the server drives, and exports everything
-as one zip.
+[figure: before, after]
 
-The interface is where a physician or physicist actually works. An MRI viewer lines up
-anatomy, contours, and parametric maps slice by slice with whole-tumor histograms per day.
-A parameter comparison view puts ADC, Dp, Dt, Fp, and R side by side across days. An image
-creator renders publication-quality panels from chosen slices. A threshold creator applies
-a cutoff to outline the treatment-resistant core of a tumor and exports contours the
-treatment planning system can import. The fit checker lets you click a single voxel and see
-its measured signal against both model fits. Reliability statistics cover acquisition
-parameters, signal-to-noise, geometric distortion, registration, and fit quality.
+The application processed all 76 patients in a pancreas study in approximately 2.5 days of continuous server time. For comparison, processing the 10-patient lung study using the previous workflow had taken approximately a week of manual work.
 
-### Result
+I also developed the web interface for reviewing and analyzing the resulting images. Its main features include:
 
-It processed all 76 pancreas patients in about 2.5 days of continuous server time. The
-10-patient lung study had taken roughly a week by hand. Hospital IT moved the application
-to the Radiation Oncology Application Team for clinical use, with a plan to run it on a
-standalone server for the whole department, and the MRI vendor has asked about building the
-processing into the machine. I wrote the hand-off document, which lists what a clinical
-version still needs, and trained the postdoc who took it over.
+- **MRI Viewer:** Displays anatomical images, contours, and diffusion maps side by side across treatment sessions, with whole-tumor histograms for each session.
+- **Parameter Comparison:** Allows researchers to compare ADC, Dp, Dt, Fp, and R measurements across treatment days.
+- **Image Creator:** Generates publication-quality image panels from selected MRI slices.
+- **Threshold Creator:** Applies user-defined cutoffs to diffusion maps to outline potentially treatment-resistant tumor regions and exports contours compatible with the treatment planning system.
+- **Fit Checker:** Allows users to select individual voxels and compare measured MRI signals against both IVIM and ADC model fits.
+- **Quality assessment:** Reports reliability statistics covering acquisition parameters, signal-to-noise ratios, geometric distortion, image registration, and model-fitting quality.
 
-The honest limit: a clinical version has to finish in three to five minutes at the console,
-and mine takes about an hour per patient. That gap is the part of research I find most
-interesting, and it is most of why I want to train as a physician-scientist.
+I intentionally developed these user interface upgrades so that any researcher in the department can easily access, process, and evaluate data. After I finished, the server and application were entirely stand alone. You could get any information on any patient that you needed without having to have access to the back end of the server.
 
-The pipeline code belongs to UT Southwestern and is tied to its systems, so it is not
-public. The screenshots above come from the application interface and carry no patient
-information.
+The project was subsequently transferred by hospital IT to the Radiation Oncology Application Team for further development toward universal use. They are now using this code in clinical studies. The MRI vendor also expressed interest in incorporating the processing workflow into its imaging system. I prepared the technical handoff documentation, including the remaining requirements for a clinical version, and trained the postdoctoral researcher who took over the project.
+
+The pipeline code belongs to UT Southwestern and is tied to its internal systems, so it is not publicly available. The screenshots below show the web interface without patient-identifying information.
