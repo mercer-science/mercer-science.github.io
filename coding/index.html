@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Coding &middot; Russell Mercer</title>
+<meta name="description" content="Portfolio for the Crocker Innovation Fellowship: Coding.">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="masthead">
+<p class="name">Russell Mercer</p>
+<p class="tagline">Biochemistry, clinical software, and AI at Brigham Young University</p>
+<nav class="roles" aria-label="Application">
+<span class="roles-label">Application:</span>
+<a class="chip" href="../igem/">iGEM</a>
+<span class="chip chip-on" aria-current="page">Coding</span>
+<a class="chip" href="../design/">Design</a>
+<a class="chip" href="../wildcard/">Wild Card</a>
+</nav>
+</header>
+<nav class="tabs" role="tablist" aria-label="Sections">
+<a class="tab tab-on" href="#resume" data-tab="resume" role="tab" aria-selected="true">Resume</a>
+<a class="tab" href="#clinical-research-software" data-tab="clinical-research-software" role="tab" aria-selected="false">Clinical Research Software</a>
+<a class="tab" href="#ai" data-tab="ai" role="tab" aria-selected="false">AI</a>
+<a class="tab" href="#software-projects" data-tab="software-projects" role="tab" aria-selected="false">Software Projects</a>
+<a class="tab" href="#publications" data-tab="publications" role="tab" aria-selected="false">Publications and Ongoing Research</a>
+<a class="tab" href="#physical-sciences" data-tab="physical-sciences" role="tab" aria-selected="false">Physical Sciences</a>
+<a class="tab" href="#cv" data-tab="cv" role="tab" aria-selected="false">CV</a>
+</nav>
+<main id="main">
+<section class="panel panel-on" id="resume" role="tabpanel" aria-label="Resume">
+<h1 class="panel-title">Resume</h1>
+<article class="block" id="coding">
+<header class="block-head">
+</header>
+<p class="headline">Builds Research Software Used in the Clinic</p>
+<p>Biochemistry major with a computer science minor (machine learning emphasis) at Brigham Young University, graduating April 2028. I rebuilt UT Southwestern's diffusion MRI processing pipeline into a web application that ran 76 patients in about 2.5 days and has since moved to the team that maintains the hospital's clinical software. The extraction and figure pipelines behind four radiation oncology manuscripts are mine too, in C#, Python, and R.</p>
+<p>I write software because the science stalls without it, not the other way around. That shows up in what I build: tools somebody else can run after I leave.</p>
+<p class="downloads"><a class="button" href="../assets/pdf/russell-mercer-resume-coding.pdf" download>Download Resume (PDF)</a></p>
+</article>
+<article class="block" id="at-a-glance">
+<header class="block-head">
+<h2>At a Glance</h2>
+</header>
+<p><strong>Education.</strong> Brigham Young University, B.S. Biochemistry with a Computer Science minor (machine learning emphasis), January 2024 to April 2028 expected. GPA 3.99. MCAT 519, 96th percentile.</p>
+<p><strong>Research.</strong> Jensen Lab, BYU (cryo-electron tomography), August 2026 to present. Clinical Research Assistant, UT Southwestern Medical Center (radiation oncology, then medical physics), May 2026 to present. Stowers Lab, BYU (surface chemistry), April 2024 to May 2026.</p>
+<p><strong>Writing.</strong> One paper published in <em>Langmuir</em> as second author, one manuscript submitted to the <em>International Journal of Radiation Oncology, Biology, Physics</em>, two in final co-author circulation, and several more in preparation. Lead drafter on four.</p>
+<p><strong>Speaking.</strong> Six research presentations across chemistry, medicine, and structural biology, plus an invited guest talk to BYU's Healthcare Leadership program in October 2026.</p>
+<p><strong>Leadership.</strong> Officer, BYU AI Association, leading the weekly AI in Research meeting. Lead program director for Early Learning Essentials through BYU Y-Serve. Pre-med peer mentor.</p>
+<p><strong>Clinical.</strong> Medical assistant at a family clinic, July 2025 to April 2026. Weekly physical therapy volunteer at Utah State Hospital since May 2025.</p>
+<p><strong>Awards.</strong> SCCR Fellow 2026 (Simmons Center for Cancer Research), Outstanding Analytical Chemist 2025, Dean's List four semesters.</p>
+</article>
+</section>
+<section class="panel" id="clinical-research-software" role="tabpanel" aria-label="Clinical Research Software">
+<h1 class="panel-title">Clinical Research Software</h1>
+<article class="block" id="dwi-pipeline">
+<header class="block-head">
+<h2>Diffusion MRI Pipeline and Web App</h2>
+<p class="block-meta"><span class="dates">May 2026 to present</span> <span class="status">Handed to the clinical software team</span></p>
+</header>
+<h3 class="block-label">Problem</h3>
+<p>The department's diffusion MRI processing pipeline had passed through several graduate students. When the last one left it was sitting in his personal account on one GPU workstation, held together by virtual environments nobody could rebuild, and the account was scheduled for deletion. A postdoc hired for different work was about to inherit it, and the earlier lung study could not be rerun without back-end access.</p>
+<h3 class="block-label">Solution</h3>
+<p>I rebuilt it as a web application, working with the Claude Code agent and checking every scientific decision myself. It collects each patient's imaging from the hospital network shares, repairs broken files, converts DICOM to NIfTI, detects the pulse protocol, corrects distortion, runs two neural-network denoising steps, fits the IVIM and ADC models, and registers the images across treatment days, flagging anything that looks wrong as it goes. A bulk runner sits on top: enter the patient identifiers, pick the steps, and each patient gets a tab that moves through the chain while the runner schedules CPU and GPU work, watches disk space, archives finished patients to the server drives, and exports everything as one zip.</p>
+<p>The interface is where a physician or physicist actually works. An MRI viewer lines up anatomy, contours, and parametric maps slice by slice with whole-tumor histograms per day. A parameter comparison view puts ADC, Dp, Dt, Fp, and R side by side across days. An image creator renders publication-quality panels from chosen slices. A threshold creator applies a cutoff to outline the treatment-resistant core of a tumor and exports contours the treatment planning system can import. The fit checker lets you click a single voxel and see its measured signal against both model fits. Reliability statistics cover acquisition parameters, signal-to-noise, geometric distortion, registration, and fit quality.</p>
+<h3 class="block-label">Result</h3>
+<p>It processed all 76 pancreas patients in about 2.5 days of continuous server time. The 10-patient lung study had taken roughly a week by hand. Hospital IT moved the application to the Radiation Oncology Application Team for clinical use, with a plan to run it on a standalone server for the whole department, and the MRI vendor has asked about building the processing into the machine. I wrote the hand-off document, which lists what a clinical version still needs, and trained the postdoc who took it over.</p>
+<p>The honest limit: a clinical version has to finish in three to five minutes at the console, and mine takes about an hour per patient. That gap is the part of research I find most interesting, and it is most of why I want to train as a physician-scientist.</p>
+<p>The pipeline code belongs to UT Southwestern and is tied to its systems, so it is not public. The screenshots above come from the application interface and carry no patient information.</p>
+<div class="figures">
+<figure class="shot">
+<a href="../assets/img/pipeline-before.png"><img src="../assets/img/pipeline-before.png" alt="The inherited pipeline interface, which ran one patient through one step at a time." loading="lazy"></a>
+<figcaption>Before. The inherited tool ran one patient at a time, with every step started by hand.</figcaption>
+</figure>
+<figure class="shot">
+<a href="../assets/img/pipeline-after.png"><img src="../assets/img/pipeline-after.png" alt="The rebuilt bulk runner, with a tab per patient and a queue of processing steps." loading="lazy"></a>
+<figcaption>After. The bulk runner queues patients, schedules CPU and GPU work, and flags errors on its own.</figcaption>
+</figure>
+<figure class="shot">
+<a href="../assets/img/fit-checker.png"><img src="../assets/img/fit-checker.png" alt="The fit checker, showing a voxel&#x27;s measured signal with biexponential IVIM and monoexponential ADC fits." loading="lazy"></a>
+<figcaption>The fit checker. Click any point on a map to see its measured signal with both model fits, then export the figure and the data behind it.</figcaption>
+</figure>
+</div>
+</article>
+<article class="block" id="utsw-bgrt">
+<header class="block-head">
+<h2>Biology-Guided Radiotherapy on RefleXion</h2>
+<p class="block-meta"><span class="dates">May 2026 to present</span> <span class="status">In final co-author circulation</span></p>
+</header>
+<h3 class="block-label">Problem</h3>
+<p>RefleXion is a new machine, cleared by the FDA and installed at only a few U.S. centers. The patient takes up a PET tracer, two detectors on the gantry find the tumor, and the beam follows it in real time. More than a year after the first patients finished treatment, nobody had checked independently whether the delivered dose matched the plan, or how it compared with standard image-guided radiotherapy. The technology is commercially stalled for want of exactly that evidence.</p>
+<h3 class="block-label">Solution</h3>
+<p>I watched a treatment and an engineer walkthrough first, so I understood the workflow before touching the data. Then I exported the plans into Aria-Eclipse and wrote a C# script that pulls the relevant dose data for every patient and plan into organized spreadsheets. The hard part was naming: every physician draws and labels structures differently, so a lung might be one structure or two, and a patient might carry several planning target volumes with unrelated names. The script resolves most of that on its own and asks a human only when it genuinely cannot tell two structures apart. A Python step filters the raw export into templates I designed with Dr. Westover, and R scripts build every figure and table from the raw data automatically.</p>
+<p>Partway through, a physicist raised a problem that could have explained my less favorable organ-dose findings: post-treatment evaluation assumes organs sit where they were at simulation, even though the beam follows a moving tumor. To test it I extracted dose fall-off metrics, reconstructed each patient's respiratory motion from the backup plan's contours since motion is recorded nowhere, wrote an algorithm for each organ's distance from the target, and ran about 1,000 checks per patient that flagged every case for or against the effect.</p>
+<h3 class="block-label">Result</h3>
+<p>Nearly all of those checks supported my conclusion that the effect was minor. Delivered dose tracked the plan closely, the PET-guided target volume came out smaller than the image-guided one, and the gap widened for tumors that moved more. Some organ-at-risk maximum doses ran higher than the backup plan, and a physicist on the team took those findings to his contacts at the manufacturer around the summer physics meeting; the company is revising its post-treatment evaluation in an upcoming release. The paper says plainly where the technology helps and where it does not, which is not the commercially convenient answer. I rewrote the manuscript more than eight times, including two complete restarts, and it is in final circulation among co-authors now.</p>
+<div class="figures figures-pair">
+<figure class="shot">
+<a href="../assets/img/reflexion-machine.png"><img src="../assets/img/reflexion-machine.png" alt="Russell standing beside the RefleXion biology-guided radiotherapy machine at UT Southwestern." loading="lazy"></a>
+<figcaption>The RefleXion machine at UT Southwestern, which steers the beam using the tumor's live PET signal.</figcaption>
+</figure>
+<figure class="shot">
+<a href="../assets/img/reflexion-gantry.png"><img src="../assets/img/reflexion-gantry.png" alt="The inside of the RefleXion gantry, showing the linear accelerator and PET detectors." loading="lazy"></a>
+<figcaption>Inside the gantry during an engineer walkthrough. The PET detectors ride with the linear accelerator.</figcaption>
+</figure>
+</div>
+</article>
+<article class="block" id="utsw-lung-dwi">
+<header class="block-head">
+<h2>Lung Diffusion MRI on the MR-Linac</h2>
+<p class="block-meta"><span class="dates">May 2026 to present</span> <span class="status">Submitted</span></p>
+</header>
+<h3 class="block-label">Problem</h3>
+<p>The Unity combines an MRI scanner with a linear accelerator, and before every treatment it records diffusion-weighted images that nobody used clinically. Dying tumors lose cells, so water moves more freely through them, which should show up as a rising apparent diffusion coefficient. If that holds, a physician could see a tumor responding during treatment, weeks before it shrinks on CT. These patients received PULSAR, where the radiation pulses are spaced weeks apart, and no one had published diffusion imaging in PULSAR patients.</p>
+<h3 class="block-label">Solution</h3>
+<p>I worked with a team of medical physicists on 10 patients, each carrying about 10 GB and more than 10,000 DICOM images with meaningless file names, all processed on hospital servers. Every patient was missing at least one diffusion series, because therapists had not backed them up and the consoles had been wiped. The scan field often was not centered on the tumor, so contours ran outside the map, and only 50.9 percent of sessions had data usable as scoped; I found a way to include partially covered sessions rather than drop them. The simulation scanner had 15 to 20 times the signal-to-noise of the machine itself, so the two could not be compared directly.</p>
+<p>Rather than force the original claim, I reframed the study into three aims: whether quantitative diffusion values can be pulled reliably from the machine's own imaging, whether those values move opposite to tumor volume as biology predicts, and how a diffusion-defined target would differ from the clinical one. Out of curiosity I made per-session histograms and saw values piling up at exactly 3. The exporter was capping them, which had been dragging later-fraction averages down. I fixed the pipeline, re-exported, and reran everything; because the figures rebuild from raw data, the fix cost an afternoon instead of a month.</p>
+<h3 class="block-label">Result</h3>
+<p>Of 55 sessions, 42 captured diffusion imaging, 41 were usable, and 34 had enough tumor voxels to analyze. On-board signal-to-noise averaged about 8 against roughly 127 at simulation. Contour-based diffusion changes agreed closely between the clinical and adjusted contours. The piece I care about most is the threshold tool: a diffusion cutoff that outlines a treatment-resistant core inside the clinical target, which could receive extra dose in the same treatment and which also shows where the target should expand. Dr. Deng presented examples from the paper and the pipeline at a physics conference last summer. The manuscript is submitted to the <em>International Journal of Radiation Oncology, Biology, Physics</em>.</p>
+<p>The study is hypothesis-generating with 10 patients, missing data, and low on-board signal, and the threshold is not yet tied to outcomes. Testing it against outcomes is what the pancreas study began.</p>
+<div class="figures">
+<figure class="shot">
+<a href="../assets/img/mr-linac.jpg"><img src="../assets/img/mr-linac.jpg" alt="Russell standing beside the Elekta Unity MR-Linac at UT Southwestern." loading="lazy"></a>
+<figcaption>The Elekta Unity MR-Linac, which images with MRI during treatment and quietly records diffusion-weighted scans before each session.</figcaption>
+</figure>
+</div>
+</article>
+<article class="block" id="utsw-aerframe">
+<header class="block-head">
+<h2>Radiolucent Patient Immobilization (AerFrame)</h2>
+<p class="block-meta"><span class="dates">June 2026 to present</span> <span class="status">In final co-author circulation</span></p>
+</header>
+<h3 class="block-label">Problem</h3>
+<p>Dr. Westover invented and patented a patient immobilization frame built from a composite that is nearly transparent to radiation. It has been in use at UT Southwestern for over a year and will be marketed to other centers, but no physics study existed to show how much dose the older frames were absorbing before the beam reached the tumor.</p>
+<h3 class="block-label">Solution</h3>
+<p>The cohort did not exist in any database. A patient had to have been treated on a specific machine, simulated in a legacy frame, and treated at least once in the new one, so I hand-screened about 50 patients' records and threw out warped scans, patients never treated, and unfamiliar frames. From what was left I picked 11 patients to mirror real practice: 3 spine, 3 prostate, 3 lung, and 2 abdomen, mixing fixed-field and arc therapy, some with titanium hardware, across two legacy frame types and both anterior and posterior target positions. I ran the attenuation calculations with the physicists, compared 12-field, 18-field, and arc plans with the frame masked to air against the frame present, and added ion-chamber bench measurements at 6, 10, and 15 MV across several beam angles.</p>
+<h3 class="block-label">Result</h3>
+<p>Attenuation is worst when the target sits close to the back surface, which is why spine cases gain the most. In the preliminary summary roughly 99.8 percent of planned dose reached the target through the new frame, against about 94 percent through the legacy frames, and across the cohort the difference held up under a paired Wilcoxon test (p = 0.0039, n = 11). I wrote the first draft, and the manuscript is in final circulation among co-authors. The limits are plain enough: 11 patients at one institution, with a dosimetric endpoint rather than a clinical one.</p>
+<p>The device diagram comes from Dr. Westover's patent and stays off this site until he says otherwise.</p>
+</article>
+<article class="block" id="utsw-pancreas">
+<header class="block-head">
+<h2>Diffusion MRI in Pancreatic SBRT</h2>
+<p class="block-meta"><span class="dates">August 2026 to present</span> <span class="status ongoing">Ongoing</span></p>
+</header>
+<h3 class="block-label">Problem</h3>
+<p>The lung study produced a threshold tool that outlines treatment-resistant tissue, but nothing tied it to what happened to the patients. Dr. Deng brought me onto a pancreas study to start closing that gap: do the same diffusion measurements track how pancreatic tumors respond to stereotactic radiation?</p>
+<h3 class="block-label">Solution</h3>
+<p>I ran all 76 patients through the pipeline I had rebuilt, and 23 of them turned out to have both complete diffusion imaging and outcome data. I did the chart review for response at three months and for local and distant failure over time, since most three-month results in this last-line population were stable or not evaluable. A Python script rebuilds each patient's plot and notes from the chart-review sheet, so adding a patient does not mean redrawing anything.</p>
+<h3 class="block-label">Result</h3>
+<p>One early signal is worth the work: a patient who failed both locally and distantly about eight months after treatment showed tissue diffusion falling by the third fraction, the opposite of what a dying tumor does, while a patient with stable disease showed it rising. In principle a physician could have seen that early enough to change the plan. The trends run opposite to the lung study, and I think the spacing explains it, since these patients were treated every two or three days rather than weeks apart, leaving less time for tissue remodeling between pulses. Analysis is still underway.</p>
+</article>
+</section>
+<section class="panel" id="ai" role="tabpanel" aria-label="AI">
+<h1 class="panel-title">AI</h1>
+<article class="block" id="ai-cryo-em">
+<header class="block-head">
+<h2>An AI Agent for Cryo-ET Processing</h2>
+<p class="block-meta"><span class="dates">August 2026 to present</span> <span class="status ongoing">Ongoing, manuscript in preparation</span></p>
+</header>
+<h3 class="block-label">Question</h3>
+<p>Turning thousands of tilted images of a frozen cell into a three-dimensional map means chaining together a dozen specialized programs, each with its own settings and its own ways of failing. Learning that chain normally takes months. Can a general-purpose AI coding agent carry a newcomer through it without removing the understanding the work is supposed to build?</p>
+<h3 class="block-label">Approach</h3>
+<p>The test set is 39 tilt series of cryo-focused-ion-beam-milled <em>E. coli</em> in exponential growth, collected on a Krios at 300 kV. The agent proposes each step, installs and configures the tool, and runs it, while a human approves, overrides, or corrects every parameter. The chain runs from motion correction through alignment and reconstruction, missing-wedge correction, template matching, classification, and subtomogram averaging, ending in an analysis of whether ribosomes sit alone or in pairs and chains. Every recommendation gets logged as accepted, overridden, or an error a human caught, which is what makes the claim measurable rather than anecdotal. The workflow is packaged as a reusable agent skill so the next person in the lab starts further along. This is joint work with Chitral Chatterjee in Dr. Jensen's lab.</p>
+<h3 class="block-label">Status</h3>
+<p><strong>Ongoing.</strong> I presented this as a poster, <em>Can an AI Agent Collapse the Cryo-ET Learning Curve?</em>, at the Utah CryoEM Symposium at BYU on October 8, 2026. A manuscript is in preparation.</p>
+</article>
+<article class="block" id="ai-association">
+<header class="block-head">
+<h2>BYU AI Association and AI in Research</h2>
+<p class="block-meta"><span class="dates">September 2026 to present</span> <span class="status ongoing">Ongoing</span></p>
+</header>
+<p>I am an officer of the BYU AI Association and lead its weekly AI in Research meeting, a group working out how researchers in different fields can use these tools without handing over the judgment that makes the work theirs. I wrote the proposal for the group, which is public as the AI-In-Research repository.</p>
+<p>What I bring to it is mostly evidence rather than opinion. I built a clinical imaging application with an AI coding agent in weeks instead of months, and I am running a controlled test in the Jensen Lab of where an agent helps and where it gets a pipeline wrong. Both sides of that show up in the meetings.</p>
+<p>I am also honest about the cost. These tools make research faster, and they change how people think, not only what they produce. As more writing and reasoning gets handed over, the average output gets more capable while the individual gets less practiced: less nuance, less argument, less of the slow work understanding is made of. Holding the acceleration and the cost at the same time is why I would rather help shape how AI enters science than just use it.</p>
+</article>
+<article class="block" id="ai-conference">
+<header class="block-head">
+<h2>AI for Social Innovation Conference</h2>
+<p class="block-meta"><span class="dates">October 2026</span></p>
+</header>
+<p>I attended the AI for Social Innovation Conference at Aspen Grove on October 21, 2026, run by BYU's Ballard Center, as the BYU AI Association's representative. The organizers wanted someone from the association and I was given a seat at the Data Sovereignty and Inclusion working table, alongside a UN ambassador, the chief operating officer of a Māori media organization that built a community-owned speech model, and people from industry and other universities. The table's question was who owns community data, the models trained on it, and the value those models create.</p>
+</article>
+<article class="block" id="mercer-science-tools">
+<header class="block-head">
+<h2>Mercer Science Tools</h2>
+<p class="block-meta"><span class="dates">2026 to present</span> <span class="status">Open source, ongoing</span></p>
+</header>
+<p>I release research tooling under the Mercer Science organization on GitHub as it becomes good enough for someone else to use.</p>
+<p><strong>paper-engine</strong> is the main one: skills, scripts, and strategies that take an academic paper from an idea toward a draft. It covers the parts that are mechanical but easy to get wrong, such as keeping an outline, figures, statistics, and references consistent with each other while the draft changes underneath them. I built it out of the manuscript work at UT Southwestern, where I rewrote one paper more than eight times.</p>
+<p><strong>github-ai-project-manager</strong> is a set of skills and hooks that let an AI command-line agent maintain a research project on GitHub on its own, so the record of what happened keeps up with the work.</p>
+<p><strong>AI-In-Research</strong> holds the proposal behind the BYU AI Association group I lead.</p>
+<p>More will go up as it stops being specific to my own machine. The repositories are at <a href="https://github.com/mercer-science">github.com/mercer-science</a>.</p>
+<div class="figures">
+<figure class="shot">
+<a href="../assets/img/mercer-science-logo.png"><img src="../assets/img/mercer-science-logo.png" alt="The Mercer Science organization logo." loading="lazy"></a>
+<figcaption>Mercer Science on GitHub, where I release the tools as they become useful to someone besides me.</figcaption>
+</figure>
+</div>
+</article>
+<article class="block" id="tacit-knowledge-engine">
+<header class="block-head">
+<h2>Cryo-EM Tacit Knowledge Engine</h2>
+<p class="block-meta"><span class="dates">October 2026 to present</span> <span class="status ongoing">Ongoing</span></p>
+</header>
+<p>The Cryo-EM Tacit Knowledge Engine is an ongoing project with Dr. Jensen. Dr. Jensen originated the idea and I am scaffolding it. Nothing is built yet.</p>
+</article>
+</section>
+<section class="panel" id="software-projects" role="tabpanel" aria-label="Software Projects">
+<h1 class="panel-title">Software Projects</h1>
+<article class="block" id="mercer-science-tools">
+<header class="block-head">
+<h2>Mercer Science Tools</h2>
+<p class="block-meta"><span class="dates">2026 to present</span> <span class="status">Open source, ongoing</span></p>
+</header>
+<p>I release research tooling under the Mercer Science organization on GitHub as it becomes good enough for someone else to use.</p>
+<p><strong>paper-engine</strong> is the main one: skills, scripts, and strategies that take an academic paper from an idea toward a draft. It covers the parts that are mechanical but easy to get wrong, such as keeping an outline, figures, statistics, and references consistent with each other while the draft changes underneath them. I built it out of the manuscript work at UT Southwestern, where I rewrote one paper more than eight times.</p>
+<p><strong>github-ai-project-manager</strong> is a set of skills and hooks that let an AI command-line agent maintain a research project on GitHub on its own, so the record of what happened keeps up with the work.</p>
+<p><strong>AI-In-Research</strong> holds the proposal behind the BYU AI Association group I lead.</p>
+<p>More will go up as it stops being specific to my own machine. The repositories are at <a href="https://github.com/mercer-science">github.com/mercer-science</a>.</p>
+<div class="figures">
+<figure class="shot">
+<a href="../assets/img/mercer-science-logo.png"><img src="../assets/img/mercer-science-logo.png" alt="The Mercer Science organization logo." loading="lazy"></a>
+<figcaption>Mercer Science on GitHub, where I release the tools as they become useful to someone besides me.</figcaption>
+</figure>
+</div>
+</article>
+<article class="block" id="analysis-pipelines">
+<header class="block-head">
+<h2>Extraction and Analysis Pipelines</h2>
+<p class="block-meta"><span class="dates">2026</span></p>
+</header>
+<h3 class="block-label">Problem</h3>
+<p>Every one of the radiation oncology studies ran on data that a hospital generated for treating patients, not for analysis. Structures are named differently by each physician, sessions go missing, file names carry no information, and the same measurement means different things on different machines. You cannot ask a clinical question until something cleans that up, and doing it by hand means the answer changes every time you redo it.</p>
+<h3 class="block-label">Solution</h3>
+<p><strong>C# inside the treatment planning system.</strong> A script that walks every patient and plan, finds the relevant structures despite inconsistent naming, pulls the dose data into organized spreadsheets, and asks a human only when it genuinely cannot resolve a duplicate.</p>
+<p><strong>Python for the parts with judgment in them.</strong> Filtering raw exports into templates designed with the physician; reconstructing respiratory motion from backup-plan contours and running about 1,000 geometric checks per patient; recovering imaging dates for files whose names had lost them; rebuilding per-patient outcome plots from a chart-review sheet.</p>
+<p><strong>R for everything that becomes a figure or table.</strong> Every panel and every table in those manuscripts generates from the raw data. About 20 figures were drafted for one paper and cut to a main set plus supplements, and six tables build themselves.</p>
+<h3 class="block-label">Result</h3>
+<p>When I found the exporter bug that had been capping a key measurement, fixing it meant rerunning the pipeline, and every figure in the paper rebuilt correctly. That is the argument for writing the pipeline instead of the figure. The code itself belongs to UT Southwestern and is tied to its systems, so it is not public.</p>
+</article>
+<article class="block" id="chess-app">
+<header class="block-head">
+<h2>Client-Server Chess Application</h2>
+<p class="block-meta"><span class="dates">Fall 2026</span> <span class="status">Coursework</span></p>
+</header>
+<p>A full-stack Java chess application built for C S 240, Advanced Software Construction: game logic, a server with a REST API and WebSocket play, user authentication, a database layer, and a terminal client, with unit and integration tests throughout. It is coursework rather than research, and it is the project where I learned to design an interface between parts of a system before writing either side. The repository is on my personal GitHub.</p>
+</article>
+<article class="block" id="cs-training">
+<header class="block-head">
+<h2>Computer Science Training</h2>
+<p class="block-meta"><span class="dates">2024 to 2028</span></p>
+</header>
+<p>Computer science minor with a machine learning emphasis, alongside the biochemistry major.</p>
+<p><strong>Completed:</strong> C S 111 Introduction to Computer Science, C S 235 Data Structures, C S 236 Discrete Structures.</p>
+<p><strong>In progress, Fall 2026:</strong> C S 240 Advanced Software Construction, MATH 213 Elementary Linear Algebra, MATH 215 Computational Linear Algebra.</p>
+<p><strong>Planned:</strong> C S 312 and C S 470, which carry the machine learning emphasis.</p>
+<p><strong>Also taken:</strong> STAT 121 Introduction to Statistical Data Analysis.</p>
+<p>The languages I use on real projects are Python, R, C#, Java, and shell. Most of what I know about building software, though, came from the clinical work rather than from coursework: inheriting a system nobody could run, and having to make one that someone else could.</p>
+</article>
+</section>
+<section class="panel" id="publications" role="tabpanel" aria-label="Publications and Ongoing Research">
+<h1 class="panel-title">Publications and Ongoing Research</h1>
+<article class="block" id="lung-dwi">
+<header class="block-head">
+<h2>Lung PULSAR Diffusion MRI on the MR-Linac</h2>
+<p class="block-meta"><span class="dates">October 2026</span> <span class="status">Submitted</span></p>
+</header>
+<p>Submitted to the <em>International Journal of Radiation Oncology, Biology, Physics</em> in October 2026. I designed the analysis, rebuilt the processing, found and fixed the exporter bug that had been capping the key measurement, built the threshold tool, and drafted the manuscript. Full write-up on the Clinical Research tab.</p>
+</article>
+<article class="block" id="bgrt">
+<header class="block-head">
+<h2>Biology-Guided Radiotherapy on RefleXion</h2>
+<p class="block-meta"><span class="dates">2026</span> <span class="status">In final co-author circulation</span></p>
+</header>
+<p>A dosimetry and outcomes study of PET-guided radiotherapy, in final circulation among co-authors before submission. I wrote the extraction and analysis code, ran the dose-smearing tests, designed the comparison figure, and drafted the manuscript. Full write-up on the Clinical Research tab.</p>
+</article>
+<article class="block" id="pancreas-dwi">
+<header class="block-head">
+<h2>Diffusion MRI in Pancreatic SBRT</h2>
+<p class="block-meta"><span class="dates">2026 to present</span> <span class="status ongoing">Ongoing, in preparation</span></p>
+</header>
+<p><strong>Ongoing.</strong> 76 patients processed through the pipeline, 23 with complete imaging and outcome data, with chart review underway under Dr. Jie Deng. Full write-up on the Clinical Research tab.</p>
+</article>
+<article class="block" id="ai-cryo-et">
+<header class="block-head">
+<h2>An AI Coding Agent for Cryo-ET Processing</h2>
+<p class="block-meta"><span class="dates">2026 to present</span> <span class="status ongoing">Ongoing, in preparation</span></p>
+</header>
+<p><strong>Ongoing</strong>, Jensen Lab. Presented as a poster, <em>Can an AI Agent Collapse the Cryo-ET Learning Curve?</em>, at the Utah CryoEM Symposium at BYU on October 8, 2026. Manuscript in preparation. Full write-up on the Physical Sciences tab.</p>
+</article>
+<article class="block" id="aerframe">
+<header class="block-head">
+<h2>Radiolucent Patient Immobilization</h2>
+<p class="block-meta"><span class="dates">2026</span> <span class="status">In final co-author circulation</span></p>
+</header>
+<p>A dosimetric comparison of a radiolucent treatment frame against legacy frames, in final circulation among co-authors. I designed the study, hand-screened the records to assemble the cohort, ran the analysis with the physicists, and wrote the first draft. Full write-up on the Clinical Research tab.</p>
+</article>
+<article class="block" id="langmuir-2026">
+<header class="block-head">
+<h2>Bimetallic Metal-Organic Framework Thin Films</h2>
+<p class="block-meta"><span class="dates">January 2026</span> <span class="status">Published</span></p>
+</header>
+<p>Ralph AD, <strong>Mercer RW</strong>, Hall SB, Butikofer BC, Collins CS, Sturgill CJ, Minson PS, Stefik M, Stowers KJ. Ambient pressure fabrication of Cu(x)Zn(1−x)(BDC)2DABCO thin films through spin-coating and their temperature-dependent structural development. <em>Langmuir</em> 2026;42(6):4475–4488. <a href="https://doi.org/10.1021/acs.langmuir.5c05182">doi:10.1021/acs.langmuir.5c05182</a></p>
+<p>Second author. Film synthesis, electron microscopy, and film-thickness analysis.</p>
+</article>
+<article class="block" id="uhv-chamber">
+<header class="block-head">
+<h2>Ultra-High-Vacuum Surface Chemistry</h2>
+<p class="block-meta"><span class="dates">2026 to present</span> <span class="status ongoing">Ongoing, in preparation</span></p>
+</header>
+<p><strong>Ongoing</strong>, Stowers Lab, co-author. The decomposition chemistry studied in the ultra-high-vacuum chamber. I still help finish this one although my position in the lab ended in May 2026.</p>
+</article>
+<article class="block" id="utsw-coauthor">
+<header class="block-head">
+<h2>Two Further UT Southwestern Manuscripts</h2>
+<p class="block-meta"><span class="dates">2026</span> <span class="status">In preparation</span></p>
+</header>
+<p>Two additional UT Southwestern manuscripts are in preparation with me as a co-author. Author order on manuscripts still in review is not final.</p>
+</article>
+<article class="block" id="ongoing-research">
+<header class="block-head">
+<h2>Ongoing Research</h2>
+<p class="block-meta"><span class="dates">2026 to present</span> <span class="status ongoing">Ongoing</span></p>
+</header>
+<p>Work in progress, with no results to report yet. Each line points to its full write-up.</p>
+<p><strong>Bartonella henselae surface architecture</strong>, Jensen Lab. <strong>Ongoing: in biosafety approval.</strong> Cryo-electron tomography of the bacterial surface, asking whether the adhesin layer blocks the secretion system beneath it. Full write-up on the Physical Sciences tab.</p>
+<p><strong>Babesia duncani apical complex</strong>, Jensen Lab. <strong>Ongoing: in biosafety approval.</strong> Would be the first cryo-electron tomography in the genus, and needs a milling workflow that does not exist yet. Full write-up on the Physical Sciences tab.</p>
+<p><strong>Cryo-EM Tacit Knowledge Engine</strong>, Jensen Lab. <strong>Ongoing.</strong> A project with Dr. Jensen, who originated the idea. I am scaffolding it, and nothing is built yet.</p>
+<p><strong>AI agent for cryo-ET processing</strong>, Jensen Lab. <strong>Ongoing</strong>, with a manuscript in preparation and a poster presented in October 2026.</p>
+<p><strong>Ultra-high-vacuum surface chemistry</strong>, Stowers Lab. <strong>Ongoing</strong>, co-author, manuscript in preparation.</p>
+<p><strong>Pancreatic diffusion MRI</strong>, UT Southwestern. <strong>Ongoing.</strong> 76 patients processed, 23 with complete imaging and outcomes, chart review underway.</p>
+</article>
+</section>
+<section class="panel" id="physical-sciences" role="tabpanel" aria-label="Physical Sciences">
+<h1 class="panel-title">Physical Sciences</h1>
+<article class="block" id="physical-sciences-short">
+<header class="block-head">
+<h2>Physical Sciences in Brief</h2>
+<p class="block-meta"><span class="dates">2024 to present</span></p>
+</header>
+<p><strong>Jensen Lab, BYU, August 2026 to present.</strong> Two cryo-electron tomography projects I scoped and proposed, and that Dr. Jensen approved: the surface architecture of <em>Bartonella henselae</em>, asking whether its adhesin layer blocks the secretion system underneath, and the apical complex of <em>Babesia duncani</em>, which would be the first tomography in that genus. Both are <strong>ongoing and in biosafety approval</strong>, so nothing has been cultured or frozen yet. I also run the lab's AI cryo-ET agent project, which I presented as a poster at the Utah CryoEM Symposium in October 2026.</p>
+<p><strong>Stowers Lab, BYU, April 2024 to May 2026.</strong> Metal-organic framework thin films grown by spin coating and characterized by electron microscopy, published in <em>Langmuir</em> with me as second author. I helped build and maintain a flow reactor and an ultra-high-vacuum chamber running near 10⁻¹⁰ Torr with X-ray photoelectron spectroscopy and mass spectrometry, and trained two newer students on spin coating and microscopy. A second manuscript on the vacuum-chamber chemistry is in preparation.</p>
+<p><strong>Bench training.</strong> Vitrobot and Krios through Thermo Fisher's Resolution Evolution course, bacterial culture and plasmid work in the Jensen Lab's apoferritin bootcamp, electron microscopy and film analysis in the Stowers Lab, plus the biochemistry lab sequence at BYU through CHEM 584, a master's-level methods course.</p>
+<div class="figures">
+<figure class="shot">
+<a href="../assets/img/stowers-uhv-chamber.jpg"><img src="../assets/img/stowers-uhv-chamber.jpg" alt="The ultra-high-vacuum chamber in the Stowers Lab, wrapped in foil for a bakeout, with pumps, gauges, and analysis ports." loading="lazy"></a>
+<figcaption>The ultra-high-vacuum chamber I helped keep running, near 10⁻¹⁰ Torr with X-ray photoelectron spectroscopy and mass spectrometry.</figcaption>
+</figure>
+</div>
+</article>
+</section>
+<section class="panel" id="cv" role="tabpanel" aria-label="CV">
+<h1 class="panel-title">CV</h1>
+<article class="block" id="cv">
+<header class="block-head">
+<h2>Curriculum Vitae</h2>
+</header>
+<p>The full CV carries the complete publication and presentation list, course detail, funding, service, and clinical hours. The summary below covers what most reviewers want first.</p>
+<p><strong>Education.</strong> Brigham Young University, B.S. Biochemistry, minor in Computer Science with a machine learning emphasis, January 2024 to April 2028 expected. Cumulative and science GPA 3.99. MCAT 519, 96th percentile, August 2026.</p>
+<p><strong>Research positions.</strong> Biochemistry Research Assistant, Jensen Lab, BYU, August 2026 to present, with Dr. Grant J. Jensen. Clinical Research Assistant, UT Southwestern Medical Center, May 2026 to present, with Dr. Kenneth Westover in Radiation Oncology and Dr. Jie Deng in Medical Physics. Chemistry Research Assistant, Stowers Lab, BYU, April 2024 to May 2026, with Dr. Kara J. Stowers.</p>
+<p><strong>Publications.</strong> One published, one submitted, two in final co-author circulation, and several in preparation. The full list sits on the Publications and Ongoing Research tab.</p>
+<p><strong>Presentations.</strong> BYU Student Research Conference, March 2025 and February 2026. American Chemical Society Spring Meeting, Atlanta, March 2026. BYU Simmons Center for Cancer Research, August 2026. BYU Medical Society, August 2026. Utah CryoEM Symposium, October 2026. Invited guest talk, BYU Healthcare Leadership, October 2026.</p>
+<p><strong>Funding and awards.</strong> SCCR Fellow, BYU Simmons Center for Cancer Research, Summer 2026. Undergraduate Research Award, each semester in the Stowers Lab. Outstanding Analytical Chemist, Spring 2025. Dean's List, four semesters.</p>
+<p><strong>Service and leadership.</strong> Officer, BYU AI Association. Lead Program Director, Early Learning Essentials, BYU Y-Serve. Pre-Med Peer Mentor, BYU Pre-Med Association. Volunteer, Utah State Hospital. Volunteer, Global Early Detection Initiative, Utah chapter.</p>
+<p class="downloads"><a class="button" href="../assets/pdf/russell-mercer-cv.pdf" download>Download CV (PDF)</a></p>
+</article>
+</section>
+</main>
+<footer class="foot">
+<p>Russell Mercer &middot; Brigham Young University &middot;
+<a href="https://github.com/mercer-science">github.com/mercer-science</a> &middot;
+<a href="https://orcid.org/0009-0003-6387-969X">ORCID</a></p>
+<p class="foot-note">Portfolio prepared for the Crocker Innovation Fellowship, October 2026.</p>
+</footer>
+<script src="../assets/js/tabs.js"></script>
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design &middot; Russell Mercer</title>
+<meta name="description" content="Portfolio for the Crocker Innovation Fellowship: Design.">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="masthead">
+<p class="name">Russell Mercer</p>
+<p class="tagline">Biochemistry, clinical software, and AI at Brigham Young University</p>
+<nav class="roles" aria-label="Application">
+<span class="roles-label">Application:</span>
+<a class="chip" href="../igem/">iGEM</a>
+<a class="chip" href="../coding/">Coding</a>
+<span class="chip chip-on" aria-current="page">Design</span>
+<a class="chip" href="../wildcard/">Wild Card</a>
+</nav>
+</header>
+<nav class="tabs" role="tablist" aria-label="Sections">
+<a class="tab tab-on" href="#resume" data-tab="resume" role="tab" aria-selected="true">Resume</a>
+<a class="tab" href="#clinical-interface-design" data-tab="clinical-interface-design" role="tab" aria-selected="false">Clinical Interface Design</a>
+<a class="tab" href="#other-ui-projects" data-tab="other-ui-projects" role="tab" aria-selected="false">Other UI Projects</a>
+<a class="tab" href="#figures" data-tab="figures" role="tab" aria-selected="false">Figures and Visual Communication</a>
+<a class="tab" href="#ai" data-tab="ai" role="tab" aria-selected="false">AI</a>
+<a class="tab" href="#physical-sciences" data-tab="physical-sciences" role="tab" aria-selected="false">Physical Sciences</a>
+<a class="tab" href="#cv" data-tab="cv" role="tab" aria-selected="false">CV</a>
+</nav>
+<main id="main">
+<section class="panel panel-on" id="resume" role="tabpanel" aria-label="Resume">
+<h1 class="panel-title">Resume</h1>
+<article class="block" id="design">
+<header class="block-head">
+</header>
+<p class="headline">Designs Tools and Interfaces for Clinicians and Researchers</p>
+<p>Biochemistry major with a computer science minor at Brigham Young University, graduating April 2028. I design for a narrow and demanding set of users: physicians and medical physicists who have minutes, not hours, and who need to know whether a number can be trusted. The diffusion MRI workspace I built at UT Southwestern is the main case study, from the problem through the iterations to what a physician could do afterward that they could not do before.</p>
+<p>I also build what I design, which keeps the designs honest about what is possible.</p>
+<p class="downloads"><a class="button" href="../assets/pdf/russell-mercer-resume-design.pdf" download>Download Resume (PDF)</a></p>
+</article>
+<article class="block" id="at-a-glance">
+<header class="block-head">
+<h2>At a Glance</h2>
+</header>
+<p><strong>Education.</strong> Brigham Young University, B.S. Biochemistry with a Computer Science minor (machine learning emphasis), January 2024 to April 2028 expected. GPA 3.99. MCAT 519, 96th percentile.</p>
+<p><strong>Research.</strong> Jensen Lab, BYU (cryo-electron tomography), August 2026 to present. Clinical Research Assistant, UT Southwestern Medical Center (radiation oncology, then medical physics), May 2026 to present. Stowers Lab, BYU (surface chemistry), April 2024 to May 2026.</p>
+<p><strong>Writing.</strong> One paper published in <em>Langmuir</em> as second author, one manuscript submitted to the <em>International Journal of Radiation Oncology, Biology, Physics</em>, two in final co-author circulation, and several more in preparation. Lead drafter on four.</p>
+<p><strong>Speaking.</strong> Six research presentations across chemistry, medicine, and structural biology, plus an invited guest talk to BYU's Healthcare Leadership program in October 2026.</p>
+<p><strong>Leadership.</strong> Officer, BYU AI Association, leading the weekly AI in Research meeting. Lead program director for Early Learning Essentials through BYU Y-Serve. Pre-med peer mentor.</p>
+<p><strong>Clinical.</strong> Medical assistant at a family clinic, July 2025 to April 2026. Weekly physical therapy volunteer at Utah State Hospital since May 2025.</p>
+<p><strong>Awards.</strong> SCCR Fellow 2026 (Simmons Center for Cancer Research), Outstanding Analytical Chemist 2025, Dean's List four semesters.</p>
+</article>
+</section>
+<section class="panel" id="clinical-interface-design" role="tabpanel" aria-label="Clinical Interface Design">
+<h1 class="panel-title">Clinical Interface Design</h1>
+<article class="block" id="dwi-interface-design">
+<header class="block-head">
+<h2>Designing the Diffusion MRI Workspace</h2>
+<p class="block-meta"><span class="dates">May 2026 to present</span> <span class="status">Handed to the clinical software team</span></p>
+</header>
+<h3 class="block-label">Problem</h3>
+<p>The people who had to use this software were physicians and medical physicists, not engineers, and the tool they had was built around the processing steps rather than around anything they wanted to do. It ran one patient at a time. Every step was a button someone had to press in the right order, and if a step failed you found out by noticing that nothing happened. Nobody could tell whether a given number was trustworthy without going back to the raw images by hand.</p>
+<p>So the design question was not how to make the screens nicer. It was what the users were actually trying to decide, and what the old tool made them do instead.</p>
+<h3 class="block-label">Solution</h3>
+<p>I watched what people asked for and designed around the decisions rather than the pipeline.</p>
+<p><strong>A physician wants to know what changed between treatment days.</strong> That became a viewer that lines up anatomy, contours, and parametric maps slice by slice, with whole-tumor histograms per day, so the comparison is on one screen instead of in somebody's memory. An early June version only stacked the same slice across days; after the physicians used it, the July version added the histograms and the per-day parameter comparison, because what they wanted was the distribution, not the picture.</p>
+<p><strong>A physicist wants to know whether a number is real.</strong> That became the fit checker: click any voxel, see the measured signal with both model fits drawn through it, export the figure and the data. It exists because the question kept coming up in meetings and the old answer was a shrug.</p>
+<p><strong>A physician wants to act on the result.</strong> That became the threshold creator, which applies a cutoff to outline the treatment-resistant core and exports contours the treatment planning system can import. Design-wise this was the hardest piece, because the output had to land inside software the physician already uses rather than ask them to learn mine.</p>
+<p><strong>Everyone wants figures.</strong> That became the image creator: pick slices and structures, preview at low resolution, then render publication panels. I also set up an HTML preview so drafts could be shared with the physicians without sending anything that needed installing.</p>
+<p><strong>And nobody wants to babysit a queue.</strong> The bulk runner takes a list of patients, gives each one a tab, schedules CPU and GPU work, watches disk space, archives finished patients, and raises errors where the user is already looking.</p>
+<h3 class="block-label">Result</h3>
+<p>The application went from one person's workstation account to the team that maintains clinical software, and it processed 76 patients in about 2.5 days where the old workflow had taken a week for 10. A physician used the diffusion maps I loaded into the contouring system as an overlay to redo 46 contours, which is the clearest evidence I have that the interface changed what someone could do rather than just how it looked.</p>
+<p>What I would do differently: I designed most of this from conversations and from watching meetings, not from sitting beside someone while they used it. That is the gap in my design process, and I know it.</p>
+<div class="figures">
+<figure class="shot">
+<a href="../assets/img/pipeline-before.png"><img src="../assets/img/pipeline-before.png" alt="The inherited pipeline interface, a single-patient step runner with each processing step started by hand." loading="lazy"></a>
+<figcaption>Before. One patient, one step at a time, each click waiting on a person who already knew which step came next.</figcaption>
+</figure>
+<figure class="shot">
+<a href="../assets/img/pipeline-after.png"><img src="../assets/img/pipeline-after.png" alt="The rebuilt bulk runner, showing a tab per patient and a queue of processing steps with status indicators." loading="lazy"></a>
+<figcaption>After. A tab per patient, a queue that schedules itself, and errors surfaced where the user is already looking.</figcaption>
+</figure>
+<figure class="shot">
+<a href="../assets/img/fit-checker.png"><img src="../assets/img/fit-checker.png" alt="The fit checker interface, showing a parametric map beside a plot of one voxel&#x27;s measured signal with two model fits." loading="lazy"></a>
+<figcaption>The fit checker, built because physicists kept asking the same question: is this number real, or did the fit fail here?</figcaption>
+</figure>
+</div>
+</article>
+</section>
+<section class="panel" id="other-ui-projects" role="tabpanel" aria-label="Other UI Projects">
+<h1 class="panel-title">Other UI Projects</h1>
+<article class="block placeholder"><header class="block-head"><h2>Heart and Blood Pressure App</h2></header><p>This section is reserved and has nothing in it yet.</p></article>
+<article class="block" id="cadence">
+<header class="block-head">
+<h2>Cadence, a Spaced-Repetition App</h2>
+<p class="block-meta"><span class="dates">2026 to present</span> <span class="status ongoing">Ongoing, early MVP</span></p>
+</header>
+<h3 class="block-label">Problem</h3>
+<p>Anki is the tool most medical students live in, and its interface is a decade of accreted options stacked on a scheduler most users never see. The scheduling is the good part. The experience of sitting down to 400 due cards is not.</p>
+<h3 class="block-label">Solution</h3>
+<p>Cadence is a rewrite of the parts that matter, built with React, TypeScript, and the FSRS scheduler, which models memory directly rather than nudging intervals by fixed multipliers. The design work is deciding what to leave out: a card should take one decision, the queue should tell you how long it will take before you start, and the settings a user actually changes should not be buried under the ones they never will.</p>
+<h3 class="block-label">Status</h3>
+<p><strong>Ongoing.</strong> It is an early minimum viable product, and the repository is private, so the screenshots are what I can show.</p>
+</article>
+</section>
+<section class="panel" id="figures" role="tabpanel" aria-label="Figures and Visual Communication">
+<h1 class="panel-title">Figures and Visual Communication</h1>
+<article class="block" id="bgrt-flow-chart">
+<header class="block-head">
+<h2>Explaining a Treatment Machine in One Figure</h2>
+<p class="block-meta"><span class="dates">August 2026</span> <span class="status">Figure unpublished; described here, not shown</span></p>
+</header>
+<h3 class="block-label">Problem</h3>
+<p>The RefleXion paper had to explain, to readers who had never seen the machine, how PET-guided delivery differs from standard image-guided delivery, and it had to do so inside a strict word limit against almost 4,000 words of supplement. Prose was not going to carry it. Reviewers needed to see the two workflows side by side and find the one point where they diverge.</p>
+<h3 class="block-label">Solution</h3>
+<p>I designed a flow chart that runs both pathways in parallel from simulation through delivery, so the divergence lands visually instead of being asserted in a sentence. I built it in PowerPoint with Claude working in the same file: I directed the layout and the logic, and the agent handled alignment, color, and scaling, which is the part that eats hours and produces no insight. Then I wired the figure-rendering code to convert the slide to an image and assemble it with the R-generated panels automatically, so the whole figure rebuilds from source whenever the data changes.</p>
+<h3 class="block-label">Result</h3>
+<p>It is the final figure in the manuscript, which is in co-author circulation. The figure itself is unpublished, so it is not shown here. The method is the part worth keeping: when a figure is assembled by a script rather than by hand, revising it eight times costs nothing, and I revised that paper more than eight times.</p>
+</article>
+<article class="block" id="publication-figures">
+<header class="block-head">
+<h2>Publication Figures and Reproducible Pipelines</h2>
+<p class="block-meta"><span class="dates">2024 to present</span></p>
+</header>
+<p>Most of my figure work is not drawing. It is building the thing that draws the figure, so the twelfth revision costs the same as the first.</p>
+<p>For the radiation oncology studies I wrote R scripts that generate every figure and table straight from the raw export. About 20 figures were drafted for the RefleXion paper and narrowed to a main set plus supplements; six tables generate themselves. When I found a bug that had been capping a key measurement in the lung study, fixing it meant re-exporting and rerunning, and every figure rebuilt correctly without anyone touching a plot.</p>
+<p>Inside the imaging application, the image creator does the same job for the parts a script cannot choose: a physician picks slices and structures, previews at low resolution, and then renders a publication-quality panel, with upsampling past the scanner's native resolution when the figure needs it.</p>
+<p>The design judgment that matters here is what goes in a panel together. The published figure above puts coverage and crystallite size next to the micrographs of the films themselves, because a reader who sees a bar chart alone has to take the claim on faith.</p>
+<div class="figures">
+<figure class="shot">
+<a href="../assets/img/langmuir-fig2.png"><img src="../assets/img/langmuir-fig2.png" alt="Bar charts of film coverage and crystallite size against temperature, beside four electron micrographs of films grown at 22, 32, 42, and 52 degrees Celsius." loading="lazy"></a>
+<figcaption>A published figure from our Langmuir paper. Charts and micrographs in one panel, so the numbers and the material they came from sit together. Ralph et al., Langmuir 2026;42(6):4475–4488.</figcaption>
+</figure>
+</div>
+</article>
+<article class="block" id="posters-slides">
+<header class="block-head">
+<h2>Posters and Slides</h2>
+<p class="block-meta"><span class="dates">2025 to 2026</span> <span class="status">Poster file still needed</span></p>
+</header>
+<p>I have presented six times across three fields, which means designing for three different audiences who read a poster differently.</p>
+<p>The Utah CryoEM Symposium poster, <em>Can an AI Agent Collapse the Cryo-ET Learning Curve?</em>, had to make a claim about AI credible to structural biologists who are rightly skeptical of it. The design answer was to lead with the logged record of what the agent got right and wrong, rather than with the pipeline diagram.</p>
+<p>For the Simmons Center talk in August 2026 I built the slides for the summer's radiation oncology work, and for the BYU Medical Society poster that month I shared the design with the other intern. Earlier, the Stowers chemistry work went to the BYU Student Research Conference twice and to the American Chemical Society spring meeting in Atlanta.</p>
+<p>The poster file goes here once Russell supplies it.</p>
+</article>
+<article class="block" id="spri-logo">
+<header class="block-head">
+<h2>SPRI Program Mark</h2>
+<p class="block-meta"><span class="dates">August 2026</span> <span class="status">Awaiting Russell's choice of version</span></p>
+</header>
+<h3 class="block-label">Problem</h3>
+<p>The Summer Premedical Research Internship needed a program mark. My first design was a DNA double helix unzipping into a Y, with serpent heads at the tips: Y for BYU, DNA for research, serpents for medicine. Three ideas in one shape.</p>
+<h3 class="block-label">Solution</h3>
+<p>Viewers told me it read as female reproductive anatomy, with the serpent heads reading as sperm. That is not a matter of taste; it is structural. Three cues stack: a smooth ovoid with a single eye-dot at the end of a curving stroke is how sperm is drawn in a textbook, the arms spread wider than they rise, and a narrowing coiled column descends from the junction. Any one is harmless. Together they draw the whole diagram, and fixing any two collapses the reading.</p>
+<p>So I rebuilt the mark on an axis model rather than as a fixed set of drawings. Form, flare, arm path, head shape, stroke weight, rung treatment, and whether the fork reads as a replication fork each became a dimension you can set independently, which made combinations reachable that the old list of thirteen finished drawings had no button for. Narrowing the flare cuts the spread from 92 units to 64 and flips the rise-to-spread ratio from 0.83 to 1.41, which is the difference between a fallopian tube and a letter Y.</p>
+<h3 class="block-label">Result</h3>
+<p>An interactive kit with four presets, built as HTML so anyone can click through the axes rather than request a revision. It went to BYU Media. The lesson I keep: when feedback says a design reads wrong, the useful move is to find which cues produce the reading and break enough of them, instead of defending the intent.</p>
+<p>The logo files are picked from the kit; Russell confirms which version goes here.</p>
+</article>
+</section>
+<section class="panel" id="ai" role="tabpanel" aria-label="AI">
+<h1 class="panel-title">AI</h1>
+<article class="block" id="ai-in-design">
+<header class="block-head">
+<h2>Building With AI, One Decision at a Time</h2>
+<p class="block-meta"><span class="dates">2026</span></p>
+</header>
+<p>Nearly everything on the Design tabs was built with an AI coding agent doing the typing. I want to be precise about what that did and did not mean, because the distinction is the whole point.</p>
+<p>The clinical imaging application took weeks instead of months because the agent handled the parts that are mechanical: wiring a viewer, scheduling GPU work, converting a slide to an image and assembling it with plot panels. Every decision about what the user needed, which comparison a physicist actually makes, and where a number should not be trusted came from me, sitting in meetings with the people who would use it. The agent never met them.</p>
+<p>The limit showed up clearly. Our research was new enough that there were few existing patterns to draw on, and that is exactly where this kind of tool is weakest, since it works from what has been done before. Where the work was ordinary, it flew. Where the work was novel, I was back to thinking.</p>
+<p>In the Jensen Lab I am now testing that boundary on purpose, logging every agent recommendation in a processing pipeline as accepted, overridden, or an error I caught.</p>
+</article>
+<article class="block" id="ai-conference">
+<header class="block-head">
+<h2>AI for Social Innovation Conference</h2>
+<p class="block-meta"><span class="dates">October 2026</span></p>
+</header>
+<p>I attended the AI for Social Innovation Conference at Aspen Grove on October 21, 2026, run by BYU's Ballard Center, as the BYU AI Association's representative. The organizers wanted someone from the association and I was given a seat at the Data Sovereignty and Inclusion working table, alongside a UN ambassador, the chief operating officer of a Māori media organization that built a community-owned speech model, and people from industry and other universities. The table's question was who owns community data, the models trained on it, and the value those models create.</p>
+</article>
+</section>
+<section class="panel" id="physical-sciences" role="tabpanel" aria-label="Physical Sciences">
+<h1 class="panel-title">Physical Sciences</h1>
+<article class="block" id="physical-sciences-short">
+<header class="block-head">
+<h2>Physical Sciences in Brief</h2>
+<p class="block-meta"><span class="dates">2024 to present</span></p>
+</header>
+<p><strong>Jensen Lab, BYU, August 2026 to present.</strong> Two cryo-electron tomography projects I scoped and proposed, and that Dr. Jensen approved: the surface architecture of <em>Bartonella henselae</em>, asking whether its adhesin layer blocks the secretion system underneath, and the apical complex of <em>Babesia duncani</em>, which would be the first tomography in that genus. Both are <strong>ongoing and in biosafety approval</strong>, so nothing has been cultured or frozen yet. I also run the lab's AI cryo-ET agent project, which I presented as a poster at the Utah CryoEM Symposium in October 2026.</p>
+<p><strong>Stowers Lab, BYU, April 2024 to May 2026.</strong> Metal-organic framework thin films grown by spin coating and characterized by electron microscopy, published in <em>Langmuir</em> with me as second author. I helped build and maintain a flow reactor and an ultra-high-vacuum chamber running near 10⁻¹⁰ Torr with X-ray photoelectron spectroscopy and mass spectrometry, and trained two newer students on spin coating and microscopy. A second manuscript on the vacuum-chamber chemistry is in preparation.</p>
+<p><strong>Bench training.</strong> Vitrobot and Krios through Thermo Fisher's Resolution Evolution course, bacterial culture and plasmid work in the Jensen Lab's apoferritin bootcamp, electron microscopy and film analysis in the Stowers Lab, plus the biochemistry lab sequence at BYU through CHEM 584, a master's-level methods course.</p>
+<div class="figures">
+<figure class="shot">
+<a href="../assets/img/stowers-uhv-chamber.jpg"><img src="../assets/img/stowers-uhv-chamber.jpg" alt="The ultra-high-vacuum chamber in the Stowers Lab, wrapped in foil for a bakeout, with pumps, gauges, and analysis ports." loading="lazy"></a>
+<figcaption>The ultra-high-vacuum chamber I helped keep running, near 10⁻¹⁰ Torr with X-ray photoelectron spectroscopy and mass spectrometry.</figcaption>
+</figure>
+</div>
+</article>
+</section>
+<section class="panel" id="cv" role="tabpanel" aria-label="CV">
+<h1 class="panel-title">CV</h1>
+<article class="block" id="cv">
+<header class="block-head">
+<h2>Curriculum Vitae</h2>
+</header>
+<p>The full CV carries the complete publication and presentation list, course detail, funding, service, and clinical hours. The summary below covers what most reviewers want first.</p>
+<p><strong>Education.</strong> Brigham Young University, B.S. Biochemistry, minor in Computer Science with a machine learning emphasis, January 2024 to April 2028 expected. Cumulative and science GPA 3.99. MCAT 519, 96th percentile, August 2026.</p>
+<p><strong>Research positions.</strong> Biochemistry Research Assistant, Jensen Lab, BYU, August 2026 to present, with Dr. Grant J. Jensen. Clinical Research Assistant, UT Southwestern Medical Center, May 2026 to present, with Dr. Kenneth Westover in Radiation Oncology and Dr. Jie Deng in Medical Physics. Chemistry Research Assistant, Stowers Lab, BYU, April 2024 to May 2026, with Dr. Kara J. Stowers.</p>
+<p><strong>Publications.</strong> One published, one submitted, two in final co-author circulation, and several in preparation. The full list sits on the Publications and Ongoing Research tab.</p>
+<p><strong>Presentations.</strong> BYU Student Research Conference, March 2025 and February 2026. American Chemical Society Spring Meeting, Atlanta, March 2026. BYU Simmons Center for Cancer Research, August 2026. BYU Medical Society, August 2026. Utah CryoEM Symposium, October 2026. Invited guest talk, BYU Healthcare Leadership, October 2026.</p>
+<p><strong>Funding and awards.</strong> SCCR Fellow, BYU Simmons Center for Cancer Research, Summer 2026. Undergraduate Research Award, each semester in the Stowers Lab. Outstanding Analytical Chemist, Spring 2025. Dean's List, four semesters.</p>
+<p><strong>Service and leadership.</strong> Officer, BYU AI Association. Lead Program Director, Early Learning Essentials, BYU Y-Serve. Pre-Med Peer Mentor, BYU Pre-Med Association. Volunteer, Utah State Hospital. Volunteer, Global Early Detection Initiative, Utah chapter.</p>
+<p class="downloads"><a class="button" href="../assets/pdf/russell-mercer-cv.pdf" download>Download CV (PDF)</a></p>
+</article>
+</section>
+</main>
+<footer class="foot">
+<p>Russell Mercer &middot; Brigham Young University &middot;
+<a href="https://github.com/mercer-science">github.com/mercer-science</a> &middot;
+<a href="https://orcid.org/0009-0003-6387-969X">ORCID</a></p>
+<p class="foot-note">Portfolio prepared for the Crocker Innovation Fellowship, October 2026.</p>
+</footer>
+<script src="../assets/js/tabs.js"></script>
+</body>
+</html>

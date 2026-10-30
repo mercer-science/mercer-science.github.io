@@ -1,0 +1,351 @@
+"""Build the Crocker portfolio pages from content/ and content/tabs.yml.
+
+Run from the repo root:  python tools/build.py
+Writes igem/index.html, coding/index.html, design/index.html, wildcard/index.html,
+plus index.html at the root. Nothing else in the repo is touched.
+
+Every content block is one markdown file in content/ with YAML frontmatter.
+A block with `hold: true` is never published; the script lists it at the end
+instead, along with every block that still needs something from Russell.
+"""
+
+import html
+import os
+import re
+import sys
+
+import yaml
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+CONTENT = os.path.join(ROOT, "content")
+
+SITE_NAME = "Russell Mercer"
+TAGLINE = "Biochemistry, clinical software, and AI at Brigham Young University"
+
+ROLE_ORDER = ["igem", "coding", "design", "wildcard"]
+
+
+# --------------------------------------------------------------------------
+# Markdown: a small subset, enough for these blocks and no more.
+# Supported: ### and #### headings, paragraphs, - lists, **bold**, *italic*,
+# `code`, [text](url). No raw HTML in the markdown, by design.
+# --------------------------------------------------------------------------
+
+def inline(text):
+    out = html.escape(text, quote=False)
+    out = re.sub(r"`([^`]+)`", r"<code>\1</code>", out)
+    out = re.sub(r"\[([^\]]+)\]\(([^)]+)\)",
+                 lambda m: '<a href="%s">%s</a>' % (html.escape(m.group(2), quote=True), m.group(1)),
+                 out)
+    out = re.sub(r"\*\*([^*]+)\*\*", r"<strong>\1</strong>", out)
+    out = re.sub(r"(?<!\*)\*([^*]+)\*(?!\*)", r"<em>\1</em>", out)
+    return out
+
+
+def render_markdown(body):
+    lines = body.replace("\r\n", "\n").split("\n")
+    out = []
+    para = []
+    items = []
+
+    def flush_para():
+        if para:
+            out.append("<p>%s</p>" % inline(" ".join(para).strip()))
+            para.clear()
+
+    def flush_list():
+        if items:
+            out.append("<ul>\n%s\n</ul>" % "\n".join("<li>%s</li>" % inline(i) for i in items))
+            items.clear()
+
+    for raw in lines:
+        line = raw.rstrip()
+        if not line.strip():
+            flush_para()
+            flush_list()
+            continue
+        if line.startswith("#### "):
+            flush_para(); flush_list()
+            out.append("<h4>%s</h4>" % inline(line[5:].strip()))
+        elif line.startswith("### "):
+            flush_para(); flush_list()
+            out.append('<h3 class="block-label">%s</h3>' % inline(line[4:].strip()))
+        elif line.startswith("- "):
+            flush_para()
+            items.append(line[2:].strip())
+        else:
+            flush_list()
+            para.append(line.strip())
+    flush_para()
+    flush_list()
+    return "\n".join(out)
+
+
+# --------------------------------------------------------------------------
+# Content loading
+# --------------------------------------------------------------------------
+
+def load_block(name):
+    path = os.path.join(CONTENT, name.replace("/", os.sep) + ".md")
+    if not os.path.exists(path):
+        return None
+    with open(path, encoding="utf-8") as fh:
+        text = fh.read()
+    if not text.startswith("---"):
+        raise SystemExit("%s is missing its frontmatter" % path)
+    _, fm, body = text.split("---", 2)
+    meta = yaml.safe_load(fm) or {}
+    meta["_name"] = name
+    meta["_path"] = path
+    meta["_body"] = body.strip()
+    return meta
+
+
+def slugify(text):
+    return re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-")
+
+
+# --------------------------------------------------------------------------
+# HTML rendering
+# --------------------------------------------------------------------------
+
+def render_images(images):
+    if not images:
+        return ""
+    figs = []
+    for img in images:
+        src = img.get("src", "")
+        alt = html.escape(img.get("alt", ""), quote=True)
+        caption = img.get("caption", "")
+        cap = '<figcaption>%s</figcaption>' % inline(caption) if caption else ""
+        figs.append(
+            '<figure class="shot">\n'
+            '<a href="../%s"><img src="../%s" alt="%s" loading="lazy"></a>\n%s\n</figure>'
+            % (src, src, alt, cap)
+        )
+    cls = "figures" + (" figures-pair" if len(figs) == 2 else "")
+    return '<div class="%s">\n%s\n</div>' % (cls, "\n".join(figs))
+
+
+def render_block(meta, tab_title=""):
+    title = meta.get("title", "")
+    # A block whose title repeats the tab's own title shows it once, not twice.
+    repeat_title = title.strip().lower() == tab_title.strip().lower()
+    status = str(meta.get("status") or "").strip()
+    dates = str(meta.get("dates") or "").strip()
+    pieces = []
+    pieces.append('<article class="block" id="%s">' % slugify(meta["_name"].split("/")[-1]))
+    pieces.append('<header class="block-head">')
+    if not repeat_title:
+        pieces.append("<h2>%s</h2>" % inline(title))
+    meta_bits = []
+    if dates:
+        meta_bits.append('<span class="dates">%s</span>' % inline(dates))
+    if status:
+        ongoing = " ongoing" if status.lower().startswith("ongoing") else ""
+        meta_bits.append('<span class="status%s">%s</span>' % (ongoing, inline(status)))
+    if meta_bits:
+        pieces.append('<p class="block-meta">%s</p>' % " ".join(meta_bits))
+    pieces.append("</header>")
+
+    if meta.get("headline"):
+        pieces.append('<p class="headline">%s</p>' % inline(meta["headline"]))
+
+    pieces.append(render_markdown(meta["_body"]))
+
+    if meta.get("resume_pdf"):
+        pieces.append(
+            '<p class="downloads"><a class="button" href="../%s" download>Download Resume (PDF)</a></p>'
+            % meta["resume_pdf"]
+        )
+    if meta.get("cv_pdf"):
+        pieces.append(
+            '<p class="downloads"><a class="button" href="../%s" download>Download CV (PDF)</a></p>'
+            % meta["cv_pdf"]
+        )
+
+    pieces.append(render_images(meta.get("images") or []))
+    pieces.append("</article>")
+    return "\n".join(p for p in pieces if p)
+
+
+def role_switcher(current, roles):
+    chips = []
+    for rid in ROLE_ORDER:
+        if rid not in roles:
+            continue
+        label = roles[rid]["label"]
+        if rid == current:
+            chips.append('<span class="chip chip-on" aria-current="page">%s</span>' % html.escape(label))
+        else:
+            chips.append('<a class="chip" href="../%s/">%s</a>' % (rid, html.escape(label)))
+    return (
+        '<nav class="roles" aria-label="Application">\n'
+        '<span class="roles-label">Application:</span>\n%s\n</nav>' % "\n".join(chips)
+    )
+
+
+def tab_bar(tabs):
+    buttons = []
+    for i, tab in enumerate(tabs):
+        buttons.append(
+            '<a class="tab%s" href="#%s" data-tab="%s" role="tab" aria-selected="%s">%s</a>'
+            % (" tab-on" if i == 0 else "", tab["id"], tab["id"],
+               "true" if i == 0 else "false", html.escape(tab["title"]))
+        )
+    return '<nav class="tabs" role="tablist" aria-label="Sections">\n%s\n</nav>' % "\n".join(buttons)
+
+
+PAGE = """<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{title} &middot; {site}</title>
+<meta name="description" content="{desc}">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="masthead">
+<p class="name">{site}</p>
+<p class="tagline">{tagline}</p>
+{switcher}
+</header>
+{tabbar}
+<main id="main">
+{panels}
+</main>
+<footer class="foot">
+<p>{site} &middot; Brigham Young University &middot;
+<a href="https://github.com/mercer-science">github.com/mercer-science</a> &middot;
+<a href="https://orcid.org/0009-0003-6387-969X">ORCID</a></p>
+<p class="foot-note">Portfolio prepared for the Crocker Innovation Fellowship, October 2026.</p>
+</footer>
+<script src="../assets/js/tabs.js"></script>
+</body>
+</html>
+"""
+
+
+def build_role(rid, role, roles, report):
+    panels = []
+    for i, tab in enumerate(role["tabs"]):
+        blocks = []
+        for name in tab["blocks"]:
+            meta = load_block(name)
+            if meta is None:
+                report["missing"].append("%s/%s: no file content/%s.md" % (rid, tab["id"], name))
+                continue
+            if meta.get("hold"):
+                report["held"].setdefault(name, meta)
+                continue
+            if meta.get("placeholder"):
+                report["placeholders"].setdefault(name, meta)
+                blocks.append(
+                    '<article class="block placeholder"><header class="block-head"><h2>%s</h2></header>'
+                    "<p>This section is reserved and has nothing in it yet.</p></article>"
+                    % inline(meta.get("title", name))
+                )
+                continue
+            if meta.get("needs"):
+                report["needs"].setdefault(name, meta)
+            blocks.append(render_block(meta, tab["title"]))
+        panels.append(
+            '<section class="panel%s" id="%s" role="tabpanel" aria-label="%s">\n'
+            '<h1 class="panel-title">%s</h1>\n%s\n</section>'
+            % (" panel-on" if i == 0 else "", tab["id"], html.escape(tab["title"]),
+               html.escape(tab["title"]), "\n".join(blocks))
+        )
+
+    page = PAGE.format(
+        title=html.escape(role["title"]),
+        site=html.escape(SITE_NAME),
+        tagline=html.escape(TAGLINE),
+        desc=html.escape("Portfolio for the Crocker Innovation Fellowship: %s." % role["title"]),
+        switcher=role_switcher(rid, roles),
+        tabbar=tab_bar(role["tabs"]),
+        panels="\n".join(panels),
+    )
+    outdir = os.path.join(ROOT, rid)
+    os.makedirs(outdir, exist_ok=True)
+    with open(os.path.join(outdir, "index.html"), "w", encoding="utf-8", newline="\n") as fh:
+        fh.write(page)
+    return len(role["tabs"])
+
+
+LANDING = """<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{site}</title>
+<meta name="description" content="Portfolio for the Crocker Innovation Fellowship.">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<header class="masthead">
+<p class="name">{site}</p>
+<p class="tagline">{tagline}</p>
+</header>
+<main id="main" class="landing">
+<section class="panel panel-on">
+<h1 class="panel-title">Crocker Innovation Fellowship Portfolio</h1>
+<article class="block">
+<p>Four applications, four versions of the same work. Each one orders the material for
+that role and carries the matching resume.</p>
+<nav class="landing-links">
+{links}
+</nav>
+</article>
+</section>
+</main>
+<footer class="foot">
+<p>{site} &middot; Brigham Young University &middot;
+<a href="https://github.com/mercer-science">github.com/mercer-science</a></p>
+</footer>
+</body>
+</html>
+"""
+
+
+def build_landing(roles):
+    links = "\n".join(
+        '<a class="landing-link" href="%s/"><strong>%s</strong><span>%s</span></a>'
+        % (rid, html.escape(roles[rid]["label"]),
+           html.escape(roles[rid]["tabs"][1]["title"]))
+        for rid in ROLE_ORDER if rid in roles
+    )
+    with open(os.path.join(ROOT, "index.html"), "w", encoding="utf-8", newline="\n") as fh:
+        fh.write(LANDING.format(site=html.escape(SITE_NAME),
+                                tagline=html.escape(TAGLINE), links=links))
+
+
+def main():
+    with open(os.path.join(CONTENT, "tabs.yml"), encoding="utf-8") as fh:
+        roles = yaml.safe_load(fh)["roles"]
+
+    report = {"missing": [], "held": {}, "placeholders": {}, "needs": {}}
+    for rid in ROLE_ORDER:
+        if rid not in roles:
+            continue
+        n = build_role(rid, roles[rid], roles, report)
+        print("built /%s/  (%d tabs)" % (rid, n))
+    build_landing(roles)
+    print("built /index.html")
+
+    print("\n--- Still needs Russell ---")
+    for name, meta in sorted(report["held"].items()):
+        print("HOLD       %s: %s" % (name, meta.get("hold_reason", "awaiting approval")))
+    for name, meta in sorted(report["placeholders"].items()):
+        print("PLACEHOLD  %s: %s" % (name, meta.get("status", "")))
+    for name, meta in sorted(report["needs"].items()):
+        print("NEEDS      %s: %s" % (name, meta.get("needs", "")))
+    for line in report["missing"]:
+        print("MISSING    %s" % line)
+    if not any([report["held"], report["placeholders"], report["needs"], report["missing"]]):
+        print("nothing outstanding")
+
+
+if __name__ == "__main__":
+    sys.exit(main())

@@ -1,0 +1,140 @@
+# Tab tables for the four role pages.
+# Each role lists its tabs left to right. Each tab lists the content blocks it
+# shows, top to bottom, by file name (without .md) from content/.
+# Resume stays first and CV stays last on every role.
+
+roles:
+  igem:
+    label: iGEM
+    title: iGEM (Life Science)
+    tabs:
+      - id: resume
+        title: Resume
+        blocks: [resume/igem, at-a-glance]
+      - id: publications
+        title: Publications and Ongoing Research
+        blocks:
+          - publications/langmuir-2026
+          - publications/lung-dwi
+          - publications/bgrt
+          - publications/aerframe
+          - publications/pancreas-dwi
+          - publications/ai-cryo-et
+          - publications/uhv-chamber
+          - publications/utsw-coauthor
+          - ongoing-research
+          - chem-584-cmg2
+      - id: physical-sciences
+        title: Physical Sciences
+        blocks: [jensen-bartonella, jensen-babesia, ai-cryo-em, chem-584-cmg2, bench-training, stowers-lab]
+      - id: clinical-research
+        title: Clinical Research
+        blocks: [dwi-pipeline, utsw-lung-dwi, utsw-bgrt, utsw-aerframe, utsw-pancreas]
+      - id: ai
+        title: AI
+        blocks: [ai-association, ai-conference, mercer-science-tools, ai-cryo-em-short]
+      - id: human-practices
+        title: Human Practices
+        blocks: [data-sovereignty, y-serve, mentoring]
+      - id: cv
+        title: CV
+        blocks: [cv]
+
+  coding:
+    label: Coding
+    title: Coding
+    tabs:
+      - id: resume
+        title: Resume
+        blocks: [resume/coding, at-a-glance]
+      - id: clinical-research-software
+        title: Clinical Research Software
+        blocks: [dwi-pipeline, utsw-bgrt, utsw-lung-dwi, utsw-aerframe, utsw-pancreas]
+      - id: ai
+        title: AI
+        blocks: [ai-cryo-em, ai-association, ai-conference, mercer-science-tools, tacit-knowledge-engine]
+      - id: software-projects
+        title: Software Projects
+        blocks: [mercer-science-tools, analysis-pipelines, chess-app, cs-training]
+      - id: publications
+        title: Publications and Ongoing Research
+        blocks:
+          - publications/lung-dwi
+          - publications/bgrt
+          - publications/pancreas-dwi
+          - publications/ai-cryo-et
+          - publications/aerframe
+          - publications/langmuir-2026
+          - publications/uhv-chamber
+          - publications/utsw-coauthor
+          - ongoing-research
+      - id: physical-sciences
+        title: Physical Sciences
+        blocks: [physical-sciences-short]
+      - id: cv
+        title: CV
+        blocks: [cv]
+
+  design:
+    label: Design
+    title: Design
+    tabs:
+      - id: resume
+        title: Resume
+        blocks: [resume/design, at-a-glance]
+      - id: clinical-interface-design
+        title: Clinical Interface Design
+        blocks: [dwi-interface-design]
+      - id: other-ui-projects
+        title: Other UI Projects
+        blocks: [heart-bp-app, cadence]
+      - id: figures
+        title: Figures and Visual Communication
+        blocks: [bgrt-flow-chart, publication-figures, posters-slides, spri-logo]
+      - id: ai
+        title: AI
+        blocks: [ai-in-design, ai-conference]
+      - id: physical-sciences
+        title: Physical Sciences
+        blocks: [physical-sciences-short]
+      - id: cv
+        title: CV
+        blocks: [cv]
+
+  wildcard:
+    label: Wild Card
+    title: Wild Card
+    tabs:
+      - id: resume
+        title: Resume
+        blocks: [resume/wildcard, at-a-glance]
+      - id: how-it-connects
+        title: How It Connects
+        blocks: [how-it-connects]
+      - id: clinical-research
+        title: Clinical Research
+        blocks: [dwi-pipeline, utsw-bgrt, utsw-lung-dwi, utsw-aerframe, utsw-pancreas, clinical-devices]
+      - id: physical-sciences
+        title: Physical Sciences
+        blocks: [jensen-bartonella, jensen-babesia, bench-training, stowers-lab]
+      - id: ai
+        title: AI
+        blocks: [ai-cryo-em, mercer-science-tools, ai-association, ai-conference]
+      - id: human-practices-leadership
+        title: Human Practices and Leadership
+        blocks: [data-sovereignty, y-serve, mentoring, healthcare-leadership-talk]
+      - id: publications
+        title: Publications and Ongoing Research
+        blocks:
+          - publications/langmuir-2026
+          - publications/lung-dwi
+          - publications/bgrt
+          - publications/aerframe
+          - publications/pancreas-dwi
+          - publications/ai-cryo-et
+          - publications/uhv-chamber
+          - publications/utsw-coauthor
+          - ongoing-research
+      - id: cv
+        title: CV
+        blocks: [cv]
