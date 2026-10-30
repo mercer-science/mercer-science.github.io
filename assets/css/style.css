@@ -236,17 +236,10 @@ main { max-width: var(--maxw); margin: 0 auto; }
 
 .block p { margin: 0.85rem 0; }
 
-.block-label {
-  font-size: 0.78rem;
-  text-transform: uppercase;
-  letter-spacing: 0.09em;
-  color: var(--ink-faint);
-  margin: 1.5rem 0 0.1rem;
-}
 
-/* A sub-heading inside a block. It needs real separation: a row of bold
-   run-in labels reads as a wall of text. */
-.block h4 {
+/* The one sub-heading style, for every card on every tab: a rule above, an
+   accent edge on the left, and the accent color. */
+.block h3.sub {
   margin: 1.9rem 0 0.5rem;
   padding: 0.5rem 0 0 0.85rem;
   border-top: 1px solid var(--line);
@@ -256,8 +249,9 @@ main { max-width: var(--maxw); margin: 0 auto; }
   color: var(--accent);
 }
 
-.block h4:first-of-type { margin-top: 1.5rem; }
-.block h4 + p { margin-top: 0.4rem; }
+/* Opening a card, there is nothing above to divide from. */
+.block h3.sub.sub-first { margin-top: 1.2rem; border-top: 0; padding-top: 0; }
+.block h3.sub + p { margin-top: 0.4rem; }
 
 .block ul { margin: 0.8rem 0; padding-left: 1.2rem; }
 .block li { margin: 0.35rem 0; }

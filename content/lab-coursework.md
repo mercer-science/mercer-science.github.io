@@ -34,6 +34,8 @@ biochemistry major. My classes have covered the molecular structure and function
 biological systems, genetics, molecular biology, and biophysical chemistry, with an
 increasing emphasis on experimental methods.
 
+#### Laboratory Courses and the CMG2 Project
+
 My completed laboratory courses include CHEM 384 (Biochemistry Methods), MMBIO 241
 (Molecular and Cellular Biology Lab), and CELL 363 (Advanced Physiology Lab). This
 semester, I am taking CHEM 584 (Advanced Biochemistry Methods 1), a master's-level course
@@ -47,10 +49,14 @@ receptor function.
 
 [figure: forward, reverse]
 
+#### Winter 2027
+
 In Winter 2027, I plan to continue this work in CHEM 586 (Advanced Biochemistry Methods 2),
 where we will express and characterize our mutated proteins and investigate their effects
 in human cells. I also plan to take CHEM 489 (Structural Biochemistry), which will provide
 additional preparation in the structure and function of proteins.
+
+#### Lecture Courses
 
 My lecture coursework supporting this work includes PWS 340 (Genetics), MMBIO 240
 (Molecular Biology), CHEM 482 (Mechanisms of Molecular Biology), CHEM 381M (Biochemistry

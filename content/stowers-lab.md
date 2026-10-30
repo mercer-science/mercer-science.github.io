@@ -28,6 +28,8 @@ images:
     caption: The flow reactor, with two furnaces on a shared gas manifold.
 ---
 
+#### Metal-Organic Framework Thin Films
+
 I spent two years in Dr. Kara Stowers' inorganic chemistry lab researching metal-organic
 framework (MOF) thin films. MOFs are porous crystalline materials with potential
 applications in catalysis and chemical separations. Our research focused on growing these
@@ -43,6 +45,8 @@ examined how growth temperature affected film coverage and crystallite size.
 
 [figure: temperature]
 
+#### Building and Maintaining Instruments
+
 I also spent considerable time building, troubleshooting, and maintaining two custom
 laboratory instruments: a flow reactor used for catalysis experiments and an
 ultra-high-vacuum chamber equipped with X-ray photoelectron spectroscopy and a mass
@@ -51,6 +55,8 @@ involved leak checking, bakeouts, flange work, and troubleshooting the vacuum sy
 also helped rebuild the spin coater's vacuum system when it failed.
 
 [figure: chamber, reactor]
+
+#### Training, Publication, and Presentations
 
 Alongside my own work, I trained two newer students in spin coating and scanning electron microscopy. The research resulted in a publication in *Langmuir*, where I am a second author. I presented the work at the BYU Student Research Conference in 2025 and 2026 and at the American Chemical Society spring meeting in Atlanta in March 2026.
 

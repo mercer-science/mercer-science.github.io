@@ -86,12 +86,12 @@ def render_markdown(body, images=None):
             flush_para()
             flush_list()
             continue
-        if line.startswith("#### "):
+        if line.startswith("#### ") or line.startswith("### "):
             flush_para(); flush_list()
-            out.append("<h4>%s</h4>" % inline(line[5:].strip()))
-        elif line.startswith("### "):
-            flush_para(); flush_list()
-            out.append('<h3 class="block-label">%s</h3>' % inline(line[4:].strip()))
+            text = line.lstrip("#").strip()
+            # A heading that opens the card has nothing above it to divide from.
+            first = " sub-first" if not out else ""
+            out.append('<h3 class="sub%s">%s</h3>' % (first, inline(text)))
         elif line.startswith("- "):
             flush_para()
             items.append(line[2:].strip())
@@ -257,7 +257,7 @@ def render_images(images, in_flow=False):
     return '<div class="%s">\n%s\n</div>' % (cls, "\n".join(figs))
 
 
-def render_block(meta, tab_title="", role_id=""):
+def render_block(meta, tab_title="", role_id="", semantic=False):
     title = meta.get("title", "")
     # A block whose title repeats the tab's own title, or the section heading
     # just above it, shows it once rather than twice.
@@ -266,7 +266,9 @@ def render_block(meta, tab_title="", role_id=""):
                     or (head and title.strip().lower().startswith(head)))
     status = str(meta.get("status") or "").strip()
     dates = str(meta.get("dates") or "").strip()
-    state = status_state(status)
+    # Status carries meaning on the Publications tab. Everywhere else the
+    # same word is just a label, so it gets one neutral look and no bar.
+    state = status_state(status) if semantic else "plain"
     # The resume and the CV are documents. They carry their own white page, so
     # the card the other blocks sit on would only box a box.
     is_sheet = bool(meta.get("resume_pdf") or meta.get("cv_pdf"))
@@ -396,7 +398,8 @@ def build_role(rid, role, roles, report):
                 continue
             if meta.get("needs"):
                 report["needs"].setdefault(name, meta)
-            blocks.append(render_block(meta, tab["title"], rid))
+            blocks.append(render_block(meta, tab["title"], rid,
+                                       semantic=(tab["id"] == "publications")))
         panels.append(
             '<section class="panel%s" id="%s" role="tabpanel" aria-label="%s">\n'
             '<h1 class="panel-title">%s</h1>\n%s\n</section>'

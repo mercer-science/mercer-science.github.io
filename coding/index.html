@@ -51,7 +51,9 @@
 <p class="block-meta"><span class="dates">May 2026 – Present</span> <span class="status status-plain">Handed off to the clinical software team</span></p>
 </header>
 <p>I joined the Radiation Oncology department at UT Southwestern in May 2026 and took over a diffusion MRI processing pipeline that had been developed by several graduate students. When the last student left, the software was still running from his personal account on a single GPU workstation. Its dependencies were tied to virtual environments that were difficult to reproduce, and the account was scheduled for deletion. A postdoctoral researcher hired for a different project was expected to take over the work, but the existing lung study could not be rerun without access to the original backend.</p>
+<h3 class="sub">Rebuilding the Pipeline</h3>
 <p>I rebuilt the pipeline web interface and made the pipeline much more streamlined, using Claude Code as a development assistant while reviewing and verifying the scientific and computational decisions myself. The application handles the processing workflow from raw hospital imaging files through final analysis. It retrieves patient scans from hospital network shares, repairs corrupted files, converts DICOM images to NIfTI, identifies acquisition protocols, corrects geometric distortion, applies two neural-network denoising steps, fits intravoxel incoherent motion (IVIM) and apparent diffusion coefficient (ADC) models, and registers images across treatment sessions. It also checks intermediate results and flags potential errors.</p>
+<h3 class="sub">Bulk Processing</h3>
 <p>I built a bulk-processing system around the pipeline so researchers no longer have to run each patient and processing step individually. Users enter patient identifiers and select the processing steps they need. Each patient gets a separate tab showing progress through the workflow, while the application manages CPU and GPU scheduling, monitors available disk space, archives completed studies to department servers, and packages the results for export. These upgrades allowed us to process patient data much quicker, advancing the rate of research in the department.</p>
 <div class="figures figures-inline">
 <figure class="shot">
@@ -64,6 +66,7 @@
 </figure>
 </div>
 <p>The application processed all 76 patients in a pancreas study in approximately 2.5 days of continuous server time. For comparison, processing the 10-patient lung study using the previous workflow had taken approximately a week of manual work.</p>
+<h3 class="sub">The Web Interface</h3>
 <p>I also developed the web interface for reviewing and analyzing the resulting images. Its main features include:</p>
 <ul>
 <li><strong>MRI Viewer:</strong> Displays anatomical images, contours, and diffusion maps side by side across treatment sessions, with whole-tumor histograms for each session.</li>
@@ -74,12 +77,21 @@
 <li><strong>Quality assessment:</strong> Reports reliability statistics covering acquisition parameters, signal-to-noise ratios, geometric distortion, image registration, and model-fitting quality.</li>
 </ul>
 <p>I intentionally developed these user interface upgrades so that any researcher in the department can easily access, process, and evaluate data. After I finished, the server and application were entirely stand alone. You could get any information on any patient that you needed without having to have access to the back end of the server.</p>
+<h3 class="sub">Handoff</h3>
 <p>The project was subsequently transferred by hospital IT to the Radiation Oncology Application Team for further development toward universal use. They are now using this code in clinical studies. The MRI vendor also expressed interest in incorporating the processing workflow into its imaging system. I prepared the technical handoff documentation, including the remaining requirements for a clinical version, and trained the postdoctoral researcher who took over the project.</p>
 <p>The pipeline code belongs to UT Southwestern and is tied to its internal systems, so it is not publicly available. The screenshots below show the web interface without patient-identifying information.</p>
 <div class="figures figures-grid">
 <figure class="shot">
 <a href="../assets/img/dwi-viewer.png"><img src="../assets/img/dwi-viewer.png" alt="The MRI viewer, showing the same slice across four treatment sessions with a diffusion map overlaid, and a whole-tumor histogram under each one." loading="lazy"></a>
 <figcaption>The MRI viewer. Scan dates are removed from these screenshots.</figcaption>
+</figure>
+<figure class="shot">
+<a href="../assets/img/dwi-histograms.png"><img src="../assets/img/dwi-histograms.png" alt="A grid of histograms comparing ADC, Dp, Dt, Fp, and R index across four treatment sessions, one column per session." loading="lazy"></a>
+<figcaption>Parameter comparison. Whole-volume histograms for each measure, one column per session. Scan dates are removed.</figcaption>
+</figure>
+<figure class="shot">
+<a href="../assets/img/dwi-image-creator.png"><img src="../assets/img/dwi-image-creator.png" alt="The image creator, showing selected slices rendered above a slice selection strip with one chosen slice per session." loading="lazy"></a>
+<figcaption>The image creator. Pick a slice per session, then render the panel. Scan dates are removed.</figcaption>
 </figure>
 <figure class="shot">
 <a href="../assets/img/dwi-threshold.png"><img src="../assets/img/dwi-threshold.png" alt="The threshold creator, showing five sessions with a threshold contour drawn on the diffusion map of each." loading="lazy"></a>
@@ -95,17 +107,17 @@
 </figure>
 </div>
 </article>
-<article class="block block-circulating" id="utsw-bgrt">
+<article class="block" id="utsw-bgrt">
 <header class="block-head">
 <h2>Biology-Guided Radiotherapy on RefleXion</h2>
-<p class="block-meta"><span class="dates">May 2026 to present</span> <span class="status status-circulating">In final co-author circulation</span></p>
+<p class="block-meta"><span class="dates">May 2026 to present</span> <span class="status status-plain">In final co-author circulation</span></p>
 </header>
-<h3 class="block-label">Problem</h3>
+<h3 class="sub sub-first">Problem</h3>
 <p>RefleXion is a new machine, cleared by the FDA and installed at only a few U.S. centers. The patient takes up a PET tracer, two detectors on the gantry find the tumor, and the beam follows it in real time. More than a year after the first patients finished treatment, nobody had checked independently whether the delivered dose matched the plan, or how it compared with standard image-guided radiotherapy. The technology is commercially stalled for want of exactly that evidence.</p>
-<h3 class="block-label">Solution</h3>
+<h3 class="sub">Solution</h3>
 <p>I watched a treatment and an engineer walkthrough first, so I understood the workflow before touching the data. Then I exported the plans into Aria-Eclipse and wrote a C# script that pulls the relevant dose data for every patient and plan into organized spreadsheets. The hard part was naming: every physician draws and labels structures differently, so a lung might be one structure or two, and a patient might carry several planning target volumes with unrelated names. The script resolves most of that on its own and asks a human only when it genuinely cannot tell two structures apart. A Python step filters the raw export into templates I designed with Dr. Westover, and R scripts build every figure and table from the raw data automatically.</p>
 <p>Partway through, a physicist raised a problem that could have explained my less favorable organ-dose findings: post-treatment evaluation assumes organs sit where they were at simulation, even though the beam follows a moving tumor. To test it I extracted dose fall-off metrics, reconstructed each patient's respiratory motion from the backup plan's contours since motion is recorded nowhere, wrote an algorithm for each organ's distance from the target, and ran about 1,000 checks per patient that flagged every case for or against the effect.</p>
-<h3 class="block-label">Result</h3>
+<h3 class="sub">Result</h3>
 <p>Nearly all of those checks supported my conclusion that the effect was minor. Across 17 patients, the PET-guided plan treated a target 19 percent smaller than the image-guided backup, smaller in 15 of 17 patients and unchanged in 2, and the reduction grew with how far the tumor moved with breathing. The cost shows up elsewhere: a wider intermediate-dose region, and higher spinal cord and heart maxima. Those originate in planning rather than in delivery, which matters, because it means they are fixable.</p>
 <p>A physicist on the team took the organ-dose findings to his contacts at the manufacturer around the summer physics meeting, and the company is revising its post-treatment evaluation in an upcoming release. The paper says plainly where the technology helps and where it does not, which is not the commercially convenient answer. I rewrote it more than eight times, including two complete restarts, and it is in final circulation among co-authors now.</p>
 <p>Published title: <em>Dosimetric Cost of a Smaller Target When Using Biology-Guided Radiation Therapy for Lung Cancer.</em></p>
@@ -124,17 +136,17 @@
 </figure>
 </div>
 </article>
-<article class="block block-submitted" id="utsw-lung-dwi">
+<article class="block" id="utsw-lung-dwi">
 <header class="block-head">
 <h2>Lung Diffusion MRI on the MR-Linac</h2>
-<p class="block-meta"><span class="dates">May 2026 to present</span> <span class="status status-submitted">Submitted</span></p>
+<p class="block-meta"><span class="dates">May 2026 to present</span> <span class="status status-plain">Submitted</span></p>
 </header>
-<h3 class="block-label">Problem</h3>
+<h3 class="sub sub-first">Problem</h3>
 <p>The Unity combines an MRI scanner with a linear accelerator, and before every treatment it records diffusion-weighted images that nobody used clinically. Dying tumors lose cells, so water moves more freely through them, which should show up as a rising apparent diffusion coefficient. If that holds, a physician could see a tumor responding during treatment, weeks before it shrinks on CT. These patients received PULSAR, where the radiation pulses are spaced weeks apart, and no one had published diffusion imaging in PULSAR patients.</p>
-<h3 class="block-label">Solution</h3>
+<h3 class="sub">Solution</h3>
 <p>I worked with a team of medical physicists on 10 patients, each carrying about 10 GB and more than 10,000 DICOM images with meaningless file names, all processed on hospital servers. Every patient was missing at least one diffusion series, because therapists had not backed them up and the consoles had been wiped. The scan field often was not centered on the tumor, so contours ran outside the map, and only 50.9 percent of sessions had data usable as scoped; I found a way to include partially covered sessions rather than drop them. The simulation scanner had 15 to 20 times the signal-to-noise of the machine itself, so the two could not be compared directly.</p>
 <p>Rather than force the original claim, I reframed the study into three aims: whether quantitative diffusion values can be pulled reliably from the machine's own imaging, whether those values move opposite to tumor volume as biology predicts, and how a diffusion-defined target would differ from the clinical one. Out of curiosity I made per-session histograms and saw values piling up at exactly 3. The exporter was capping them, which had been dragging later-fraction averages down. I fixed the pipeline, re-exported, and reran everything; because the figures rebuild from raw data, the fix cost an afternoon instead of a month.</p>
-<h3 class="block-label">Result</h3>
+<h3 class="sub">Result</h3>
 <p>The biexponential model fit the on-board signal better than the standard one, which is the first useful finding: the simple measure everyone reaches for was the wrong one here. Changes measured inside the clinical target and inside a tight tumor-only contour agreed almost exactly, so the result does not depend on who drew the contour. Through the third fraction, tissue diffusion and perfusion fraction separated responders from non-responders, and the conventional measure did not. Over the full course only tissue diffusion held that separation.</p>
 <p>The piece I care about most is the threshold tool: a diffusion cutoff that outlines a treatment-resistant core inside the clinical target, which could take extra dose in the same treatment, and which also shows where the target should expand. Dr. Deng presented examples from the paper and the pipeline at a physics conference last summer.</p>
 <p>Eight of the ten patients had finished treatment at data lock, so this is hypothesis-generating, and the threshold is not yet tied to outcomes. Testing it against outcomes is what the pancreas study began.</p>
@@ -154,16 +166,16 @@
 </figure>
 </div>
 </article>
-<article class="block block-circulating" id="utsw-aerframe">
+<article class="block" id="utsw-aerframe">
 <header class="block-head">
 <h2>Radiolucent Patient Immobilization (AerFrame)</h2>
-<p class="block-meta"><span class="dates">June 2026 to present</span> <span class="status status-circulating">In final co-author circulation</span></p>
+<p class="block-meta"><span class="dates">June 2026 to present</span> <span class="status status-plain">In final co-author circulation</span></p>
 </header>
-<h3 class="block-label">Problem</h3>
+<h3 class="sub sub-first">Problem</h3>
 <p>Dr. Westover invented and patented a patient immobilization frame built from a composite that is nearly transparent to radiation. It has been in use at UT Southwestern for over a year and will be marketed to other centers, but no physics study existed to show how much dose the older frames were absorbing before the beam reached the tumor.</p>
-<h3 class="block-label">Solution</h3>
+<h3 class="sub">Solution</h3>
 <p>The cohort did not exist in any database. A patient had to have been treated on a specific machine, simulated in a legacy frame, and treated at least once in the new one, so I hand-screened about 50 patients' records and threw out warped scans, patients never treated, and unfamiliar frames. From what was left I picked 11 patients to mirror real practice: 3 spine, 3 prostate, 3 lung, and 2 abdomen, mixing fixed-field and arc therapy, some with titanium hardware, across two legacy frame types and both anterior and posterior target positions. I ran the attenuation calculations with the physicists, compared 12-field, 18-field, and arc plans with the frame masked to air against the frame present, and added ion-chamber bench measurements at 6, 10, and 15 MV across several beam angles.</p>
-<h3 class="block-label">Result</h3>
+<h3 class="sub">Result</h3>
 <p>The new frame reads at about −928 Hounsfield units on patient imaging against −713 for the legacy frame, which is the physical reason for everything that follows. Measured attenuation stayed under 2 percent anywhere away from the side rails, and crossed 3 percent only for beams passing through a rail at the lowest energy. Across the phantom and patient plans it stayed between 0.6 and 2.5 percent.</p>
 <p>That number matters more than it sounds. Adaptive systems replan on the anatomy of the day and typically do not model the frame at all, so a frame this transparent can be used on current platforms without modeling it, and a legacy frame cannot. I wrote the first draft and the manuscript is in final circulation among co-authors. The limits are plain: eleven patients at one institution, with a dosimetric endpoint rather than a clinical one.</p>
 <p>Working title: <em>Radiolucent Stereotactic Body Frame for Online Adaptive Radiation Therapy.</em></p>
@@ -175,37 +187,37 @@
 </figure>
 </div>
 </article>
-<article class="block block-prep" id="utsw-pancreas">
+<article class="block" id="utsw-pancreas">
 <header class="block-head">
 <h2>Diffusion MRI in Pancreatic SBRT</h2>
-<p class="block-meta"><span class="dates">August 2026 to present</span> <span class="status status-prep">Ongoing</span></p>
+<p class="block-meta"><span class="dates">August 2026 to present</span> <span class="status status-plain">Ongoing</span></p>
 </header>
-<h3 class="block-label">Problem</h3>
+<h3 class="sub sub-first">Problem</h3>
 <p>The lung study produced a threshold tool that outlines treatment-resistant tissue, but nothing tied it to what happened to the patients. Dr. Deng brought me onto a pancreas study to start closing that gap: do the same diffusion measurements track how pancreatic tumors respond to stereotactic radiation?</p>
-<h3 class="block-label">Solution</h3>
+<h3 class="sub">Solution</h3>
 <p>I ran all 76 patients through the pipeline I had rebuilt, and 23 of them turned out to have both complete diffusion imaging and outcome data. I did the chart review for response at three months and for local and distant failure over time, since most three-month results in this last-line population were stable or not evaluable. A Python script rebuilds each patient's plot and notes from the chart-review sheet, so adding a patient does not mean redrawing anything.</p>
-<h3 class="block-label">Result</h3>
+<h3 class="sub">Result</h3>
 <p>One early signal is worth the work: a patient who failed both locally and distantly about eight months after treatment showed tissue diffusion falling by the third fraction, the opposite of what a dying tumor does, while a patient with stable disease showed it rising. In principle a physician could have seen that early enough to change the plan. The trends run opposite to the lung study, and I think the spacing explains it, since these patients were treated every two or three days rather than weeks apart, leaving less time for tissue remodeling between pulses. Analysis is still underway.</p>
 </article>
 </section>
 <section class="panel" id="ai" role="tabpanel" aria-label="AI">
 <h1 class="panel-title">AI</h1>
-<article class="block block-prep" id="ai-cryo-em">
+<article class="block" id="ai-cryo-em">
 <header class="block-head">
 <h2>An AI Agent for Cryo-ET Processing</h2>
-<p class="block-meta"><span class="dates">August 2026 to present</span> <span class="status status-prep">Ongoing, manuscript in preparation</span></p>
+<p class="block-meta"><span class="dates">August 2026 to present</span> <span class="status status-plain">Ongoing, manuscript in preparation</span></p>
 </header>
-<h3 class="block-label">Question</h3>
+<h3 class="sub sub-first">Question</h3>
 <p>Turning thousands of tilted images of a frozen cell into a three-dimensional map means chaining together a dozen specialized programs, each with its own settings and its own ways of failing. Learning that chain normally takes months. Can a general-purpose AI coding agent carry a newcomer through it without removing the understanding the work is supposed to build?</p>
-<h3 class="block-label">Approach</h3>
+<h3 class="sub">Approach</h3>
 <p>The test set is 39 tilt series of cryo-focused-ion-beam-milled <em>E. coli</em> in exponential growth, collected on a Krios at 300 kV. The agent proposes each step, installs and configures the tool, and runs it, while a human approves, overrides, or corrects every parameter. The chain runs from motion correction through alignment and reconstruction, missing-wedge correction, template matching, classification, and subtomogram averaging, ending in an analysis of whether ribosomes sit alone or in pairs and chains. Every recommendation gets logged as accepted, overridden, or an error a human caught, which is what makes the claim measurable rather than anecdotal. The workflow is packaged as a reusable agent skill so the next person in the lab starts further along. This is joint work with Chitral Chatterjee in Dr. Jensen's lab.</p>
-<h3 class="block-label">Status</h3>
+<h3 class="sub">Status</h3>
 <p><strong>Ongoing.</strong> I presented this as a poster, <em>Can an AI Agent Collapse the Cryo-ET Learning Curve?</em>, at the Utah CryoEM Symposium at BYU on October 8, 2026. A manuscript is in preparation.</p>
 </article>
-<article class="block block-prep" id="ai-association">
+<article class="block" id="ai-association">
 <header class="block-head">
 <h2>BYU AI Association and AI in Research</h2>
-<p class="block-meta"><span class="dates">September 2026 to present</span> <span class="status status-prep">Ongoing</span></p>
+<p class="block-meta"><span class="dates">September 2026 to present</span> <span class="status status-plain">Ongoing</span></p>
 </header>
 <p>I am an officer of the BYU AI Association and lead its weekly AI in Research meeting, a group working out how researchers in different fields can use these tools without handing over the judgment that makes the work theirs. I wrote the proposal for the group, which is public as the AI-In-Research repository.</p>
 <p>What I bring to it is mostly evidence rather than opinion. I built a clinical imaging application with an AI coding agent in weeks instead of months, and I am running a controlled test in the Jensen Lab of where an agent helps and where it gets a pipeline wrong. Both sides of that show up in the meetings.</p>
@@ -235,10 +247,10 @@
 </figure>
 </div>
 </article>
-<article class="block block-prep" id="tacit-knowledge-database">
+<article class="block" id="tacit-knowledge-database">
 <header class="block-head">
 <h2>Cryo-EM Tacit Knowledge Database</h2>
-<p class="block-meta"><span class="dates">October 2026 to present</span> <span class="status status-prep">Ongoing</span></p>
+<p class="block-meta"><span class="dates">October 2026 to present</span> <span class="status status-plain">Ongoing</span></p>
 </header>
 <p>A paper tells you what worked. It rarely tells you why the authors tried that, what they ruled out first, or which step everyone in the field quietly knows to do differently. The Cryo-EM Tacit Knowledge Database collects that reasoning while the authors still remember it, through an AI agent that interviews them.</p>
 <p>Dr. Jensen originated the idea and I am building it. <strong>Ongoing</strong>, and nothing is working yet.</p>
@@ -268,13 +280,13 @@
 <h2>Extraction and Analysis Pipelines</h2>
 <p class="block-meta"><span class="dates">2026</span></p>
 </header>
-<h3 class="block-label">Problem</h3>
+<h3 class="sub sub-first">Problem</h3>
 <p>Every one of the radiation oncology studies ran on data that a hospital generated for treating patients, not for analysis. Structures are named differently by each physician, sessions go missing, file names carry no information, and the same measurement means different things on different machines. You cannot ask a clinical question until something cleans that up, and doing it by hand means the answer changes every time you redo it.</p>
-<h3 class="block-label">Solution</h3>
+<h3 class="sub">Solution</h3>
 <p><strong>C# inside the treatment planning system.</strong> A script that walks every patient and plan, finds the relevant structures despite inconsistent naming, pulls the dose data into organized spreadsheets, and asks a human only when it genuinely cannot resolve a duplicate.</p>
 <p><strong>Python for the parts with judgment in them.</strong> Filtering raw exports into templates designed with the physician; reconstructing respiratory motion from backup-plan contours and running about 1,000 geometric checks per patient; recovering imaging dates for files whose names had lost them; rebuilding per-patient outcome plots from a chart-review sheet.</p>
 <p><strong>R for everything that becomes a figure or table.</strong> Every panel and every table in those manuscripts generates from the raw data. About 20 figures were drafted for one paper and cut to a main set plus supplements, and six tables build themselves.</p>
-<h3 class="block-label">Result</h3>
+<h3 class="sub">Result</h3>
 <p>When I found the exporter bug that had been capping a key measurement, fixing it meant rerunning the pipeline, and every figure in the paper rebuilt correctly. That is the argument for writing the pipeline instead of the figure. The code itself belongs to UT Southwestern and is tied to its systems, so it is not public.</p>
 </article>
 <article class="block" id="chess-app">

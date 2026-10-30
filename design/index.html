@@ -50,17 +50,17 @@
 <h2>Designing the Diffusion MRI Workspace</h2>
 <p class="block-meta"><span class="dates">May 2026 to present</span> <span class="status status-plain">Handed to the clinical software team</span></p>
 </header>
-<h3 class="block-label">Problem</h3>
+<h3 class="sub sub-first">Problem</h3>
 <p>The people who had to use this software were physicians and medical physicists, not engineers, and the tool they had was built around the processing steps rather than around anything they wanted to do. It ran one patient at a time. Every step was a button someone had to press in the right order, and if a step failed you found out by noticing that nothing happened. Nobody could tell whether a given number was trustworthy without going back to the raw images by hand.</p>
 <p>So the design question was not how to make the screens nicer. It was what the users were actually trying to decide, and what the old tool made them do instead.</p>
-<h3 class="block-label">Solution</h3>
+<h3 class="sub">Solution</h3>
 <p>I watched what people asked for and designed around the decisions rather than the pipeline.</p>
 <p><strong>A physician wants to know what changed between treatment days.</strong> That became a viewer that lines up anatomy, contours, and parametric maps slice by slice, with whole-tumor histograms per day, so the comparison is on one screen instead of in somebody's memory. An early June version only stacked the same slice across days; after the physicians used it, the July version added the histograms and the per-day parameter comparison, because what they wanted was the distribution, not the picture.</p>
 <p><strong>A physicist wants to know whether a number is real.</strong> That became the fit checker: click any voxel, see the measured signal with both model fits drawn through it, export the figure and the data. It exists because the question kept coming up in meetings and the old answer was a shrug.</p>
 <p><strong>A physician wants to act on the result.</strong> That became the threshold creator, which applies a cutoff to outline the treatment-resistant core and exports contours the treatment planning system can import. Design-wise this was the hardest piece, because the output had to land inside software the physician already uses rather than ask them to learn mine.</p>
 <p><strong>Everyone wants figures.</strong> That became the image creator: pick slices and structures, preview at low resolution, then render publication panels. I also set up an HTML preview so drafts could be shared with the physicians without sending anything that needed installing.</p>
 <p><strong>And nobody wants to babysit a queue.</strong> The bulk runner takes a list of patients, gives each one a tab, schedules CPU and GPU work, watches disk space, archives finished patients, and raises errors where the user is already looking.</p>
-<h3 class="block-label">Result</h3>
+<h3 class="sub">Result</h3>
 <p>The application went from one person's workstation account to the team that maintains clinical software, and it processed 76 patients in about 2.5 days where the old workflow had taken a week for 10. A physician used the diffusion maps I loaded into the contouring system as an overlay to redo 46 contours, which is the clearest evidence I have that the interface changed what someone could do rather than just how it looked.</p>
 <p>What I would do differently: I designed most of this from conversations and from watching meetings, not from sitting beside someone while they used it. That is the gap in my design process, and I know it.</p>
 <div class="figures figures-grid">
@@ -82,16 +82,16 @@
 <section class="panel" id="other-ui-projects" role="tabpanel" aria-label="Other UI Projects">
 <h1 class="panel-title">Other UI Projects</h1>
 <article class="block placeholder"><header class="block-head"><h2>Heart and Blood Pressure App</h2></header><p>This section is reserved and has nothing in it yet.</p></article>
-<article class="block block-prep" id="cadence">
+<article class="block" id="cadence">
 <header class="block-head">
 <h2>Cadence, a Spaced-Repetition App</h2>
-<p class="block-meta"><span class="dates">2026 to present</span> <span class="status status-prep">Ongoing, early MVP</span></p>
+<p class="block-meta"><span class="dates">2026 to present</span> <span class="status status-plain">Ongoing, early MVP</span></p>
 </header>
-<h3 class="block-label">Problem</h3>
+<h3 class="sub sub-first">Problem</h3>
 <p>Anki is the tool most medical students live in, and its interface is a decade of accreted options stacked on a scheduler most users never see. The scheduling is the good part. The experience of sitting down to 400 due cards is not.</p>
-<h3 class="block-label">Solution</h3>
+<h3 class="sub">Solution</h3>
 <p>Cadence is a rewrite of the parts that matter, built with React, TypeScript, and the FSRS scheduler, which models memory directly rather than nudging intervals by fixed multipliers. The design work is deciding what to leave out: a card should take one decision, the queue should tell you how long it will take before you start, and the settings a user actually changes should not be buried under the ones they never will.</p>
-<h3 class="block-label">Status</h3>
+<h3 class="sub">Status</h3>
 <p><strong>Ongoing.</strong> It is an early minimum viable product, and the repository is private, so the screenshots are what I can show.</p>
 </article>
 </section>
@@ -102,11 +102,11 @@
 <h2>Explaining a Treatment Machine in One Figure</h2>
 <p class="block-meta"><span class="dates">August 2026</span> <span class="status status-plain">Designed August 2026</span></p>
 </header>
-<h3 class="block-label">Problem</h3>
+<h3 class="sub sub-first">Problem</h3>
 <p>The RefleXion paper had to explain, to readers who had never seen the machine, how PET-guided delivery differs from standard image-guided delivery, and it had to do so inside a strict word limit against almost 4,000 words of supplement. Prose was not going to carry it. Reviewers needed to see the two workflows side by side and find the one point where they diverge.</p>
-<h3 class="block-label">Solution</h3>
+<h3 class="sub">Solution</h3>
 <p>I designed a flow chart that runs both pathways in parallel from simulation through delivery, so the divergence lands visually instead of being asserted in a sentence. I built it in PowerPoint with Claude working in the same file: I directed the layout and the logic, and the agent handled alignment, color, and scaling, which is the part that eats hours and produces no insight. Then I wired the figure-rendering code to convert the slide to an image and assemble it with the R-generated panels automatically, so the whole figure rebuilds from source whenever the data changes.</p>
-<h3 class="block-label">Result</h3>
+<h3 class="sub">Result</h3>
 <p>It is the final figure in the manuscript, which is in co-author circulation. The method is the part worth keeping: when a figure is assembled by a script rather than by hand, revising it eight times costs nothing, and I revised that paper more than eight times.</p>
 <div class="figures">
 <figure class="shot">
@@ -152,12 +152,12 @@
 <h2>SPRI Program Mark</h2>
 <p class="block-meta"><span class="dates">August 2026</span> <span class="status status-plain">Awaiting Russell's choice of version</span></p>
 </header>
-<h3 class="block-label">Problem</h3>
+<h3 class="sub sub-first">Problem</h3>
 <p>The Summer Premedical Research Internship needed a program mark. My first design was a DNA double helix unzipping into a Y, with serpent heads at the tips: Y for BYU, DNA for research, serpents for medicine. Three ideas in one shape.</p>
-<h3 class="block-label">Solution</h3>
+<h3 class="sub">Solution</h3>
 <p>Viewers told me it read as female reproductive anatomy, with the serpent heads reading as sperm. That is not a matter of taste; it is structural. Three cues stack: a smooth ovoid with a single eye-dot at the end of a curving stroke is how sperm is drawn in a textbook, the arms spread wider than they rise, and a narrowing coiled column descends from the junction. Any one is harmless. Together they draw the whole diagram, and fixing any two collapses the reading.</p>
 <p>So I rebuilt the mark on an axis model rather than as a fixed set of drawings. Form, flare, arm path, head shape, stroke weight, rung treatment, and whether the fork reads as a replication fork each became a dimension you can set independently, which made combinations reachable that the old list of thirteen finished drawings had no button for. Narrowing the flare cuts the spread from 92 units to 64 and flips the rise-to-spread ratio from 0.83 to 1.41, which is the difference between a fallopian tube and a letter Y.</p>
-<h3 class="block-label">Result</h3>
+<h3 class="sub">Result</h3>
 <p>An interactive kit with four presets, built as HTML so anyone can click through the axes rather than request a revision. It went to BYU Media. The lesson I keep: when feedback says a design reads wrong, the useful move is to find which cues produce the reading and break enough of them, instead of defending the intent.</p>
 <p>The logo files are picked from the kit; Russell confirms which version goes here.</p>
 </article>
