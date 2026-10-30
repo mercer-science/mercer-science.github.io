@@ -208,12 +208,14 @@ def render_thumb(thumb):
     """A small figure beside the text, for a block that has one good image."""
     if not thumb:
         return ""
-    return ('<figure class="thumb"><a href="../%s">'
-            '<img src="../%s" alt="%s" loading="lazy"></a>%s</figure>'
-            % (thumb.get("src", ""), thumb.get("src", ""),
-               html.escape(thumb.get("alt", ""), quote=True),
-               ('<figcaption>%s</figcaption>' % inline(thumb["caption"]))
-               if thumb.get("caption") else ""))
+    # No caption under a thumbnail: it ran past the bottom of the card, and the
+    # alt text already says what the picture is. The caption becomes the tooltip.
+    return ('<figure class="thumb"><a href="../%s" title="%s">'
+            '<img src="../%s" alt="%s" loading="lazy"></a></figure>'
+            % (thumb.get("src", ""),
+               html.escape(thumb.get("caption") or thumb.get("alt", ""), quote=True),
+               thumb.get("src", ""),
+               html.escape(thumb.get("alt", ""), quote=True)))
 
 
 def render_images(images):

@@ -4,6 +4,10 @@ roles: [igem, coding, design, wildcard]
 tabs: [publications]
 status: In Final Co-Author Circulation
 dates: 2026
+thumb:
+  src: assets/img/crop-frame-dose.png
+  alt: A dose distribution in false color through a phantom lying in the treatment frame.
+  caption: Dose through a phantom lying in the frame.
 images: []
 ---
 

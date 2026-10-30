@@ -13,6 +13,9 @@ images:
     src: assets/img/reflexion-gantry.png
     alt: The inside of the RefleXion gantry, showing the linear accelerator and PET detectors.
     caption: Inside the gantry during an engineer walkthrough. The PET detectors ride with the linear accelerator.
+  - src: assets/img/crop-bgrt-flow.png
+    alt: A flow chart running the PET-guided pathway along the top and the image-guided pathway along the bottom, from simulation through delivery.
+    caption: The figure I designed to put both pathways side by side, so a reader can find the one point where they diverge. Cropped from the manuscript figure.
 ---
 
 ### Problem

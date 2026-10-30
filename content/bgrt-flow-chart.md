@@ -2,9 +2,12 @@
 title: Explaining a Treatment Machine in One Figure
 roles: [design]
 tabs: [figures]
-status: Figure unpublished; described here, not shown
+status: Designed August 2026
 dates: August 2026
-images: []
+images:
+  - src: assets/img/crop-bgrt-flow.png
+    alt: A flow chart running the PET-guided pathway along the top and the image-guided pathway along the bottom, from simulation through delivery.
+    caption: Part of the finished figure. Both pathways run in parallel from simulation to delivery, so the divergence lands visually instead of in a sentence.
 ---
 
 ### Problem
@@ -27,7 +30,6 @@ rebuilds from source whenever the data changes.
 
 ### Result
 
-It is the final figure in the manuscript, which is in co-author circulation. The figure
-itself is unpublished, so it is not shown here. The method is the part worth keeping: when
-a figure is assembled by a script rather than by hand, revising it eight times costs
-nothing, and I revised that paper more than eight times.
+It is the final figure in the manuscript, which is in co-author circulation. The method is
+the part worth keeping: when a figure is assembled by a script rather than by hand,
+revising it eight times costs nothing, and I revised that paper more than eight times.

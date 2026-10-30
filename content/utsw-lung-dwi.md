@@ -9,6 +9,14 @@ images:
     src: assets/img/mr-linac.jpg
     alt: Russell standing beside the Elekta Unity MR-Linac at UT Southwestern.
     caption: The Elekta Unity MR-Linac, which images with MRI during treatment and quietly records diffusion-weighted scans before each session.
+  - size: small
+    src: assets/img/crop-dwi-map.png
+    alt: A tissue-diffusion map of a lung tumor in false color, with three nested contours drawn on it.
+    caption: "A tissue-diffusion map with three contours: the clinical target in yellow, a tighter tumor-only contour in red, and the diffusion-defined core in blue. Cropped from a figure in the submitted manuscript."
+  - size: small
+    src: assets/img/crop-resistant-core.png
+    alt: A grayscale MRI slice of a tumor with yellow, red, and green contours nested inside one another.
+    caption: The same idea on anatomy. Green is the treatment-resistant core that a boost would target, inside the clinical contour in red.
 ---
 
 ### Problem

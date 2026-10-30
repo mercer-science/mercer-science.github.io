@@ -4,7 +4,10 @@ roles: [igem, coding, wildcard]
 tabs: [clinical-research, clinical-research-software]
 status: In final co-author circulation
 dates: June 2026 to present
-images: []
+images:
+  - src: assets/img/crop-frame-dose.png
+    alt: A dose distribution in false color through a phantom lying in the treatment frame, with the frame rails visible underneath.
+    caption: Dose through a phantom lying in the frame. The rails are the parts that matter, since a beam crossing one is where attenuation climbs. Cropped from a figure in the manuscript.
 ---
 
 ### Problem
