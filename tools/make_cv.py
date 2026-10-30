@@ -46,8 +46,8 @@ SECTIONS = [
             {
                 "what": "Brigham Young University, Provo, UT",
                 "dates": "January 2024 – April 2028 (Expected)",
-                "note": "B.S. in Biochemistry, Minor in Computer Science "
-                        "(machine learning emphasis)",
+                "note": "B.S. in Biochemistry, Minor in Computer Science, with machine "
+                        "learning courses",
                 "bullets": [
                     "Cumulative GPA 3.99; Science GPA 3.99",
                     "Advanced biochemistry, pre-medical, and machine learning coursework",

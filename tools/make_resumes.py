@@ -38,7 +38,7 @@ EDUCATION = {
         "org": "Provo, UT",
         "dates": "Jan 2024 – Apr 2028 (Expected)",
         "lines": [
-            "B.S. Biochemistry; Minor in Computer Science, machine learning emphasis",
+            "B.S. Biochemistry; Minor in Computer Science, with machine learning courses",
             "GPA 3.99 &nbsp;·&nbsp; Science GPA 3.99 &nbsp;·&nbsp; MCAT 519 (96th percentile)",
         ],
         "bullets": [],
@@ -332,7 +332,7 @@ SKILLS_CODE = [
     "<b>Languages:</b> Python, R, C#, Java, shell",
     "<b>Tools:</b> Git and GitHub, AI coding agents and agent skills, web applications, "
     "GPU workflows, DICOM and medical imaging",
-    "<b>Coursework:</b> C S 111, 235, 236, 240; C S 312 and 470 planned; MATH 213, 215; STAT 121",
+    "<b>Coursework:</b> C S 111, 235, 236, 240; machine learning courses C S 312 and 470 planned; MATH 213, 215; STAT 121",
     "<b>Lab:</b> SEM, UHV and XPS, Vitrobot, Krios, bacterial culture",
 ]
 

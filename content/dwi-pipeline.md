@@ -17,6 +17,10 @@ images:
   - src: assets/img/dwi-viewer.png
     alt: The MRI viewer, showing the same slice across four treatment sessions with a diffusion map overlaid, and a whole-tumor histogram under each one.
     caption: The viewer. The same slice across treatment sessions, with the diffusion map overlaid and a whole-tumor histogram under each. Scan dates are removed from these screenshots.
+  - size: wide
+    src: assets/img/spri-poster.png
+    alt: A conference poster titled From Bench to Beam, laid out in five numbered panels covering biology-guided radiotherapy, radiolucent immobilization, adaptive conventional treatment, adaptive SABR, and on-board diffusion imaging.
+    caption: The poster covering all five studies, presented at the BYU Medical Society conference in August 2026 with the other intern. Click it to read the panels.
   - src: assets/img/dwi-threshold.png
     alt: The threshold creator, showing five sessions with a threshold contour drawn on the diffusion map of each.
     caption: The threshold creator. A cutoff outlines the treatment-resistant core, and the contours export to the treatment planning system.
