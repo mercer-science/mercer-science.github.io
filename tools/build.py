@@ -147,6 +147,23 @@ def resume_sheet_css():
     return "\n".join(out) + "\n"
 
 
+# An arrow into a tray: the usual download mark. The label is real text for
+# screen readers and for the tooltip, so the button is not an unlabeled icon.
+DOWNLOAD_ICON = (
+    '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" '
+    'stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" '
+    'focusable="false"><path d="M12 3v12"></path><path d="M7 11l5 5 5-5"></path>'
+    '<path d="M4 19h16"></path></svg>'
+)
+
+
+def download_button(href, label):
+    return ('<p class="downloads"><a class="button button-icon" href="../%s" download '
+            'title="%s" aria-label="%s">%s<span class="sr-only">%s</span></a></p>'
+            % (href, html.escape(label, quote=True), html.escape(label, quote=True),
+               DOWNLOAD_ICON, html.escape(label)))
+
+
 def render_resume(role_id):
     return '<div class="resume-wrap"><div class="sheet">%s</div></div>' % \
         make_resumes.resume_body(role_id)
@@ -201,16 +218,10 @@ def render_block(meta, tab_title="", role_id=""):
         pieces.append(render_markdown(meta["_body"]))
 
     if is_resume:
-        pieces.append(
-            '<p class="downloads"><a class="button" href="../%s" download>Download Resume (PDF)</a></p>'
-            % meta["resume_pdf"]
-        )
+        pieces.append(download_button(meta["resume_pdf"], "Download Resume (PDF)"))
         pieces.append(render_resume(role_id))
     if meta.get("cv_pdf"):
-        pieces.append(
-            '<p class="downloads"><a class="button" href="../%s" download>Download CV (PDF)</a></p>'
-            % meta["cv_pdf"]
-        )
+        pieces.append(download_button(meta["cv_pdf"], "Download CV (PDF)"))
 
     pieces.append(render_images(meta.get("images") or []))
     pieces.append("</article>")

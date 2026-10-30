@@ -237,6 +237,32 @@ main { max-width: var(--maxw); margin: 0 auto; }
   .button { color: #10161c; }
 }
 
+/* The download button is the icon alone. Its label is still real text, kept
+   for screen readers and shown as a tooltip on hover. */
+.button-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  padding: 0;
+  border-radius: 999px;
+}
+
+.button-icon:hover { filter: brightness(1.1); }
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .figures { margin: 1.4rem 0 0; display: grid; gap: 1.1rem; }
 
 @media (min-width: 40rem) {

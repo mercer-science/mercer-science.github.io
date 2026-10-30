@@ -311,7 +311,6 @@ SIDE_PRESENTATIONS = {
         "BYU Medical Society, 2026",
         "ACS Spring Meeting, Atlanta, 2026",
         "BYU Student Research Conference, 2025 and 2026",
-        "Invited talk, BYU Healthcare Leadership, 2026",
     ],
 }
 
