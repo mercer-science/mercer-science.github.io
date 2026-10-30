@@ -427,20 +427,30 @@ def side_html(sec):
         sec["heading"], "".join("<li>%s</li>" % i for i in sec["items"]))
 
 
-def build_html(role_id, role):
+def resume_body(role_id):
+    """The resume itself, without a page wrapper.
+
+    build.py drops this straight into the Resume tab, so the page and the PDF
+    come from one set of facts and cannot drift apart.
+    """
+    role = ROLES[role_id]
     main = "".join(section_html(s) for s in role["main"])
     main += '<section><h2>Skills</h2><ul class="skills">%s</ul></section>' % "".join(
         "<li>%s</li>" % s for s in role["skills"])
     side = "".join(side_html(s) for s in role["side"])
-    return """<!doctype html><html lang="en"><head><meta charset="utf-8">
-<title>Russell Mercer Resume, %s</title><style>%s</style></head><body>
-<div class="top">
+    return """<div class="top">
 <div class="who"><h1>Russell Mercer</h1><p>%s</p></div>
 <div class="contact">%s</div>
 </div>
-<div class="cols"><div class="main">%s</div><div class="side">%s</div></div>
-</body></html>""" % (html.escape(role_id), CSS, html.escape(role["headline"]),
-                     "<br>".join(CONTACT), main, side)
+<div class="cols"><div class="main">%s</div><div class="side">%s</div></div>""" % (
+        html.escape(role["headline"]), "<br>".join(CONTACT), main, side)
+
+
+def build_html(role_id, role):
+    return """<!doctype html><html lang="en"><head><meta charset="utf-8">
+<title>Russell Mercer Resume, %s</title><style>%s</style></head><body>
+%s
+</body></html>""" % (html.escape(role_id), CSS, resume_body(role_id))
 
 
 def main():

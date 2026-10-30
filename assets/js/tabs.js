@@ -36,3 +36,25 @@
 
   if (location.hash) show(location.hash.slice(1), false);
 })();
+
+// The resume on the page is the same markup the PDF is printed from, laid out
+// at letter width. Scale it to whatever width it has, so it keeps the printed
+// proportions on a phone as well as a laptop. The text stays real and
+// selectable; only the box it sits in changes size.
+(function () {
+  var wrap = document.querySelector('.resume-wrap');
+  if (!wrap) return;
+  var sheet = wrap.querySelector('.sheet');
+
+  function fit() {
+    sheet.style.transform = 'none';
+    wrap.style.height = 'auto';
+    var scale = Math.min(1, wrap.clientWidth / sheet.offsetWidth);
+    sheet.style.transform = 'scale(' + scale + ')';
+    wrap.style.height = sheet.offsetHeight * scale + 'px';
+  }
+
+  fit();
+  window.addEventListener('resize', fit);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+})();

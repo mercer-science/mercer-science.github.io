@@ -10,7 +10,7 @@ roles:
     tabs:
       - id: resume
         title: Resume
-        blocks: [resume/igem, at-a-glance]
+        blocks: [resume/igem]
       - id: publications
         title: Publications and Ongoing Research
         blocks:
@@ -46,7 +46,7 @@ roles:
     tabs:
       - id: resume
         title: Resume
-        blocks: [resume/coding, at-a-glance]
+        blocks: [resume/coding]
       - id: clinical-research-software
         title: Clinical Research Software
         blocks: [dwi-pipeline, utsw-bgrt, utsw-lung-dwi, utsw-aerframe, utsw-pancreas]
@@ -81,7 +81,7 @@ roles:
     tabs:
       - id: resume
         title: Resume
-        blocks: [resume/design, at-a-glance]
+        blocks: [resume/design]
       - id: clinical-interface-design
         title: Clinical Interface Design
         blocks: [dwi-interface-design]
@@ -107,7 +107,7 @@ roles:
     tabs:
       - id: resume
         title: Resume
-        blocks: [resume/wildcard, at-a-glance]
+        blocks: [resume/wildcard]
       - id: how-it-connects
         title: How It Connects
         blocks: [how-it-connects]
