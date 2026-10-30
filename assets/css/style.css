@@ -319,6 +319,9 @@ main { max-width: var(--maxw); margin: 0 auto; }
 
 .figures { margin: 1.4rem 0 0; display: grid; gap: 1.1rem; }
 
+/* A figure the text calls for sits in the flow, where it was called. */
+.figures-inline { margin: 1.5rem 0; }
+
 @media (min-width: 40rem) {
   .figures-pair { grid-template-columns: 1fr 1fr; align-items: start; }
   .figures-grid { grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); align-items: start; }

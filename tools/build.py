@@ -46,7 +46,12 @@ def inline(text):
     return out
 
 
-def render_markdown(body):
+def render_markdown(body, images=None):
+    """Render the body, placing any figure the text calls for where it is called.
+
+    A line reading [figure: id] drops the image with that id in at that point.
+    Images the body never names fall to the bottom of the block as before.
+    """
     lines = body.replace("\r\n", "\n").split("\n")
     out = []
     para = []
@@ -62,8 +67,18 @@ def render_markdown(body):
             out.append("<ul>\n%s\n</ul>" % "\n".join("<li>%s</li>" % inline(i) for i in items))
             items.clear()
 
+    by_id = {str(i.get("id")): i for i in (images or []) if i.get("id")}
+
     for raw in lines:
         line = raw.rstrip()
+        m = re.match(r"^\[figure:\s*([\w-]+)\]$", line.strip())
+        if m:
+            flush_para(); flush_list()
+            img = by_id.get(m.group(1))
+            if img:
+                out.append(render_images([img], in_flow=True))
+                img["_used"] = True
+            continue
         if not line.strip():
             flush_para()
             flush_list()
@@ -216,7 +231,7 @@ def render_thumb(thumb):
                html.escape(thumb.get("alt", ""), quote=True)))
 
 
-def render_images(images):
+def render_images(images, in_flow=False):
     if not images:
         return ""
     figs = []
@@ -233,7 +248,8 @@ def render_images(images):
             '<a href="../%s"><img src="../%s" alt="%s" loading="lazy"></a>\n%s\n</figure>'
             % (size, src, src, alt, cap)
         )
-    cls = "figures" + (" figures-pair" if len(figs) == 2 else
+    cls = "figures" + (" figures-inline" if in_flow else
+                       " figures-pair" if len(figs) == 2 else
                        " figures-grid" if len(figs) > 2 else "")
     return '<div class="%s">\n%s\n</div>' % (cls, "\n".join(figs))
 
@@ -279,7 +295,8 @@ def render_block(meta, tab_title="", role_id=""):
     if meta.get("headline") and not is_sheet:
         pieces.append('<p class="headline">%s</p>' % inline(meta["headline"]))
     if not is_sheet:
-        pieces.append(render_markdown(meta["_body"]))
+        images = meta.get("images") or []
+        pieces.append(render_markdown(meta["_body"], images))
 
     if meta.get("resume_pdf"):
         pieces.append(render_sheet("resume", make_resumes.resume_body(role_id),
@@ -288,7 +305,8 @@ def render_block(meta, tab_title="", role_id=""):
         pieces.append(render_sheet("cv", make_cv.cv_body(),
                                    meta["cv_pdf"], "Download CV (PDF)"))
 
-    pieces.append(render_images(meta.get("images") or []))
+    pieces.append(render_images([i for i in (meta.get("images") or [])
+                                 if not i.get("_used")]))
     pieces.append("</article>")
     return "\n".join(p for p in pieces if p)
 

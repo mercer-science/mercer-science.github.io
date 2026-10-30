@@ -2,7 +2,7 @@
 title: Stowers Lab, Surface and Inorganic Chemistry
 roles: [igem, wildcard]
 tabs: [physical-sciences]
-status: Published; second manuscript in preparation
+status: ""
 dates: April 2024 to May 2026
 heading_before: Stowers Lab
 images:
