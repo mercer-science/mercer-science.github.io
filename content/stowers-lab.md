@@ -52,11 +52,6 @@ also helped rebuild the spin coater's vacuum system when it failed.
 
 [figure: chamber, reactor]
 
-Alongside my own work, I trained two newer students in spin coating and scanning electron
-microscopy. The research resulted in a publication in *Langmuir*, where I am second author.
-I presented the work at the BYU Student Research Conference in 2025 and 2026, and at the
-American Chemical Society spring meeting in Atlanta in March 2026.
+Alongside my own work, I trained two newer students in spin coating and scanning electron microscopy. The research resulted in a publication in *Langmuir*, where I am a second author. I presented the work at the BYU Student Research Conference in 2025 and 2026 and at the American Chemical Society spring meeting in Atlanta in March 2026.
 
-A second manuscript examining decomposition chemistry using the vacuum chamber is in
-preparation. Although my lab position ended in May 2026, I have continued contributing to
-it.
+A second manuscript examining decomposition chemistry using the vacuum chamber is in preparation. Although my lab position ended in May 2026, I have continued contributing to that manuscript.
