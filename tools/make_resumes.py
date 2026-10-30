@@ -17,6 +17,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import time
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "assets", "pdf")
@@ -67,8 +68,8 @@ RESEARCH = {
             "dates": "May 2026 – Present",
             "lines": [],
             "bullets": [
-                "Four studies of MR-guided and biology-guided radiotherapy; first author on four "
-                "manuscripts: one submitted, two in final co-author circulation, one in preparation",
+                "Four studies of MR-guided and biology-guided radiotherapy; first author on three "
+                "manuscripts, one submitted and two in final co-author circulation",
                 "Rebuilt the department's diffusion MRI pipeline into a web application now "
                 "held by the Radiation Oncology Application Team",
                 "Wrote the C#, Python, and R extraction and figure pipelines behind the studies",
@@ -109,8 +110,8 @@ RESEARCH_SHORT = {
             "dates": "May 2026 – Present",
             "lines": [],
             "bullets": [
-                "Four studies of MR-guided and biology-guided radiotherapy; first author on four "
-                "manuscripts: one submitted, two in final co-author circulation, one in preparation",
+                "Four studies of MR-guided and biology-guided radiotherapy; first author on three "
+                "manuscripts, one submitted and two in final co-author circulation",
             ],
         },
         {
@@ -303,9 +304,9 @@ SIDE_PUBS = {
     "heading": "Publications",
     "items": [
         "Ralph AD, <b>Mercer RW</b>, et al. <i>Langmuir</i> 2026;42(6):4475–88.",
-        "<b>First author on four manuscripts:</b> one submitted (<i>Int J Radiat Oncol "
-        "Biol Phys</i>), two in final co-author circulation, one in preparation.",
-        "Co-author on several more in preparation.",
+        "<b>First author on three manuscripts:</b> one submitted (<i>Int J Radiat Oncol "
+        "Biol Phys</i>) and two in final co-author circulation.",
+        "Co-author on two more in final circulation, with others in preparation.",
     ],
 }
 
@@ -324,7 +325,7 @@ SKILLS_WETLAB = [
     "<b>Wet Lab:</b> bacterial culture and plasmid work, MOF synthesis, spin coating, SEM, "
     "UHV and XPS, Vitrobot, Krios cryo-TEM",
     "<b>Computation:</b> Python, R, C#, Java, shell, Git, AI coding agents, DICOM and image pipelines",
-    "<b>Communication:</b> first author on four manuscripts; six research presentations",
+    "<b>Communication:</b> first author on three manuscripts; six research presentations",
 ]
 
 SKILLS_CODE = [
@@ -425,6 +426,16 @@ def print_pdf(src_html, pdf_path):
              "--user-data-dir=%s" % cache, "--disk-cache-dir=%s" % os.path.join(cache, "c"),
              "--print-to-pdf=%s" % pdf_path, src_html],
             check=True, capture_output=True, timeout=180)
+        # Edge can still be flushing the file when it exits, which is how a
+        # half-written PDF gets read back. Wait for the size to settle.
+        last, stable = -1, 0
+        for _ in range(60):
+            size = os.path.getsize(pdf_path) if os.path.exists(pdf_path) else -1
+            stable = stable + 1 if size == last and size > 0 else 0
+            if stable >= 3:
+                break
+            last = size
+            time.sleep(0.1)
     finally:
         shutil.rmtree(cache, ignore_errors=True)
 

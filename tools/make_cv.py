@@ -93,7 +93,8 @@ SECTIONS = [
                     "August 2026 and remote since",
                     "Four studies: lung and pancreas diffusion-weighted MRI on the Elekta Unity "
                     "MR-Linac, biology-guided radiotherapy on RefleXion, and radiolucent patient "
-                    "immobilization. First author on all four manuscripts",
+                    "immobilization. First author on three manuscripts, one submitted and two in "
+                    "final co-author circulation, with more in preparation",
                     "Rebuilt the department's diffusion MRI processing pipeline into a web "
                     "application with a bulk runner, viewer, threshold tool, and fit checker; "
                     "ran 76 patients in about 2.5 days of server time, and hospital IT moved it "
@@ -134,14 +135,20 @@ SECTIONS = [
                      "development. <i>Langmuir</i>. 2026;42(6):4475–4488. "
                      "doi:10.1021/acs.langmuir.5c05182"},
             {"subhead": "Submitted"},
-            {"text": "<b>Mercer RW</b>, et al. Lung PULSAR diffusion-weighted MRI on the Elekta "
-                     "Unity MR-Linac. UT Southwestern. Submitted to the <i>International Journal "
-                     "of Radiation Oncology, Biology, Physics</i>, October 2026."},
+            {"text": "<b>Mercer RW</b>, et al. Onboard intravoxel incoherent motion "
+                     "diffusion-weighted MRI tracks early tumor-volume response in ultra-central "
+                     "lung tumors treated with PULSAR. UT Southwestern. Submitted to the "
+                     "<i>International Journal of Radiation Oncology, Biology, Physics</i>, "
+                     "October 2026."},
             {"subhead": "In Co-Author Circulation"},
-            {"text": "<b>Mercer RW</b>, et al. Biology-guided radiotherapy on RefleXion: "
-                     "dosimetry and outcomes. UT Southwestern."},
-            {"text": "<b>Mercer RW</b>, et al. Radiolucent patient immobilization: a dosimetric "
-                     "comparison. UT Southwestern."},
+            {"text": "<b>Mercer RW</b>, et al. Dosimetric cost of a smaller target when using "
+                     "biology-guided radiation therapy for lung cancer. UT Southwestern."},
+            {"text": "<b>Mercer RW</b>, et al. Radiolucent stereotactic body frame for online "
+                     "adaptive radiation therapy. UT Southwestern."},
+            {"text": "Benefits of weekly on-demand adaptive radiation therapy for locally "
+                     "advanced lung cancer in responders. Co-author. UT Southwestern."},
+            {"text": "Online adaptive radiation therapy for early-stage lung SABR. Co-author. "
+                     "UT Southwestern."},
             {"subhead": "In Preparation"},
             {"text": "<b>Mercer RW</b>, et al. Pancreas diffusion-weighted MRI on the Elekta "
                      "Unity MR-Linac. UT Southwestern."},
@@ -149,7 +156,6 @@ SECTIONS = [
                      "learn cryo-electron tomography processing. Jensen Lab, BYU."},
             {"text": "Co-author, surface chemistry in the Stowers Lab ultra-high-vacuum "
                      "chamber. BYU."},
-            {"text": "Co-author on two further UT Southwestern studies."},
             {"text": "Author order on manuscripts still in review is not final.",
              "quiet": True},
         ],
@@ -340,9 +346,9 @@ SECTIONS = [
             {"text": "<b>Computational:</b> Python, R, C#, Java, shell, Git and GitHub, ImageJ, "
                      "Epic, cryo-ET processing software, DICOM and medical imaging pipelines, "
                      "GPU workflows; AI coding agents since 2024, including agent skills and hooks"},
-            {"text": "<b>Communication:</b> first author on four manuscripts and a co-author on "
-                     "several more in preparation; six research presentations and an invited "
-                     "guest talk; figure, poster, and interface design"},
+            {"text": "<b>Communication:</b> first author on three manuscripts and a co-author on "
+                     "several more; six research presentations and an invited guest talk; "
+                     "figure, poster, and interface design"},
         ],
     },
     {
