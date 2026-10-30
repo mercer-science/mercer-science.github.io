@@ -71,13 +71,16 @@ def render_markdown(body, images=None):
 
     for raw in lines:
         line = raw.rstrip()
-        m = re.match(r"^\[figure:\s*([\w-]+)\]$", line.strip())
+        m = re.match(r"^\[figure:\s*([\w,\s-]+)\]$", line.strip())
         if m:
             flush_para(); flush_list()
-            img = by_id.get(m.group(1))
-            if img:
-                out.append(render_images([img], in_flow=True))
-                img["_used"] = True
+            # Several ids in one directive sit side by side.
+            picked = [by_id[k.strip()] for k in m.group(1).split(",")
+                      if k.strip() in by_id]
+            if picked:
+                out.append(render_images(picked, in_flow=True))
+                for img in picked:
+                    img["_used"] = True
             continue
         if not line.strip():
             flush_para()
