@@ -353,28 +353,37 @@ SKILLS_BALANCED = [
 
 ROLES = {
     "igem": {
-        # A line of facts rather than a slogan: it says where he works and on
-        # what, which a slogan does not.
-        "headline": "Cryo-ET in the Jensen Lab, clinical imaging software at UT Southwestern, "
-                    "surface chemistry before that",
+        # Russell's own wording, from the resume he wrote himself.
+        "headline": "Biochemistry student preparing for medical school, with research in "
+                    "radiation oncology, surface chemistry, and cryo-electron tomography. "
+                    "Enjoys learning new things and being challenged in new ways.",
         "main": [EDUCATION, RESEARCH, CLINICAL, LEADERSHIP],
         "skills": SKILLS_WETLAB,
         "side": [SIDE_PUBS, SIDE_AWARDS, SIDE_PRESENTATIONS],
     },
     "coding": {
-        "headline": "Builds research software used in the clinic",
+        "headline": "Biochemistry student preparing for medical school, who writes the "
+                    "software behind his research in radiation oncology, surface chemistry, "
+                    "and cryo-electron tomography. Enjoys learning new things and being "
+                    "challenged in new ways.",
         "main": [EDUCATION, SOFTWARE, RESEARCH_SHORT, LEADERSHIP_SHORT],
         "skills": SKILLS_CODE,
         "side": [SIDE_PUBS, SIDE_AWARDS, SIDE_PRESENTATIONS],
     },
     "design": {
-        "headline": "Designs tools and interfaces for clinicians and researchers",
+        "headline": "Biochemistry student preparing for medical school, who designs the tools "
+                    "and interfaces clinicians and researchers use, from radiation oncology to "
+                    "the lab bench. Enjoys learning new things and being challenged in new "
+                    "ways.",
         "main": [EDUCATION, DESIGN, RESEARCH_SHORT, LEADERSHIP_SHORT],
         "skills": SKILLS_DESIGN,
         "side": [SIDE_PUBS, SIDE_AWARDS, SIDE_PRESENTATIONS],
     },
     "wildcard": {
-        "headline": "Biochemist, coder, and team lead across lab, clinic, and AI",
+        "headline": "Biochemistry student preparing for medical school, with research in "
+                    "radiation oncology, surface chemistry, and cryo-electron tomography, and "
+                    "the code and leadership that tie them together. Enjoys learning new "
+                    "things and being challenged in new ways.",
         "main": [EDUCATION, RESEARCH, CLINICAL, LEADERSHIP],
         "skills": SKILLS_BALANCED,
         "side": [SIDE_PUBS, SIDE_AWARDS, SIDE_PRESENTATIONS],
@@ -384,21 +393,22 @@ ROLES = {
 CSS = """
 @page { size: letter; margin: 0.45in 0.5in; }
 * { box-sizing: border-box; }
-body { margin:0; font: 9.3pt/1.32 Calibri, "Segoe UI", Arial, sans-serif; color:#1b1b1f; }
+body { margin:0; font: 9.1pt/1.28 Calibri, "Segoe UI", Arial, sans-serif; color:#1b1b1f; }
 .top { display:flex; justify-content:space-between; align-items:flex-start; gap:12pt;
        border-bottom:1.2pt solid #1f4f7a; padding-bottom:5pt; margin-bottom:7pt; }
 .who h1 { margin:0; font-size:21pt; letter-spacing:-0.4pt; color:#13334f; }
-.who p { margin:1pt 0 0; font-size:9.6pt; font-style:italic; color:#3f4a55; }
+.who p { margin:1.5pt 0 0; font-size:8.9pt; line-height:1.3; font-style:italic;
+         color:#3f4a55; max-width:30em; }
 .contact { text-align:right; font-size:8.4pt; color:#3f4a55; line-height:1.45; white-space:nowrap; }
 .cols { display:flex; gap:14pt; align-items:flex-start; }
 .main { flex:1 1 68%; }
 .side { flex:0 0 29%; }
-h2 { font-size:9.6pt; text-transform:uppercase; letter-spacing:0.6pt; color:#1f4f7a;
-     border-bottom:0.6pt solid #c9d4de; margin:8pt 0 3pt; padding-bottom:1.5pt; }
+h2 { font-size:9.4pt; text-transform:uppercase; letter-spacing:0.6pt; color:#1f4f7a;
+     border-bottom:0.6pt solid #c9d4de; margin:7pt 0 2.5pt; padding-bottom:1.5pt; }
 .side h2 { margin-top:0; }
 .side h2 + * { margin-top:0; }
 .side section + section h2 { margin-top:9pt; }
-.entry { margin-bottom:4.5pt; }
+.entry { margin-bottom:4pt; }
 .entry .line1 { display:flex; justify-content:space-between; gap:8pt; }
 .entry .what { font-weight:700; }
 .entry .org { font-style:italic; color:#3f4a55; }

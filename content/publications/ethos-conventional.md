@@ -6,8 +6,8 @@ status: In Final Co-Author Circulation
 dates: 2026
 thumb:
   src: assets/img/crop-ethos-response.png
-  alt: A scatter plot of adapted against scheduled target coverage, with points above the diagonal where adaptation helped and below where it did not.
-  caption: Adapted against scheduled target coverage. Above the line, adaptation helped; 68 percent of sessions landed there.
+  alt: A line chart of the benefit of adapting across six treatment weeks, with target coverage falling from week one while lung and esophagus sparing rise.
+  caption: The benefit rotates across the course, from recovering coverage early to sparing lung and esophagus late.
 images: []
 ---
 

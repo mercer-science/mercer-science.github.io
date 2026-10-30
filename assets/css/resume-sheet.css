@@ -13,21 +13,22 @@
 .sheet-wrap .button-icon { width: 2rem; height: 2rem;
   box-shadow: 0 1px 6px rgba(0,0,0,0.25); }
 .sheet-resume * { box-sizing: border-box; }
-.sheet-resume { margin:0; font: 9.3pt/1.32 Calibri, "Segoe UI", Arial, sans-serif; color:#1b1b1f; }
+.sheet-resume { margin:0; font: 9.1pt/1.28 Calibri, "Segoe UI", Arial, sans-serif; color:#1b1b1f; }
 .sheet-resume .top { display:flex; justify-content:space-between; align-items:flex-start; gap:12pt;
        border-bottom:1.2pt solid #1f4f7a; padding-bottom:5pt; margin-bottom:7pt; }
 .sheet-resume .who h1 { margin:0; font-size:21pt; letter-spacing:-0.4pt; color:#13334f; }
-.sheet-resume .who p { margin:1pt 0 0; font-size:9.6pt; font-style:italic; color:#3f4a55; }
+.sheet-resume .who p { margin:1.5pt 0 0; font-size:8.9pt; line-height:1.3; font-style:italic;
+         color:#3f4a55; max-width:30em; }
 .sheet-resume .contact { text-align:right; font-size:8.4pt; color:#3f4a55; line-height:1.45; white-space:nowrap; }
 .sheet-resume .cols { display:flex; gap:14pt; align-items:flex-start; }
 .sheet-resume .main { flex:1 1 68%; }
 .sheet-resume .side { flex:0 0 29%; }
-.sheet-resume h2 { font-size:9.6pt; text-transform:uppercase; letter-spacing:0.6pt; color:#1f4f7a;
-     border-bottom:0.6pt solid #c9d4de; margin:8pt 0 3pt; padding-bottom:1.5pt; }
+.sheet-resume h2 { font-size:9.4pt; text-transform:uppercase; letter-spacing:0.6pt; color:#1f4f7a;
+     border-bottom:0.6pt solid #c9d4de; margin:7pt 0 2.5pt; padding-bottom:1.5pt; }
 .sheet-resume .side h2 { margin-top:0; }
 .sheet-resume .side h2 + * { margin-top:0; }
 .sheet-resume .side section + section h2 { margin-top:9pt; }
-.sheet-resume .entry { margin-bottom:4.5pt; }
+.sheet-resume .entry { margin-bottom:4pt; }
 .sheet-resume .entry .line1 { display:flex; justify-content:space-between; gap:8pt; }
 .sheet-resume .entry .what { font-weight:700; }
 .sheet-resume .entry .org { font-style:italic; color:#3f4a55; }
