@@ -17,7 +17,8 @@ physics), May 2026 to present. Stowers Lab, BYU (surface chemistry), April 2024 
 
 **Writing.** One paper published in *Langmuir* as second author, one manuscript submitted
 to the *International Journal of Radiation Oncology, Biology, Physics*, two in final
-co-author circulation, and several more in preparation. Lead drafter on four.
+co-author circulation, and one in preparation. First author on those four, and a
+co-author on several more in preparation.
 
 **Speaking.** Six research presentations across chemistry, medicine, and structural
 biology, plus an invited guest talk to BYU's Healthcare Leadership program in October 2026.
@@ -27,7 +28,8 @@ Lead program director for Early Learning Essentials through BYU Y-Serve. Pre-med
 mentor.
 
 **Clinical.** Medical assistant at a family clinic, July 2025 to April 2026. Weekly
-physical therapy volunteer at Utah State Hospital since May 2025.
+volunteer at Utah State Hospital since May 2025, guiding mental health patients through
+physical therapy.
 
 **Awards.** SCCR Fellow 2026 (Simmons Center for Cancer Research), Outstanding Analytical
 Chemist 2025, Dean's List four semesters.

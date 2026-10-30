@@ -20,6 +20,9 @@ import os
 import subprocess
 import sys
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import make_resumes  # noqa: E402  (shares the headless-Edge printing helper)
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "assets", "pdf")
 EDGE = r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
@@ -90,7 +93,7 @@ SECTIONS = [
                     "August 2026 and remote since",
                     "Four studies: lung and pancreas diffusion-weighted MRI on the Elekta Unity "
                     "MR-Linac, biology-guided radiotherapy on RefleXion, and radiolucent patient "
-                    "immobilization. Lead drafter on all four manuscripts",
+                    "immobilization. First author on all four manuscripts",
                     "Rebuilt the department's diffusion MRI processing pipeline into a web "
                     "application with a bulk runner, viewer, threshold tool, and fit checker; "
                     "ran 76 patients in about 2.5 days of server time, and hospital IT moved it "
@@ -210,7 +213,7 @@ SECTIONS = [
                     "Pediatric Center (September 2025 to January 2026): led group activities "
                     "for pediatric mental health patients",
                     "Pediatric Mentor (December 2025 to May 2026): met one-on-one with "
-                    "pediatric patients",
+                    "pediatric mental health patients",
                 ],
             },
         ],
@@ -239,7 +242,9 @@ SECTIONS = [
                 "what": "Officer, BYU AI Association",
                 "dates": "September 2026 – Present",
                 "bullets": [
-                    "Lead the weekly AI in Research meeting and wrote the proposal for it",
+                    "Lead the weekly AI in Research meeting",
+                    "Speak about AI in research to other colleges across the university, and "
+                    "meet with professors and labs about using it in their own work",
                     "Represented the association at BYU's AI for Social Innovation Conference, "
                     "on the Data Sovereignty and Inclusion working table",
                 ],
@@ -260,7 +265,7 @@ SECTIONS = [
                 ],
             },
             {
-                "what": "Peer Mentor, BYU Office of First Year Experience",
+                "what": "University Peer Mentor, BYU Office of First Year Experience",
                 "dates": "June 2024 – February 2025",
                 "bullets": [
                     "Co-taught two sections of Introduction to University (UNIV 101) with faculty",
@@ -335,8 +340,9 @@ SECTIONS = [
             {"text": "<b>Computational:</b> Python, R, C#, Java, shell, Git and GitHub, ImageJ, "
                      "Epic, cryo-ET processing software, DICOM and medical imaging pipelines, "
                      "GPU workflows; AI coding agents since 2024, including agent skills and hooks"},
-            {"text": "<b>Communication:</b> lead drafter on four manuscripts; seven research "
-                     "presentations; figure, poster, and interface design"},
+            {"text": "<b>Communication:</b> first author on four manuscripts and a co-author on "
+                     "several more in preparation; six research presentations and an invited "
+                     "guest talk; figure, poster, and interface design"},
         ],
     },
     {
@@ -417,9 +423,7 @@ def main():
     with open(htm, "w", encoding="utf-8", newline="\n") as fh:
         fh.write(build_html())
     if os.path.exists(EDGE):
-        subprocess.run([EDGE, "--headless=new", "--disable-gpu", "--no-pdf-header-footer",
-                        "--print-to-pdf=%s" % pdf, htm],
-                       check=True, capture_output=True, timeout=120)
+        make_resumes.print_pdf(htm, pdf)
         print("wrote %s" % os.path.basename(pdf))
     else:
         print("Edge not found at %s; wrote HTML only." % EDGE)

@@ -13,8 +13,10 @@ Printing uses Microsoft Edge in headless mode, which is already on this machine.
 
 import html
 import os
+import shutil
 import subprocess
 import sys
+import tempfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "assets", "pdf")
@@ -55,7 +57,8 @@ RESEARCH = {
                 "ultrastructure, both approved by the PI and awaiting biosafety review",
                 "Testing whether an AI coding agent can run the cryo-ET processing pipeline "
                 "with a human approving every step; poster, Utah CryoEM Symposium 2026",
-                "Trained by Thermo Fisher Scientific on the Vitrobot and Krios cryo-TEM",
+                "Building an AI agent with Dr. Jensen that interviews cryo-EM authors to collect "
+                "the tacit knowledge that never reaches print",
             ],
         },
         {
@@ -64,8 +67,8 @@ RESEARCH = {
             "dates": "May 2026 – Present",
             "lines": [],
             "bullets": [
-                "Four studies of MR-guided and biology-guided radiotherapy; lead drafter on "
-                "four manuscripts, one submitted and two in final co-author circulation",
+                "Four studies of MR-guided and biology-guided radiotherapy; first author on four "
+                "manuscripts: one submitted, two in final co-author circulation, one in preparation",
                 "Rebuilt the department's diffusion MRI pipeline into a web application now "
                 "held by the Radiation Oncology Application Team",
                 "Wrote the C#, Python, and R extraction and figure pipelines behind the studies",
@@ -106,8 +109,8 @@ RESEARCH_SHORT = {
             "dates": "May 2026 – Present",
             "lines": [],
             "bullets": [
-                "Four studies of MR-guided and biology-guided radiotherapy; lead drafter on four "
-                "manuscripts, one submitted and two in final co-author circulation",
+                "Four studies of MR-guided and biology-guided radiotherapy; first author on four "
+                "manuscripts: one submitted, two in final co-author circulation, one in preparation",
             ],
         },
         {
@@ -132,8 +135,8 @@ LEADERSHIP_SHORT = {
             "dates": "Sep 2026 – Present",
             "lines": [],
             "bullets": [
-                "Lead the weekly AI in Research meeting; wrote the chapter proposal; "
-                "represented the association at BYU's AI for Social Innovation Conference",
+                "Lead the weekly AI in Research meeting; speak about AI in research to other "
+                "colleges across the university and meet with professors and labs",
             ],
         },
         {
@@ -241,7 +244,8 @@ CLINICAL = {
             "org": "Utah State Hospital, Provo, UT",
             "dates": "May 2025 – Present",
             "lines": [],
-            "bullets": ["Guide patients through physical therapy; mentored pediatric patients"],
+            "bullets": ["Guide mental health patients through physical therapy; mentored "
+                        "pediatric mental health patients"],
         },
     ],
 }
@@ -255,7 +259,8 @@ LEADERSHIP = {
             "dates": "Sep 2026 – Present",
             "lines": [],
             "bullets": [
-                "Lead the weekly AI in Research meeting; wrote the chapter proposal",
+                "Lead the weekly AI in Research meeting; speak to other colleges across the "
+                "university and meet with professors and labs about using AI in their work",
                 "Represented the association at BYU's AI for Social Innovation Conference, "
                 "on the Data Sovereignty and Inclusion working table",
             ],
@@ -275,7 +280,7 @@ LEADERSHIP = {
             "bullets": ["Mentor pre-med students on coursework, research, and applications"],
         },
         {
-            "role": "Peer Mentor",
+            "role": "University Peer Mentor",
             "org": "BYU Office of First Year Experience",
             "dates": "Jun 2024 – Feb 2025",
             "lines": [],
@@ -298,8 +303,9 @@ SIDE_PUBS = {
     "heading": "Publications",
     "items": [
         "Ralph AD, <b>Mercer RW</b>, et al. <i>Langmuir</i> 2026;42(6):4475–88.",
-        "One manuscript submitted (<i>Int J Radiat Oncol Biol Phys</i>); two in final "
-        "co-author circulation; several in preparation.",
+        "<b>First author on four manuscripts:</b> one submitted (<i>Int J Radiat Oncol "
+        "Biol Phys</i>), two in final co-author circulation, one in preparation.",
+        "Co-author on several more in preparation.",
     ],
 }
 
@@ -315,10 +321,10 @@ SIDE_PRESENTATIONS = {
 }
 
 SKILLS_WETLAB = [
-    "<b>Wet lab:</b> bacterial culture and plasmid work, MOF synthesis, spin coating, SEM, "
+    "<b>Wet Lab:</b> bacterial culture and plasmid work, MOF synthesis, spin coating, SEM, "
     "UHV and XPS, Vitrobot, Krios cryo-TEM",
     "<b>Computation:</b> Python, R, C#, Java, shell, Git, AI coding agents, DICOM and image pipelines",
-    "<b>Communication:</b> six research presentations; lead drafter on four manuscripts",
+    "<b>Communication:</b> first author on four manuscripts; six research presentations",
 ]
 
 SKILLS_CODE = [
@@ -334,7 +340,7 @@ SKILLS_DESIGN = [
     "figure and poster design, rapid prototyping",
     "<b>Tools:</b> PowerPoint, ImageJ, ggplot2 and matplotlib, HTML and CSS, SVG",
     "<b>Code:</b> Python, R, C#, Java, AI coding agents",
-    "<b>Lab and clinical:</b> SEM, UHV, cryo-EM sample preparation, clinical data abstraction",
+    "<b>Lab and Clinical:</b> SEM, UHV, cryo-EM sample preparation, clinical data abstraction",
 ]
 
 SKILLS_BALANCED = [
@@ -346,7 +352,10 @@ SKILLS_BALANCED = [
 
 ROLES = {
     "igem": {
-        "headline": "Biochemistry researcher who builds tools for the lab and the clinic",
+        # A line of facts rather than a slogan: it says where he works and on
+        # what, which a slogan does not.
+        "headline": "Cryo-ET in the Jensen Lab, clinical imaging software at UT Southwestern, "
+                    "surface chemistry before that",
         "main": [EDUCATION, RESEARCH, CLINICAL, LEADERSHIP],
         "skills": SKILLS_WETLAB,
         "side": [SIDE_PUBS, SIDE_AWARDS, SIDE_PRESENTATIONS],
@@ -400,6 +409,24 @@ li { margin:0.6pt 0; }
 .side li { margin:1.4pt 0; font-size:8.6pt; line-height:1.3; }
 .skills li { margin:1.4pt 0; }
 """
+
+
+def print_pdf(src_html, pdf_path):
+    """Print an HTML file to PDF through headless Edge.
+
+    Edge keeps a disk cache, and printing the same path twice can hand back the
+    previous render, which is how a stale PDF slips out. Giving it a throwaway
+    cache and profile each time removes that.
+    """
+    cache = tempfile.mkdtemp(prefix="edge-print-")
+    try:
+        subprocess.run(
+            [EDGE, "--headless=new", "--disable-gpu", "--no-pdf-header-footer",
+             "--user-data-dir=%s" % cache, "--disk-cache-dir=%s" % os.path.join(cache, "c"),
+             "--print-to-pdf=%s" % pdf_path, src_html],
+            check=True, capture_output=True, timeout=180)
+    finally:
+        shutil.rmtree(cache, ignore_errors=True)
 
 
 def entry_html(e):
@@ -462,10 +489,7 @@ def main():
         with open(htm, "w", encoding="utf-8", newline="\n") as fh:
             fh.write(build_html(role_id, role))
         if os.path.exists(EDGE):
-            subprocess.run(
-                [EDGE, "--headless=new", "--disable-gpu", "--no-pdf-header-footer",
-                 "--print-to-pdf=%s" % pdf, htm],
-                check=True, capture_output=True, timeout=120)
+            print_pdf(htm, pdf)
             print("wrote %s" % os.path.basename(pdf))
         else:
             print("wrote %s" % os.path.basename(htm))

@@ -17,8 +17,9 @@ layer blocks the secretion system beneath it. Full write-up on the Physical Scie
 be the first cryo-electron tomography in the genus, and needs a milling workflow that does
 not exist yet. Full write-up on the Physical Sciences tab.
 
-**Cryo-EM Tacit Knowledge Engine**, Jensen Lab. **Ongoing.** A project with Dr. Jensen,
-who originated the idea. I am scaffolding it, and nothing is built yet.
+**Cryo-EM Tacit Knowledge Engine**, Jensen Lab. **Ongoing.** An AI agent that interviews
+the authors of cryo-EM papers to collect the reasoning that never reaches print. Dr.
+Jensen originated the idea; nothing is working yet.
 
 **AI agent for cryo-ET processing**, Jensen Lab. **Ongoing**, with a manuscript in
 preparation and a poster presented in October 2026.
