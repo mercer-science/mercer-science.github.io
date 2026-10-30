@@ -324,7 +324,7 @@ SIDE_PRESENTATIONS = {
 SKILLS_WETLAB = [
     "<b>Wet Lab:</b> bacterial culture and plasmid work, MOF synthesis, spin coating, SEM, "
     "UHV and XPS, Vitrobot, Krios cryo-TEM",
-    "<b>Computation:</b> Python, R, C#, Java, shell, Git, AI coding agents, DICOM and image pipelines",
+    "<b>Computation:</b> Python, R, C#, Java, shell, Git, SnapGene, AI coding agents, DICOM and image pipelines",
     "<b>Communication:</b> first author on three manuscripts; six research presentations",
 ]
 
@@ -333,7 +333,7 @@ SKILLS_CODE = [
     "<b>Tools:</b> Git and GitHub, AI coding agents and agent skills, web applications, "
     "GPU workflows, DICOM and medical imaging",
     "<b>Coursework:</b> C S 111, 235, 236, 240; machine learning courses C S 312 and 470 planned; MATH 213, 215; STAT 121",
-    "<b>Lab:</b> SEM, UHV and XPS, Vitrobot, Krios, bacterial culture",
+    "<b>Lab:</b> SEM, UHV and XPS, Vitrobot, Krios, bacterial culture, SnapGene",
 ]
 
 SKILLS_DESIGN = [
@@ -341,11 +341,11 @@ SKILLS_DESIGN = [
     "figure and poster design, rapid prototyping",
     "<b>Tools:</b> PowerPoint, ImageJ, ggplot2 and matplotlib, HTML and CSS, SVG",
     "<b>Code:</b> Python, R, C#, Java, AI coding agents",
-    "<b>Lab and Clinical:</b> SEM, UHV, cryo-EM sample preparation, clinical data abstraction",
+    "<b>Lab and Clinical:</b> SEM, UHV, cryo-EM sample preparation, SnapGene, clinical data abstraction",
 ]
 
 SKILLS_BALANCED = [
-    "<b>Lab:</b> cryo-EM sample preparation, bacterial culture, MOF synthesis, SEM, UHV and XPS",
+    "<b>Lab:</b> cryo-EM sample preparation, bacterial culture, SnapGene, MOF synthesis, SEM, UHV and XPS",
     "<b>Code:</b> Python, R, C#, Java, shell, AI coding agents, imaging pipelines",
     "<b>Clinical:</b> chart review, clinical data abstraction, medical assisting, study design",
     "<b>Leadership:</b> program direction, mentoring, cross-disciplinary teams, AI policy discussion",
@@ -430,6 +430,10 @@ def print_pdf(src_html, pdf_path):
     cache and profile each time removes that.
     """
     cache = tempfile.mkdtemp(prefix="edge-print-")
+    # Remove the old file first, so a leftover from the last run can never be
+    # mistaken for a finished print.
+    if os.path.exists(pdf_path):
+        os.remove(pdf_path)
     try:
         subprocess.run(
             [EDGE, "--headless=new", "--disable-gpu", "--no-pdf-header-footer",

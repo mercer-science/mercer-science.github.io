@@ -21,12 +21,12 @@ images:
     caption: Our transformation plate. The whole plate is the delABD construct.
   - id: forward
     src: assets/img/cmg2-primer-forward.png
-    alt: The delABD Forward primer sequence boxed against the start of the product plasmid, with the encoded CMG2 residues below.
-    caption: Our forward primer, at the start of the product.
+    alt: The delABD Forward primer sequence boxed above the original CMG2 sequence, with one base in the primer highlighted and the encoded residues below.
+    caption: Our forward primer on the original CMG2 sequence. The boxed A is a silent base change.
   - id: reverse
     src: assets/img/cmg2-primer-reverse.png
-    alt: The delABD Reverse primer sequence boxed against the end of the product plasmid, with the encoded CMG2 residues above.
-    caption: Our reverse primer, at the end of the product.
+    alt: The delABD Reverse primer sequence boxed below the original CMG2 sequence, with the encoded residues above.
+    caption: Our reverse primer on the original CMG2 sequence.
 ---
 
 Alongside my research experience, I have completed nearly all of the coursework for BYU's

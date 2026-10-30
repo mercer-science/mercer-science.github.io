@@ -344,7 +344,7 @@ SECTIONS = [
                      "ultra-high-vacuum systems, XPS, mass spectrometry, spin coating, flow "
                      "reactor operation, Vitrobot, Krios cryo-TEM"},
             {"text": "<b>Computational:</b> Python, R, C#, Java, shell, Git and GitHub, ImageJ, "
-                     "Epic, cryo-ET processing software, DICOM and medical imaging pipelines, "
+                     "SnapGene, Epic, cryo-ET processing software, DICOM and medical imaging pipelines, "
                      "GPU workflows; AI coding agents since 2024, including agent skills and hooks"},
             {"text": "<b>Communication:</b> first author on three manuscripts and a co-author on "
                      "several more; six research presentations and an invited guest talk; "
