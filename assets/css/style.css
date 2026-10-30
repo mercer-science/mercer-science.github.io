@@ -319,11 +319,13 @@ main { max-width: var(--maxw); margin: 0 auto; }
 
 .figures { margin: 1.4rem 0 0; display: grid; gap: 1.1rem; }
 
-/* A figure the text calls for sits in the flow, where it was called. */
+/* A figure the text calls for sits in the flow, where it was called. Three
+   in one directive sit in a row. */
 .figures-inline { margin: 1.5rem 0; }
 
 @media (min-width: 40rem) {
   .figures-inline:has(.shot + .shot) { grid-template-columns: 1fr 1fr; align-items: start; }
+  .figures-inline:has(.shot:nth-child(3)) { grid-template-columns: repeat(3, 1fr); }
 }
 
 @media (min-width: 40rem) {
