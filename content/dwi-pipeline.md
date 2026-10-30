@@ -7,28 +7,35 @@ dates: May 2026 – Present
 images:
   - id: before
     src: assets/img/pipeline-before.png
-    alt: The inherited pipeline interface, which ran one patient through one step at a time.
-    caption: Before. The inherited tool ran one patient at a time, with every step started by hand.
+    alt: The inherited pipeline interface, a single-patient step runner with one button per processing step.
+    caption: Before. One patient at a time, with every step started by hand.
   - id: after
     src: assets/img/pipeline-after.png
-    alt: The rebuilt bulk runner, with a tab per patient and a queue of processing steps.
+    alt: The rebuilt bulk runner, with a queue for patient identifiers and a list of processing steps to choose from.
     caption: After. The bulk runner queues patients, schedules CPU and GPU work, and flags errors on its own.
-  - src: assets/img/dwi-viewer.png
-    alt: The MRI viewer, showing the same slice across four treatment sessions with a diffusion map overlaid, and a whole-tumor histogram under each one.
-    caption: The MRI viewer. Scan dates are removed from these screenshots.
-  - src: assets/img/dwi-histograms.png
-    alt: A grid of histograms comparing ADC, Dp, Dt, Fp, and R index across four treatment sessions, one column per session.
-    caption: Parameter comparison. Whole-volume histograms for each measure, one column per session. Scan dates are removed.
-  - src: assets/img/dwi-image-creator.png
-    alt: The image creator, showing selected slices rendered above a slice selection strip with one chosen slice per session.
-    caption: The image creator. Pick a slice per session, then render the panel. Scan dates are removed.
-  - src: assets/img/dwi-threshold.png
+  - id: viewer
+    src: assets/img/dwi-viewer.png
+    alt: The MRI viewer, showing the same slice across four sessions with a diffusion map overlaid and a whole-tumor histogram under each one.
+    caption: The MRI viewer. The same slice across sessions, with a whole-tumor histogram under each.
+  - id: histograms
+    src: assets/img/dwi-histograms.png
+    alt: A grid of histograms comparing ADC, Dp, Dt, and Fp across four sessions, one column per session.
+    caption: Parameter comparison. Each measure's distribution, session by session.
+  - id: creator
+    src: assets/img/dwi-image-creator.png
+    alt: The image creator's slice selection, with a strip of slices for each session and one slice marked to keep.
+    caption: The image creator. Choose which slice to keep for each session, then render the panel.
+  - id: threshold
+    src: assets/img/dwi-threshold.png
     alt: The threshold creator, showing five sessions with a threshold contour drawn on the diffusion map of each.
     caption: The threshold creator.
-  - src: assets/img/fit-checker.png
-    alt: The fit checker, showing a voxel's measured signal with biexponential IVIM and monoexponential ADC fits.
-    caption: The fit checker.
-  - size: wide
+  - id: fit
+    size: small
+    src: assets/img/fit-checker.png
+    alt: The fit checker, with a diffusion map above and a plot of one voxel's measured signal against its IVIM and ADC fits.
+    caption: The fit checker. Click a voxel to see its signal against both models.
+  - id: poster
+    size: wide
     src: assets/img/spri-poster.png
     alt: A conference poster titled From Bench to Beam, laid out in five numbered panels covering biology-guided radiotherapy, radiolucent immobilization, adaptive conventional treatment, adaptive SABR, and on-board diffusion imaging.
     caption: The poster covering all five studies, presented at the BYU Medical Society conference in August 2026 with the other intern. Click it to read the panels.
@@ -66,3 +73,11 @@ I intentionally developed these user interface upgrades so that any researcher i
 The project was subsequently transferred by hospital IT to the Radiation Oncology Application Team for further development toward universal use. They are now using this code in clinical studies. The MRI vendor also expressed interest in incorporating the processing workflow into its imaging system. I prepared the technical handoff documentation, including the remaining requirements for a clinical version, and trained the postdoctoral researcher who took over the project.
 
 The pipeline code belongs to UT Southwestern and is tied to its internal systems, so it is not publicly available. The screenshots below show the web interface without patient-identifying information.
+
+[figure: viewer, histograms]
+
+[figure: creator, threshold]
+
+[figure: fit]
+
+[figure: poster]

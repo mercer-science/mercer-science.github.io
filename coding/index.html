@@ -57,11 +57,11 @@
 <p>I built a bulk-processing system around the pipeline so researchers no longer have to run each patient and processing step individually. Users enter patient identifiers and select the processing steps they need. Each patient gets a separate tab showing progress through the workflow, while the application manages CPU and GPU scheduling, monitors available disk space, archives completed studies to department servers, and packages the results for export. These upgrades allowed us to process patient data much quicker, advancing the rate of research in the department.</p>
 <div class="figures figures-inline">
 <figure class="shot">
-<a href="../assets/img/pipeline-before.png"><img src="../assets/img/pipeline-before.png" alt="The inherited pipeline interface, which ran one patient through one step at a time." loading="lazy"></a>
-<figcaption>Before. The inherited tool ran one patient at a time, with every step started by hand.</figcaption>
+<a href="../assets/img/pipeline-before.png"><img src="../assets/img/pipeline-before.png" alt="The inherited pipeline interface, a single-patient step runner with one button per processing step." loading="lazy"></a>
+<figcaption>Before. One patient at a time, with every step started by hand.</figcaption>
 </figure>
 <figure class="shot">
-<a href="../assets/img/pipeline-after.png"><img src="../assets/img/pipeline-after.png" alt="The rebuilt bulk runner, with a tab per patient and a queue of processing steps." loading="lazy"></a>
+<a href="../assets/img/pipeline-after.png"><img src="../assets/img/pipeline-after.png" alt="The rebuilt bulk runner, with a queue for patient identifiers and a list of processing steps to choose from." loading="lazy"></a>
 <figcaption>After. The bulk runner queues patients, schedules CPU and GPU work, and flags errors on its own.</figcaption>
 </figure>
 </div>
@@ -80,27 +80,33 @@
 <h3 class="sub">Handoff</h3>
 <p>The project was subsequently transferred by hospital IT to the Radiation Oncology Application Team for further development toward universal use. They are now using this code in clinical studies. The MRI vendor also expressed interest in incorporating the processing workflow into its imaging system. I prepared the technical handoff documentation, including the remaining requirements for a clinical version, and trained the postdoctoral researcher who took over the project.</p>
 <p>The pipeline code belongs to UT Southwestern and is tied to its internal systems, so it is not publicly available. The screenshots below show the web interface without patient-identifying information.</p>
-<div class="figures figures-grid">
+<div class="figures figures-inline">
 <figure class="shot">
-<a href="../assets/img/dwi-viewer.png"><img src="../assets/img/dwi-viewer.png" alt="The MRI viewer, showing the same slice across four treatment sessions with a diffusion map overlaid, and a whole-tumor histogram under each one." loading="lazy"></a>
-<figcaption>The MRI viewer. Scan dates are removed from these screenshots.</figcaption>
+<a href="../assets/img/dwi-viewer.png"><img src="../assets/img/dwi-viewer.png" alt="The MRI viewer, showing the same slice across four sessions with a diffusion map overlaid and a whole-tumor histogram under each one." loading="lazy"></a>
+<figcaption>The MRI viewer. The same slice across sessions, with a whole-tumor histogram under each.</figcaption>
 </figure>
 <figure class="shot">
-<a href="../assets/img/dwi-histograms.png"><img src="../assets/img/dwi-histograms.png" alt="A grid of histograms comparing ADC, Dp, Dt, Fp, and R index across four treatment sessions, one column per session." loading="lazy"></a>
-<figcaption>Parameter comparison. Whole-volume histograms for each measure, one column per session. Scan dates are removed.</figcaption>
+<a href="../assets/img/dwi-histograms.png"><img src="../assets/img/dwi-histograms.png" alt="A grid of histograms comparing ADC, Dp, Dt, and Fp across four sessions, one column per session." loading="lazy"></a>
+<figcaption>Parameter comparison. Each measure's distribution, session by session.</figcaption>
 </figure>
+</div>
+<div class="figures figures-inline">
 <figure class="shot">
-<a href="../assets/img/dwi-image-creator.png"><img src="../assets/img/dwi-image-creator.png" alt="The image creator, showing selected slices rendered above a slice selection strip with one chosen slice per session." loading="lazy"></a>
-<figcaption>The image creator. Pick a slice per session, then render the panel. Scan dates are removed.</figcaption>
+<a href="../assets/img/dwi-image-creator.png"><img src="../assets/img/dwi-image-creator.png" alt="The image creator&#x27;s slice selection, with a strip of slices for each session and one slice marked to keep." loading="lazy"></a>
+<figcaption>The image creator. Choose which slice to keep for each session, then render the panel.</figcaption>
 </figure>
 <figure class="shot">
 <a href="../assets/img/dwi-threshold.png"><img src="../assets/img/dwi-threshold.png" alt="The threshold creator, showing five sessions with a threshold contour drawn on the diffusion map of each." loading="lazy"></a>
 <figcaption>The threshold creator.</figcaption>
 </figure>
-<figure class="shot">
-<a href="../assets/img/fit-checker.png"><img src="../assets/img/fit-checker.png" alt="The fit checker, showing a voxel&#x27;s measured signal with biexponential IVIM and monoexponential ADC fits." loading="lazy"></a>
-<figcaption>The fit checker.</figcaption>
+</div>
+<div class="figures figures-inline">
+<figure class="shot shot-small">
+<a href="../assets/img/fit-checker.png"><img src="../assets/img/fit-checker.png" alt="The fit checker, with a diffusion map above and a plot of one voxel&#x27;s measured signal against its IVIM and ADC fits." loading="lazy"></a>
+<figcaption>The fit checker. Click a voxel to see its signal against both models.</figcaption>
 </figure>
+</div>
+<div class="figures figures-inline">
 <figure class="shot shot-wide">
 <a href="../assets/img/spri-poster.png"><img src="../assets/img/spri-poster.png" alt="A conference poster titled From Bench to Beam, laid out in five numbered panels covering biology-guided radiotherapy, radiolucent immobilization, adaptive conventional treatment, adaptive SABR, and on-board diffusion imaging." loading="lazy"></a>
 <figcaption>The poster covering all five studies, presented at the BYU Medical Society conference in August 2026 with the other intern. Click it to read the panels.</figcaption>
@@ -139,32 +145,36 @@
 <article class="block" id="utsw-lung-dwi">
 <header class="block-head">
 <h2>Lung Diffusion MRI on the MR-Linac</h2>
-<p class="block-meta"><span class="dates">May 2026 to present</span> <span class="status status-plain">Submitted</span></p>
+<p class="block-meta"><span class="dates">May 2026 – Present</span> <span class="status status-plain">Manuscript submitted</span></p>
 </header>
-<h3 class="sub sub-first">Problem</h3>
-<p>The Unity combines an MRI scanner with a linear accelerator, and before every treatment it records diffusion-weighted images that nobody used clinically. Dying tumors lose cells, so water moves more freely through them, which should show up as a rising apparent diffusion coefficient. If that holds, a physician could see a tumor responding during treatment, weeks before it shrinks on CT. These patients received PULSAR, where the radiation pulses are spaced weeks apart, and no one had published diffusion imaging in PULSAR patients.</p>
-<h3 class="sub">Solution</h3>
-<p>I worked with a team of medical physicists on 10 patients, each carrying about 10 GB and more than 10,000 DICOM images with meaningless file names, all processed on hospital servers. Every patient was missing at least one diffusion series, because therapists had not backed them up and the consoles had been wiped. The scan field often was not centered on the tumor, so contours ran outside the map, and only 50.9 percent of sessions had data usable as scoped; I found a way to include partially covered sessions rather than drop them. The simulation scanner had 15 to 20 times the signal-to-noise of the machine itself, so the two could not be compared directly.</p>
-<p>Rather than force the original claim, I reframed the study into three aims: whether quantitative diffusion values can be pulled reliably from the machine's own imaging, whether those values move opposite to tumor volume as biology predicts, and how a diffusion-defined target would differ from the clinical one. Out of curiosity I made per-session histograms and saw values piling up at exactly 3. The exporter was capping them, which had been dragging later-fraction averages down. I fixed the pipeline, re-exported, and reran everything; because the figures rebuild from raw data, the fix cost an afternoon instead of a month.</p>
-<h3 class="sub">Result</h3>
-<p>The biexponential model fit the on-board signal better than the standard one, which is the first useful finding: the simple measure everyone reaches for was the wrong one here. Changes measured inside the clinical target and inside a tight tumor-only contour agreed almost exactly, so the result does not depend on who drew the contour. Through the third fraction, tissue diffusion and perfusion fraction separated responders from non-responders, and the conventional measure did not. Over the full course only tissue diffusion held that separation.</p>
-<p>The piece I care about most is the threshold tool: a diffusion cutoff that outlines a treatment-resistant core inside the clinical target, which could take extra dose in the same treatment, and which also shows where the target should expand. Dr. Deng presented examples from the paper and the pipeline at a physics conference last summer.</p>
-<p>Eight of the ten patients had finished treatment at data lock, so this is hypothesis-generating, and the threshold is not yet tied to outcomes. Testing it against outcomes is what the pancreas study began.</p>
-<p>Submitted title: <em>Onboard Intravoxel Incoherent Motion Diffusion-Weighted MRI Tracks Early Tumor-Volume Response in Ultra-Central Lung Tumors Treated With PULSAR.</em></p>
-<div class="figures figures-grid">
+<p>I worked with a team of medical physicists at UT Southwestern to investigate whether diffusion-weighted MRI could predict tumor response during radiation treatment. We studied 10 patients with ultra-central lung tumors receiving PULSAR (Personalized Ultrafractionated Stereotactic Adaptive Radiotherapy), a treatment in which radiation doses are delivered several weeks apart. Because responding tumors undergo changes in cellular structure that affect water movement, diffusion MRI may reveal treatment response before changes in tumor size become visible.</p>
+<div class="figures figures-inline">
 <figure class="shot shot-small">
 <a href="../assets/img/mr-linac.jpg"><img src="../assets/img/mr-linac.jpg" alt="Russell standing beside the Elekta Unity MR-Linac at UT Southwestern." loading="lazy"></a>
-<figcaption>The Elekta Unity MR-Linac, which images with MRI during treatment and quietly records diffusion-weighted scans before each session.</figcaption>
+<figcaption>The Elekta Unity MR-Linac, which records diffusion-weighted scans before each session.</figcaption>
 </figure>
-<figure class="shot shot-small">
+</div>
+<p>I processed and analyzed the patients' imaging data, developed methods to recover partially usable scans, and evaluated several diffusion models.</p>
+<p>Our findings suggest that tissue diffusion and perfusion measurements can distinguish patients responding to treatment from those who are not as early as the third treatment fraction. This is particularly promising for PULSAR because it could allow physicians to assess treatment response while the radiation course is still underway, rather than waiting for changes in tumor size on follow-up imaging.</p>
+<div class="figures figures-inline">
+<figure class="shot shot-wide">
+<a href="../assets/img/crop-responder-maps.png"><img src="../assets/img/crop-responder-maps.png" alt="Two rows of four false-color diffusion maps of one responding patient across fractions one, two, three, and five, the top row apparent diffusion coefficient and the bottom row perfusion fraction, with the tumor outlined in red." loading="lazy"></a>
+<figcaption>One responding patient across treatment. Apparent diffusion coefficient above, perfusion fraction below, with the tumor outlined. Cropped from a figure in the submitted manuscript.</figcaption>
+</figure>
+</div>
+<p>I also developed a thresholding method to identify potentially treatment-resistant regions within tumors, which could eventually help guide radiation dose adjustments.</p>
+<div class="figures figures-inline">
+<figure class="shot">
 <a href="../assets/img/crop-dwi-map.png"><img src="../assets/img/crop-dwi-map.png" alt="A tissue-diffusion map of a lung tumor in false color, with three nested contours drawn on it." loading="lazy"></a>
 <figcaption>A tissue-diffusion map with three contours: the clinical target in yellow, a tighter tumor-only contour in red, and the diffusion-defined core in blue. Cropped from a figure in the submitted manuscript.</figcaption>
 </figure>
-<figure class="shot shot-small">
+<figure class="shot">
 <a href="../assets/img/crop-resistant-core.png"><img src="../assets/img/crop-resistant-core.png" alt="A grayscale MRI slice of a tumor with yellow, red, and green contours nested inside one another." loading="lazy"></a>
 <figcaption>The same idea on anatomy. Green is the treatment-resistant core that a boost would target, inside the clinical contour in red.</figcaption>
 </figure>
 </div>
+<p>The study included 10 patients, eight of whom had completed treatment at the time of analysis. The findings are preliminary and require validation against clinical outcomes.</p>
+<p><strong>Submitted manuscript:</strong> <em>Onboard Intravoxel Incoherent Motion Diffusion-Weighted MRI Tracks Early Tumor-Volume Response in Ultra-Central Lung Tumors Treated With PULSAR.</em></p>
 </article>
 <article class="block" id="utsw-aerframe">
 <header class="block-head">
