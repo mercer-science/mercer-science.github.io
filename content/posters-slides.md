@@ -2,10 +2,13 @@
 title: Posters and Slides
 roles: [design]
 tabs: [figures]
-status: Poster file still needed
+status: ""
 dates: 2025 to 2026
-images: []
-needs: The Utah CryoEM Symposium poster file. A placeholder stands in its place until Russell supplies it.
+images:
+  - size: wide
+    src: assets/img/cryoet-poster.png
+    alt: The conference poster, titled Can an AI Agent Collapse the Cryo-ET Learning Curve, laid out in six numbered sections across three columns.
+    caption: The Utah CryoEM Symposium poster, October 2026. Six numbered sections, so a reader can enter anywhere and still follow the argument.
 ---
 
 I have presented six times across three fields, which means designing for three different
@@ -21,4 +24,6 @@ oncology work, and for the BYU Medical Society poster that month I shared the de
 the other intern. Earlier, the Stowers chemistry work went to the BYU Student Research
 Conference twice and to the American Chemical Society spring meeting in Atlanta.
 
-The poster file goes here once Russell supplies it.
+The design problem on a poster is that nobody reads it in order. Numbered sections let
+someone start at the conversation excerpts in the middle, or at the numbers in the corner,
+and still find the argument.

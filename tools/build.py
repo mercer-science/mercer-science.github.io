@@ -242,8 +242,11 @@ def render_images(images):
 
 def render_block(meta, tab_title="", role_id=""):
     title = meta.get("title", "")
-    # A block whose title repeats the tab's own title shows it once, not twice.
-    repeat_title = title.strip().lower() == tab_title.strip().lower()
+    # A block whose title repeats the tab's own title, or the section heading
+    # just above it, shows it once rather than twice.
+    head = str(meta.get("heading_before") or "").strip().lower()
+    repeat_title = (title.strip().lower() == tab_title.strip().lower()
+                    or (head and title.strip().lower().startswith(head)))
     status = str(meta.get("status") or "").strip()
     dates = str(meta.get("dates") or "").strip()
     state = status_state(status)

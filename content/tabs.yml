@@ -29,7 +29,7 @@ roles:
           - chem-584-cmg2
       - id: physical-sciences
         title: Physical Sciences
-        blocks: [jensen-bartonella, jensen-babesia, ai-cryo-em, chem-584-cmg2, bench-training, stowers-lab]
+        blocks: [jensen-lab, chem-584-cmg2, stowers-lab, lab-coursework]
       - id: clinical-research
         title: Clinical Research
         blocks: [dwi-pipeline, utsw-lung-dwi, utsw-bgrt, utsw-aerframe, utsw-pancreas]
@@ -122,7 +122,7 @@ roles:
         blocks: [dwi-pipeline, utsw-bgrt, utsw-lung-dwi, utsw-aerframe, utsw-pancreas, clinical-devices]
       - id: physical-sciences
         title: Physical Sciences
-        blocks: [jensen-bartonella, jensen-babesia, bench-training, stowers-lab]
+        blocks: [jensen-lab, stowers-lab, lab-coursework]
       - id: ai
         title: AI
         blocks: [ai-cryo-em, mercer-science-tools, ai-association, ai-conference]

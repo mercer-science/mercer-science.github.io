@@ -240,7 +240,20 @@ main { max-width: var(--maxw); margin: 0 auto; }
   margin: 1.5rem 0 0.1rem;
 }
 
-.block h4 { margin: 1.2rem 0 0.2rem; font-size: 1rem; }
+/* A sub-heading inside a block. It needs real separation: a row of bold
+   run-in labels reads as a wall of text. */
+.block h4 {
+  margin: 1.9rem 0 0.5rem;
+  padding: 0.5rem 0 0 0.85rem;
+  border-top: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  font-size: 1.02rem;
+  letter-spacing: -0.005em;
+  color: var(--accent);
+}
+
+.block h4:first-of-type { margin-top: 1.5rem; }
+.block h4 + p { margin-top: 0.4rem; }
 
 .block ul { margin: 0.8rem 0; padding-left: 1.2rem; }
 .block li { margin: 0.35rem 0; }
@@ -323,6 +336,9 @@ main { max-width: var(--maxw); margin: 0 auto; }
 
 /* A photo does not need the full column the way a screenshot does. */
 .shot-small img { max-width: 17rem; max-height: 20rem; }
+/* A poster or a wide figure takes the whole row. */
+.shot-wide { grid-column: 1 / -1; }
+.shot-wide img { max-height: none; }
 .shot-tiny img { max-width: 7rem; border: 0; background: none; }
 
 /* A small figure beside the text, for a block with one good image. */

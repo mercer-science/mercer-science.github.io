@@ -4,7 +4,7 @@ roles: [igem, wildcard]
 tabs: [physical-sciences]
 status: Published; second manuscript in preparation
 dates: April 2024 to May 2026
-heading_before: Chemistry Experiences
+heading_before: Stowers Lab
 images:
   - size: small
     src: assets/img/stowers-uhv-chamber.jpg
