@@ -55,7 +55,7 @@ roles:
         blocks: [dwi-pipeline, utsw-bgrt, utsw-lung-dwi, utsw-aerframe, utsw-pancreas]
       - id: ai
         title: AI
-        blocks: [ai-cryo-em, ai-association, ai-conference, mercer-science-tools, tacit-knowledge-engine]
+        blocks: [ai-cryo-em, ai-association, ai-conference, mercer-science-tools, tacit-knowledge-database]
       - id: software-projects
         title: Software Projects
         blocks: [mercer-science-tools, analysis-pipelines, chess-app, cs-training]

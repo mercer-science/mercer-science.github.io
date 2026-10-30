@@ -1,5 +1,5 @@
 ---
-title: Cryo-EM Tacit Knowledge Engine
+title: Cryo-EM Tacit Knowledge Database
 roles: [igem, coding, design, wildcard]
 tabs: [publications]
 status: Ongoing
