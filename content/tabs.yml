@@ -26,10 +26,9 @@ roles:
           - ongoing/bartonella
           - ongoing/babesia
           - ongoing/tacit-knowledge
-          - chem-584-cmg2
       - id: physical-sciences
         title: Physical Sciences
-        blocks: [jensen-lab, chem-584-cmg2, stowers-lab, lab-coursework]
+        blocks: [jensen-lab, stowers-lab, lab-coursework]
       - id: clinical-research
         title: Clinical Research
         blocks: [dwi-pipeline, utsw-lung-dwi, utsw-bgrt, utsw-aerframe, utsw-pancreas]
