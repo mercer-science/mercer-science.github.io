@@ -4,7 +4,6 @@ roles: [igem, coding, design, wildcard]
 tabs: [publications]
 status: In Preparation
 dates: October 2026 to present
-heading_before: Ongoing Research
 images: []
 ---
 
