@@ -19,7 +19,7 @@ your sign-off. Nothing else in the repo is touched, so re-running it is always s
 To rebuild the four resume PDFs:
 
 ```
-python toolsmake_resumes.py
+python tools\make_resumes.py
 ```
 
 It prints each one through headless Edge into `assets\pdf\`. The intermediate HTML stays
@@ -28,7 +28,7 @@ beside the PDFs so you can open it in a browser and check the layout before prin
 The resume facts live in `tools\make_resumes.py`, and the Resume tab on each role page
 renders that same markup, so the page and the PDF cannot drift apart. Change a bullet
 there, rerun both scripts, and the page and the download update together. `build.py` also
-regenerates `assets\cssesume-sheet.css` from the resume's own print stylesheet; do not
+regenerates `assets/css/resume-sheet.css` from the resume's own print stylesheet; do not
 edit that file by hand.
 
 Python needs `pyyaml`, which is already installed.
