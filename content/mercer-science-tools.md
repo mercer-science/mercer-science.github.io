@@ -5,7 +5,8 @@ tabs: [ai, software-projects]
 status: Open source, ongoing
 dates: 2026 to present
 images:
-  - src: assets/img/mercer-science-logo.png
+  - size: tiny
+    src: assets/img/mercer-science-logo.png
     alt: The Mercer Science organization logo.
     caption: Mercer Science on GitHub, where I release the tools as they become useful to someone besides me.
 ---

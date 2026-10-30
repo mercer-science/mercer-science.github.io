@@ -5,7 +5,8 @@ tabs: [clinical-research, clinical-research-software]
 status: Submitted
 dates: May 2026 to present
 images:
-  - src: assets/img/mr-linac.jpg
+  - size: small
+    src: assets/img/mr-linac.jpg
     alt: Russell standing beside the Elekta Unity MR-Linac at UT Southwestern.
     caption: The Elekta Unity MR-Linac, which images with MRI during treatment and quietly records diffusion-weighted scans before each session.
 ---
@@ -41,16 +42,22 @@ an afternoon instead of a month.
 
 ### Result
 
-Of 55 sessions, 42 captured diffusion imaging, 41 were usable, and 34 had enough tumor
-voxels to analyze. On-board signal-to-noise averaged about 8 against roughly 127 at
-simulation. Contour-based diffusion changes agreed closely between the clinical and
-adjusted contours. The piece I care about most is the threshold tool: a diffusion cutoff
-that outlines a treatment-resistant core inside the clinical target, which could receive
-extra dose in the same treatment and which also shows where the target should expand. Dr.
-Deng presented examples from the paper and the pipeline at a physics conference last
-summer. The manuscript is submitted to the *International Journal of Radiation Oncology,
-Biology, Physics*.
+The biexponential model fit the on-board signal better than the standard one, which is the
+first useful finding: the simple measure everyone reaches for was the wrong one here.
+Changes measured inside the clinical target and inside a tight tumor-only contour agreed
+almost exactly, so the result does not depend on who drew the contour. Through the third
+fraction, tissue diffusion and perfusion fraction separated responders from
+non-responders, and the conventional measure did not. Over the full course only tissue
+diffusion held that separation.
 
-The study is hypothesis-generating with 10 patients, missing data, and low on-board signal,
-and the threshold is not yet tied to outcomes. Testing it against outcomes is what the
-pancreas study began.
+The piece I care about most is the threshold tool: a diffusion cutoff that outlines a
+treatment-resistant core inside the clinical target, which could take extra dose in the
+same treatment, and which also shows where the target should expand. Dr. Deng presented
+examples from the paper and the pipeline at a physics conference last summer.
+
+Eight of the ten patients had finished treatment at data lock, so this is
+hypothesis-generating, and the threshold is not yet tied to outcomes. Testing it against
+outcomes is what the pancreas study began.
+
+Submitted title: *Onboard Intravoxel Incoherent Motion Diffusion-Weighted MRI Tracks Early
+Tumor-Volume Response in Ultra-Central Lung Tumors Treated With PULSAR.*

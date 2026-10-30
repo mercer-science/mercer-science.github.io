@@ -28,13 +28,20 @@ and added ion-chamber bench measurements at 6, 10, and 15 MV across several beam
 
 ### Result
 
-Attenuation is worst when the target sits close to the back surface, which is why spine
-cases gain the most. In the preliminary summary roughly 99.8 percent of planned dose
-reached the target through the new frame, against about 94 percent through the legacy
-frames, and across the cohort the difference held up under a paired Wilcoxon test
-(p = 0.0039, n = 11). I wrote the first draft, and the manuscript is in final circulation
-among co-authors. The limits are plain enough: 11 patients at one institution, with a
-dosimetric endpoint rather than a clinical one.
+The new frame reads at about −928 Hounsfield units on patient imaging against −713 for the
+legacy frame, which is the physical reason for everything that follows. Measured
+attenuation stayed under 2 percent anywhere away from the side rails, and crossed 3 percent
+only for beams passing through a rail at the lowest energy. Across the phantom and patient
+plans it stayed between 0.6 and 2.5 percent.
+
+That number matters more than it sounds. Adaptive systems replan on the anatomy of the day
+and typically do not model the frame at all, so a frame this transparent can be used on
+current platforms without modeling it, and a legacy frame cannot. I wrote the first draft
+and the manuscript is in final circulation among co-authors. The limits are plain: eleven
+patients at one institution, with a dosimetric endpoint rather than a clinical one.
+
+Working title: *Radiolucent Stereotactic Body Frame for Online Adaptive Radiation
+Therapy.*
 
 The device diagram comes from Dr. Westover's patent and stays off this site until he says
 otherwise.

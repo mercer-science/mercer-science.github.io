@@ -5,10 +5,12 @@ tabs: [clinical-research, clinical-research-software]
 status: In final co-author circulation
 dates: May 2026 to present
 images:
-  - src: assets/img/reflexion-machine.png
+  - size: small
+    src: assets/img/reflexion-machine.png
     alt: Russell standing beside the RefleXion biology-guided radiotherapy machine at UT Southwestern.
     caption: The RefleXion machine at UT Southwestern, which steers the beam using the tumor's live PET signal.
-  - src: assets/img/reflexion-gantry.png
+  - size: small
+    src: assets/img/reflexion-gantry.png
     alt: The inside of the RefleXion gantry, showing the linear accelerator and PET detectors.
     caption: Inside the gantry during an engineer walkthrough. The PET detectors ride with the linear accelerator.
 ---
@@ -44,12 +46,19 @@ against the effect.
 
 ### Result
 
-Nearly all of those checks supported my conclusion that the effect was minor. Delivered
-dose tracked the plan closely, the PET-guided target volume came out smaller than the
-image-guided one, and the gap widened for tumors that moved more. Some organ-at-risk
-maximum doses ran higher than the backup plan, and a physicist on the team took those
-findings to his contacts at the manufacturer around the summer physics meeting; the company
-is revising its post-treatment evaluation in an upcoming release. The paper says plainly
-where the technology helps and where it does not, which is not the commercially convenient
-answer. I rewrote the manuscript more than eight times, including two complete restarts,
-and it is in final circulation among co-authors now.
+Nearly all of those checks supported my conclusion that the effect was minor. Across 17
+patients, the PET-guided plan treated a target 19 percent smaller than the image-guided
+backup, smaller in 15 of 17 patients and unchanged in 2, and the reduction grew with how
+far the tumor moved with breathing. The cost shows up elsewhere: a wider
+intermediate-dose region, and higher spinal cord and heart maxima. Those originate in
+planning rather than in delivery, which matters, because it means they are fixable.
+
+A physicist on the team took the organ-dose findings to his contacts at the manufacturer
+around the summer physics meeting, and the company is revising its post-treatment
+evaluation in an upcoming release. The paper says plainly where the technology helps and
+where it does not, which is not the commercially convenient answer. I rewrote it more than
+eight times, including two complete restarts, and it is in final circulation among
+co-authors now.
+
+Published title: *Dosimetric Cost of a Smaller Target When Using Biology-Guided Radiation
+Therapy for Lung Cancer.*

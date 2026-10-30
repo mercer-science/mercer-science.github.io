@@ -11,6 +11,12 @@
   --accent-soft: #e8f0f7;
   --ongoing-bg: #fdf1dd;
   --ongoing-ink: #7a4f12;
+  --ok-bg: #e2f3e6;
+  --ok-ink: #1d6b33;
+  --circ-bg: #efe6f7;
+  --circ-ink: #5c3a86;
+  --prep-bg: #eceef1;
+  --prep-ink: #4d5560;
   --radius: 10px;
   /* Wide enough that long pages do not turn into endless scrolling, and wide
      enough to hold a letter-size sheet without shrinking it. */
@@ -29,6 +35,12 @@
     --accent-soft: #223243;
     --ongoing-bg: #3a2f1a;
     --ongoing-ink: #f0cf96;
+    --ok-bg: #1e3524;
+    --ok-ink: #9bd9ab;
+    --circ-bg: #2d2440;
+    --circ-ink: #c9b2e8;
+    --prep-bg: #272a31;
+    --prep-ink: #b4b9c4;
   }
 }
 
@@ -188,12 +200,25 @@ main { max-width: var(--maxw); margin: 0 auto; }
   color: var(--accent);
   padding: 0.12rem 0.55rem;
   border-radius: 999px;
+  font-weight: 600;
 }
 
-.status.ongoing {
-  background: var(--ongoing-bg);
-  color: var(--ongoing-ink);
-  font-weight: 600;
+/* One color per state, so the list reads at a glance. */
+.status-ongoing { background: var(--ongoing-bg); color: var(--ongoing-ink); }
+.status-published { background: var(--ok-bg); color: var(--ok-ink); }
+.status-submitted { background: var(--accent-soft); color: var(--accent); }
+.status-circulating { background: var(--circ-bg); color: var(--circ-ink); }
+.status-prep { background: var(--prep-bg); color: var(--prep-ink); }
+
+.block.is-ongoing { border-left: 4px solid var(--ongoing-ink); }
+
+/* A heading that breaks a long tab into parts. */
+.section-split {
+  margin: 2.6rem 0 0.2rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--line);
+  font-size: 1.25rem;
+  letter-spacing: -0.01em;
 }
 
 .headline {
@@ -277,6 +302,7 @@ main { max-width: var(--maxw); margin: 0 auto; }
 
 @media (min-width: 40rem) {
   .figures-pair { grid-template-columns: 1fr 1fr; align-items: start; }
+  .figures-grid { grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); align-items: start; }
 }
 
 .shot { margin: 0; }
@@ -284,10 +310,44 @@ main { max-width: var(--maxw); margin: 0 auto; }
 .shot img {
   width: 100%;
   height: auto;
+  max-height: 26rem;
+  object-fit: contain;
+  object-position: left top;
   display: block;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: #fff;
+}
+
+/* A photo does not need the full column the way a screenshot does. */
+.shot-small img { max-width: 17rem; max-height: 20rem; }
+.shot-tiny img { max-width: 7rem; border: 0; background: none; }
+
+/* A small figure beside the text, for a block with one good image. */
+.thumb {
+  float: right;
+  width: 8.5rem;
+  margin: 0.2rem 0 0.7rem 1.1rem;
+}
+
+.thumb img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+}
+
+.thumb figcaption {
+  margin-top: 0.3rem;
+  font-size: 0.72rem;
+  line-height: 1.4;
+  color: var(--ink-faint);
+}
+
+@media (max-width: 34rem) {
+  .thumb { width: 6rem; margin-left: 0.8rem; }
 }
 
 .shot figcaption {

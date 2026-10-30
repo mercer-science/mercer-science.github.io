@@ -105,6 +105,22 @@ def load_block(name):
     return meta
 
 
+def status_state(status):
+    """Group a status into one of a few states, so each gets its own color."""
+    s = status.lower()
+    if s.startswith("ongoing"):
+        return "ongoing"
+    if "preparation" in s:
+        return "prep"
+    if "circulation" in s:
+        return "circulating"
+    if "submitted" in s:
+        return "submitted"
+    if "published" in s:
+        return "published"
+    return "plain"
+
+
 def slugify(text):
     return re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-")
 
@@ -188,6 +204,18 @@ def render_sheet(kind, body, pdf_href, label):
             % (download_button(pdf_href, label), kind, body))
 
 
+def render_thumb(thumb):
+    """A small figure beside the text, for a block that has one good image."""
+    if not thumb:
+        return ""
+    return ('<figure class="thumb"><a href="../%s">'
+            '<img src="../%s" alt="%s" loading="lazy"></a>%s</figure>'
+            % (thumb.get("src", ""), thumb.get("src", ""),
+               html.escape(thumb.get("alt", ""), quote=True),
+               ('<figcaption>%s</figcaption>' % inline(thumb["caption"]))
+               if thumb.get("caption") else ""))
+
+
 def render_images(images):
     if not images:
         return ""
@@ -197,12 +225,16 @@ def render_images(images):
         alt = html.escape(img.get("alt", ""), quote=True)
         caption = img.get("caption", "")
         cap = '<figcaption>%s</figcaption>' % inline(caption) if caption else ""
+        # size: small keeps a photo from dominating the page; wide is for a
+        # screenshot that needs the room.
+        size = " shot-%s" % img["size"] if img.get("size") else ""
         figs.append(
-            '<figure class="shot">\n'
+            '<figure class="shot%s">\n'
             '<a href="../%s"><img src="../%s" alt="%s" loading="lazy"></a>\n%s\n</figure>'
-            % (src, src, alt, cap)
+            % (size, src, src, alt, cap)
         )
-    cls = "figures" + (" figures-pair" if len(figs) == 2 else "")
+    cls = "figures" + (" figures-pair" if len(figs) == 2 else
+                       " figures-grid" if len(figs) > 2 else "")
     return '<div class="%s">\n%s\n</div>' % (cls, "\n".join(figs))
 
 
@@ -212,12 +244,17 @@ def render_block(meta, tab_title="", role_id=""):
     repeat_title = title.strip().lower() == tab_title.strip().lower()
     status = str(meta.get("status") or "").strip()
     dates = str(meta.get("dates") or "").strip()
+    state = status_state(status)
     # The resume and the CV are documents. They carry their own white page, so
     # the card the other blocks sit on would only box a box.
     is_sheet = bool(meta.get("resume_pdf") or meta.get("cv_pdf"))
     pieces = []
-    pieces.append('<article class="block%s" id="%s">'
+    if meta.get("heading_before"):
+        pieces.append('<h2 class="section-split">%s</h2>'
+                      % inline(str(meta["heading_before"])))
+    pieces.append('<article class="block%s%s" id="%s">'
                   % (" block-bare" if is_sheet else "",
+                     " is-ongoing" if state == "ongoing" else "",
                      slugify(meta["_name"].split("/")[-1])))
     pieces.append('<header class="block-head">')
     if not repeat_title and not is_sheet:
@@ -226,14 +263,16 @@ def render_block(meta, tab_title="", role_id=""):
     if dates:
         meta_bits.append('<span class="dates">%s</span>' % inline(dates))
     if status:
-        ongoing = " ongoing" if status.lower().startswith("ongoing") else ""
-        meta_bits.append('<span class="status%s">%s</span>' % (ongoing, inline(status)))
+        meta_bits.append('<span class="status status-%s">%s</span>'
+                         % (state, inline(status)))
     if meta_bits:
         pieces.append('<p class="block-meta">%s</p>' % " ".join(meta_bits))
     pieces.append("</header>")
 
     # The Resume and CV tabs show the document itself, so the headline and any
     # prose in the markdown would only repeat what the sheet already says.
+    pieces.append(render_thumb(meta.get("thumb")))
+
     if meta.get("headline") and not is_sheet:
         pieces.append('<p class="headline">%s</p>' % inline(meta["headline"]))
     if not is_sheet:

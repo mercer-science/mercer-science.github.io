@@ -4,11 +4,14 @@ roles: [igem, wildcard]
 tabs: [physical-sciences]
 status: Published; second manuscript in preparation
 dates: April 2024 to May 2026
+heading_before: Chemistry Experiences
 images:
-  - src: assets/img/stowers-uhv-chamber.jpg
+  - size: small
+    src: assets/img/stowers-uhv-chamber.jpg
     alt: The ultra-high-vacuum chamber in the Stowers Lab, wrapped in foil for a bakeout, with pumps, gauges, and analysis ports.
     caption: The ultra-high-vacuum chamber, wrapped for a bakeout. It runs near 10⁻¹⁰ Torr with X-ray photoelectron spectroscopy and mass spectrometry attached.
-  - src: assets/img/stowers-flow-reactor.jpg
+  - size: small
+    src: assets/img/stowers-flow-reactor.jpg
     alt: The flow reactor bench in the Stowers Lab, with two tube furnaces, gas lines, flow meters, and a pressure gauge.
     caption: The flow reactor, with two furnaces on a shared gas manifold.
   - src: assets/img/langmuir-fig1.png

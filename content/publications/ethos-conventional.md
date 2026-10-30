@@ -1,0 +1,17 @@
+---
+title: Benefits of Weekly On-Demand Adaptive Radiation Therapy for Locally Advanced Lung Cancer in Responders
+roles: [igem, coding, design, wildcard]
+tabs: [publications]
+status: In Final Co-Author Circulation
+dates: 2026
+images: []
+---
+
+Co-author.
+
+Forty-seven patients with locally advanced lung cancer were treated with one online adaptive
+session a week, 227 sessions in all, with both the adapted and the scheduled plan computed
+on the same daily anatomy. Tumors regressed in every histology group, and adaptation
+improved both target coverage and organ sparing. The benefit rotated over the course, from
+recovering coverage early to sparing lung, esophagus, and heart late, and no pre-treatment
+feature predicted it well enough to skip the weekly cadence.

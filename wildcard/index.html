@@ -63,7 +63,7 @@
 <article class="block" id="dwi-pipeline">
 <header class="block-head">
 <h2>Diffusion MRI Pipeline and Web App</h2>
-<p class="block-meta"><span class="dates">May 2026 to present</span> <span class="status">Handed to the clinical software team</span></p>
+<p class="block-meta"><span class="dates">May 2026 to present</span> <span class="status status-plain">Handed to the clinical software team</span></p>
 </header>
 <h3 class="block-label">Problem</h3>
 <p>The department's diffusion MRI processing pipeline had passed through several graduate students. When the last one left it was sitting in his personal account on one GPU workstation, held together by virtual environments nobody could rebuild, and the account was scheduled for deletion. A postdoc hired for different work was about to inherit it, and the earlier lung study could not be rerun without back-end access.</p>
@@ -74,7 +74,7 @@
 <p>It processed all 76 pancreas patients in about 2.5 days of continuous server time. The 10-patient lung study had taken roughly a week by hand. Hospital IT moved the application to the Radiation Oncology Application Team for clinical use, with a plan to run it on a standalone server for the whole department, and the MRI vendor has asked about building the processing into the machine. I wrote the hand-off document, which lists what a clinical version still needs, and trained the postdoc who took it over.</p>
 <p>The honest limit: a clinical version has to finish in three to five minutes at the console, and mine takes about an hour per patient. That gap is the part of research I find most interesting, and it is most of why I want to train as a physician-scientist.</p>
 <p>The pipeline code belongs to UT Southwestern and is tied to its systems, so it is not public. The screenshots above come from the application interface and carry no patient information.</p>
-<div class="figures">
+<div class="figures figures-grid">
 <figure class="shot">
 <a href="../assets/img/pipeline-before.png"><img src="../assets/img/pipeline-before.png" alt="The inherited pipeline interface, which ran one patient through one step at a time." loading="lazy"></a>
 <figcaption>Before. The inherited tool ran one patient at a time, with every step started by hand.</figcaption>
@@ -87,12 +87,20 @@
 <a href="../assets/img/fit-checker.png"><img src="../assets/img/fit-checker.png" alt="The fit checker, showing a voxel&#x27;s measured signal with biexponential IVIM and monoexponential ADC fits." loading="lazy"></a>
 <figcaption>The fit checker. Click any point on a map to see its measured signal with both model fits, then export the figure and the data behind it.</figcaption>
 </figure>
+<figure class="shot">
+<a href="../assets/img/dwi-viewer.png"><img src="../assets/img/dwi-viewer.png" alt="The MRI viewer, showing the same slice across four treatment sessions with a diffusion map overlaid, and a whole-tumor histogram under each one." loading="lazy"></a>
+<figcaption>The viewer. The same slice across treatment sessions, with the diffusion map overlaid and a whole-tumor histogram under each. Scan dates are removed from these screenshots.</figcaption>
+</figure>
+<figure class="shot">
+<a href="../assets/img/dwi-threshold.png"><img src="../assets/img/dwi-threshold.png" alt="The threshold creator, showing five sessions with a threshold contour drawn on the diffusion map of each." loading="lazy"></a>
+<figcaption>The threshold creator. A cutoff outlines the treatment-resistant core, and the contours export to the treatment planning system.</figcaption>
+</figure>
 </div>
 </article>
 <article class="block" id="utsw-bgrt">
 <header class="block-head">
 <h2>Biology-Guided Radiotherapy on RefleXion</h2>
-<p class="block-meta"><span class="dates">May 2026 to present</span> <span class="status">In final co-author circulation</span></p>
+<p class="block-meta"><span class="dates">May 2026 to present</span> <span class="status status-circulating">In final co-author circulation</span></p>
 </header>
 <h3 class="block-label">Problem</h3>
 <p>RefleXion is a new machine, cleared by the FDA and installed at only a few U.S. centers. The patient takes up a PET tracer, two detectors on the gantry find the tumor, and the beam follows it in real time. More than a year after the first patients finished treatment, nobody had checked independently whether the delivered dose matched the plan, or how it compared with standard image-guided radiotherapy. The technology is commercially stalled for want of exactly that evidence.</p>
@@ -100,13 +108,15 @@
 <p>I watched a treatment and an engineer walkthrough first, so I understood the workflow before touching the data. Then I exported the plans into Aria-Eclipse and wrote a C# script that pulls the relevant dose data for every patient and plan into organized spreadsheets. The hard part was naming: every physician draws and labels structures differently, so a lung might be one structure or two, and a patient might carry several planning target volumes with unrelated names. The script resolves most of that on its own and asks a human only when it genuinely cannot tell two structures apart. A Python step filters the raw export into templates I designed with Dr. Westover, and R scripts build every figure and table from the raw data automatically.</p>
 <p>Partway through, a physicist raised a problem that could have explained my less favorable organ-dose findings: post-treatment evaluation assumes organs sit where they were at simulation, even though the beam follows a moving tumor. To test it I extracted dose fall-off metrics, reconstructed each patient's respiratory motion from the backup plan's contours since motion is recorded nowhere, wrote an algorithm for each organ's distance from the target, and ran about 1,000 checks per patient that flagged every case for or against the effect.</p>
 <h3 class="block-label">Result</h3>
-<p>Nearly all of those checks supported my conclusion that the effect was minor. Delivered dose tracked the plan closely, the PET-guided target volume came out smaller than the image-guided one, and the gap widened for tumors that moved more. Some organ-at-risk maximum doses ran higher than the backup plan, and a physicist on the team took those findings to his contacts at the manufacturer around the summer physics meeting; the company is revising its post-treatment evaluation in an upcoming release. The paper says plainly where the technology helps and where it does not, which is not the commercially convenient answer. I rewrote the manuscript more than eight times, including two complete restarts, and it is in final circulation among co-authors now.</p>
+<p>Nearly all of those checks supported my conclusion that the effect was minor. Across 17 patients, the PET-guided plan treated a target 19 percent smaller than the image-guided backup, smaller in 15 of 17 patients and unchanged in 2, and the reduction grew with how far the tumor moved with breathing. The cost shows up elsewhere: a wider intermediate-dose region, and higher spinal cord and heart maxima. Those originate in planning rather than in delivery, which matters, because it means they are fixable.</p>
+<p>A physicist on the team took the organ-dose findings to his contacts at the manufacturer around the summer physics meeting, and the company is revising its post-treatment evaluation in an upcoming release. The paper says plainly where the technology helps and where it does not, which is not the commercially convenient answer. I rewrote it more than eight times, including two complete restarts, and it is in final circulation among co-authors now.</p>
+<p>Published title: <em>Dosimetric Cost of a Smaller Target When Using Biology-Guided Radiation Therapy for Lung Cancer.</em></p>
 <div class="figures figures-pair">
-<figure class="shot">
+<figure class="shot shot-small">
 <a href="../assets/img/reflexion-machine.png"><img src="../assets/img/reflexion-machine.png" alt="Russell standing beside the RefleXion biology-guided radiotherapy machine at UT Southwestern." loading="lazy"></a>
 <figcaption>The RefleXion machine at UT Southwestern, which steers the beam using the tumor's live PET signal.</figcaption>
 </figure>
-<figure class="shot">
+<figure class="shot shot-small">
 <a href="../assets/img/reflexion-gantry.png"><img src="../assets/img/reflexion-gantry.png" alt="The inside of the RefleXion gantry, showing the linear accelerator and PET detectors." loading="lazy"></a>
 <figcaption>Inside the gantry during an engineer walkthrough. The PET detectors ride with the linear accelerator.</figcaption>
 </figure>
@@ -115,7 +125,7 @@
 <article class="block" id="utsw-lung-dwi">
 <header class="block-head">
 <h2>Lung Diffusion MRI on the MR-Linac</h2>
-<p class="block-meta"><span class="dates">May 2026 to present</span> <span class="status">Submitted</span></p>
+<p class="block-meta"><span class="dates">May 2026 to present</span> <span class="status status-submitted">Submitted</span></p>
 </header>
 <h3 class="block-label">Problem</h3>
 <p>The Unity combines an MRI scanner with a linear accelerator, and before every treatment it records diffusion-weighted images that nobody used clinically. Dying tumors lose cells, so water moves more freely through them, which should show up as a rising apparent diffusion coefficient. If that holds, a physician could see a tumor responding during treatment, weeks before it shrinks on CT. These patients received PULSAR, where the radiation pulses are spaced weeks apart, and no one had published diffusion imaging in PULSAR patients.</p>
@@ -123,10 +133,12 @@
 <p>I worked with a team of medical physicists on 10 patients, each carrying about 10 GB and more than 10,000 DICOM images with meaningless file names, all processed on hospital servers. Every patient was missing at least one diffusion series, because therapists had not backed them up and the consoles had been wiped. The scan field often was not centered on the tumor, so contours ran outside the map, and only 50.9 percent of sessions had data usable as scoped; I found a way to include partially covered sessions rather than drop them. The simulation scanner had 15 to 20 times the signal-to-noise of the machine itself, so the two could not be compared directly.</p>
 <p>Rather than force the original claim, I reframed the study into three aims: whether quantitative diffusion values can be pulled reliably from the machine's own imaging, whether those values move opposite to tumor volume as biology predicts, and how a diffusion-defined target would differ from the clinical one. Out of curiosity I made per-session histograms and saw values piling up at exactly 3. The exporter was capping them, which had been dragging later-fraction averages down. I fixed the pipeline, re-exported, and reran everything; because the figures rebuild from raw data, the fix cost an afternoon instead of a month.</p>
 <h3 class="block-label">Result</h3>
-<p>Of 55 sessions, 42 captured diffusion imaging, 41 were usable, and 34 had enough tumor voxels to analyze. On-board signal-to-noise averaged about 8 against roughly 127 at simulation. Contour-based diffusion changes agreed closely between the clinical and adjusted contours. The piece I care about most is the threshold tool: a diffusion cutoff that outlines a treatment-resistant core inside the clinical target, which could receive extra dose in the same treatment and which also shows where the target should expand. Dr. Deng presented examples from the paper and the pipeline at a physics conference last summer. The manuscript is submitted to the <em>International Journal of Radiation Oncology, Biology, Physics</em>.</p>
-<p>The study is hypothesis-generating with 10 patients, missing data, and low on-board signal, and the threshold is not yet tied to outcomes. Testing it against outcomes is what the pancreas study began.</p>
+<p>The biexponential model fit the on-board signal better than the standard one, which is the first useful finding: the simple measure everyone reaches for was the wrong one here. Changes measured inside the clinical target and inside a tight tumor-only contour agreed almost exactly, so the result does not depend on who drew the contour. Through the third fraction, tissue diffusion and perfusion fraction separated responders from non-responders, and the conventional measure did not. Over the full course only tissue diffusion held that separation.</p>
+<p>The piece I care about most is the threshold tool: a diffusion cutoff that outlines a treatment-resistant core inside the clinical target, which could take extra dose in the same treatment, and which also shows where the target should expand. Dr. Deng presented examples from the paper and the pipeline at a physics conference last summer.</p>
+<p>Eight of the ten patients had finished treatment at data lock, so this is hypothesis-generating, and the threshold is not yet tied to outcomes. Testing it against outcomes is what the pancreas study began.</p>
+<p>Submitted title: <em>Onboard Intravoxel Incoherent Motion Diffusion-Weighted MRI Tracks Early Tumor-Volume Response in Ultra-Central Lung Tumors Treated With PULSAR.</em></p>
 <div class="figures">
-<figure class="shot">
+<figure class="shot shot-small">
 <a href="../assets/img/mr-linac.jpg"><img src="../assets/img/mr-linac.jpg" alt="Russell standing beside the Elekta Unity MR-Linac at UT Southwestern." loading="lazy"></a>
 <figcaption>The Elekta Unity MR-Linac, which images with MRI during treatment and quietly records diffusion-weighted scans before each session.</figcaption>
 </figure>
@@ -135,20 +147,22 @@
 <article class="block" id="utsw-aerframe">
 <header class="block-head">
 <h2>Radiolucent Patient Immobilization (AerFrame)</h2>
-<p class="block-meta"><span class="dates">June 2026 to present</span> <span class="status">In final co-author circulation</span></p>
+<p class="block-meta"><span class="dates">June 2026 to present</span> <span class="status status-circulating">In final co-author circulation</span></p>
 </header>
 <h3 class="block-label">Problem</h3>
 <p>Dr. Westover invented and patented a patient immobilization frame built from a composite that is nearly transparent to radiation. It has been in use at UT Southwestern for over a year and will be marketed to other centers, but no physics study existed to show how much dose the older frames were absorbing before the beam reached the tumor.</p>
 <h3 class="block-label">Solution</h3>
 <p>The cohort did not exist in any database. A patient had to have been treated on a specific machine, simulated in a legacy frame, and treated at least once in the new one, so I hand-screened about 50 patients' records and threw out warped scans, patients never treated, and unfamiliar frames. From what was left I picked 11 patients to mirror real practice: 3 spine, 3 prostate, 3 lung, and 2 abdomen, mixing fixed-field and arc therapy, some with titanium hardware, across two legacy frame types and both anterior and posterior target positions. I ran the attenuation calculations with the physicists, compared 12-field, 18-field, and arc plans with the frame masked to air against the frame present, and added ion-chamber bench measurements at 6, 10, and 15 MV across several beam angles.</p>
 <h3 class="block-label">Result</h3>
-<p>Attenuation is worst when the target sits close to the back surface, which is why spine cases gain the most. In the preliminary summary roughly 99.8 percent of planned dose reached the target through the new frame, against about 94 percent through the legacy frames, and across the cohort the difference held up under a paired Wilcoxon test (p = 0.0039, n = 11). I wrote the first draft, and the manuscript is in final circulation among co-authors. The limits are plain enough: 11 patients at one institution, with a dosimetric endpoint rather than a clinical one.</p>
+<p>The new frame reads at about −928 Hounsfield units on patient imaging against −713 for the legacy frame, which is the physical reason for everything that follows. Measured attenuation stayed under 2 percent anywhere away from the side rails, and crossed 3 percent only for beams passing through a rail at the lowest energy. Across the phantom and patient plans it stayed between 0.6 and 2.5 percent.</p>
+<p>That number matters more than it sounds. Adaptive systems replan on the anatomy of the day and typically do not model the frame at all, so a frame this transparent can be used on current platforms without modeling it, and a legacy frame cannot. I wrote the first draft and the manuscript is in final circulation among co-authors. The limits are plain: eleven patients at one institution, with a dosimetric endpoint rather than a clinical one.</p>
+<p>Working title: <em>Radiolucent Stereotactic Body Frame for Online Adaptive Radiation Therapy.</em></p>
 <p>The device diagram comes from Dr. Westover's patent and stays off this site until he says otherwise.</p>
 </article>
-<article class="block" id="utsw-pancreas">
+<article class="block is-ongoing" id="utsw-pancreas">
 <header class="block-head">
 <h2>Diffusion MRI in Pancreatic SBRT</h2>
-<p class="block-meta"><span class="dates">August 2026 to present</span> <span class="status ongoing">Ongoing</span></p>
+<p class="block-meta"><span class="dates">August 2026 to present</span> <span class="status status-ongoing">Ongoing</span></p>
 </header>
 <h3 class="block-label">Problem</h3>
 <p>The lung study produced a threshold tool that outlines treatment-resistant tissue, but nothing tied it to what happened to the patients. Dr. Deng brought me onto a pancreas study to start closing that gap: do the same diffusion measurements track how pancreatic tumors respond to stereotactic radiation?</p>
@@ -170,10 +184,11 @@
 </section>
 <section class="panel" id="physical-sciences" role="tabpanel" aria-label="Physical Sciences">
 <h1 class="panel-title">Physical Sciences</h1>
-<article class="block" id="jensen-bartonella">
+<h2 class="section-split">Biology Experiences</h2>
+<article class="block is-ongoing" id="jensen-bartonella">
 <header class="block-head">
 <h2>Bartonella henselae Surface Architecture</h2>
-<p class="block-meta"><span class="dates">October 2026 to present</span> <span class="status ongoing">Ongoing, in biosafety approval</span></p>
+<p class="block-meta"><span class="dates">October 2026 to present</span> <span class="status status-ongoing">Ongoing, in biosafety approval</span></p>
 </header>
 <h3 class="block-label">Question</h3>
 <p><em>Bartonella henselae</em> carries a dense layer of adhesin on its surface, and a published hypothesis holds that this layer physically blocks the secretion system the bacterium uses to inject proteins into host cells. That idea rests on phenotypes alone. Nobody has imaged the surface to see whether it is true, and no tomogram of any species in the genus exists.</p>
@@ -182,10 +197,10 @@
 <h3 class="block-label">Status</h3>
 <p><strong>Ongoing: in biosafety approval.</strong> The project directory, plan, and workflow are written. Nothing has been cultured and no grids have been frozen, so there are no images or data yet. Work starts once the institutional biosafety committee approves the protocol, which is the order Dr. Jensen requires.</p>
 </article>
-<article class="block" id="jensen-babesia">
+<article class="block is-ongoing" id="jensen-babesia">
 <header class="block-head">
 <h2>Babesia duncani Apical Complex</h2>
-<p class="block-meta"><span class="dates">October 2026 to present</span> <span class="status ongoing">Ongoing, in biosafety approval</span></p>
+<p class="block-meta"><span class="dates">October 2026 to present</span> <span class="status status-ongoing">Ongoing, in biosafety approval</span></p>
 </header>
 <h3 class="block-label">Question</h3>
 <p><em>Babesia duncani</em> invades red blood cells using an apical complex, a machine at one end of the parasite built from membranes and cytoskeletal parts. What it looks like in three dimensions is unknown, and no cryo-electron tomogram exists for any species in the genus. A 2026 paper described a new tubulin rosette at the apical end of a sister species using light microscopy, which gives a defined structure to test at much higher resolution.</p>
@@ -196,20 +211,20 @@
 </article>
 <article class="block" id="bench-training">
 <header class="block-head">
-<h2>Bench Training</h2>
+<h2>Hands-On Laboratory Work</h2>
 <p class="block-meta"><span class="dates">2024 to present</span></p>
 </header>
-<p>What I have actually done at the bench, as opposed to read about.</p>
-<p><strong>Cryo-EM sample preparation and imaging.</strong> Thermo Fisher Scientific's Resolution Evolution course, October 2026, with hands-on time on the Vitrobot for plunge-freezing and on the Krios cryo-transmission electron microscope.</p>
-<p><strong>Human apoferritin expression, Jensen Lab bootcamp, September 2026.</strong> I grew <em>E. coli</em> BL21 Star (DE3) carrying a human ferritin H expression plasmid, prepared LB and 2×YT media, and ran overnight starters, induction, and a plasmid miniprep on the lab's protocol. The culture steps are what I have done so far; purification and grid preparation come later.</p>
-<p><strong>Scanning electron microscopy.</strong> Trained on a Thermo Fisher G4 Verios, with time on a Helios and in immersion mode, imaging thin films and measuring their thickness in ImageJ. I taught two newer students to do both.</p>
-<p><strong>Ultra-high-vacuum and surface analysis.</strong> Leak checking, bakeouts, and flange work on a chamber running near 10⁻¹⁰ Torr, with X-ray photoelectron spectroscopy and mass spectrometry on the same system.</p>
-<p><strong>Coursework with real lab components.</strong> Advanced Biochemistry Methods 1 (CHEM 584, a master's-level course, in progress), Biochemistry Methods (CHEM 384), Molecular and Cellular Biology Lab (MMBIO 241), and Advanced Physiology Lab (CELL 363). Genetics (PWS 340), Molecular Biology (MMBIO 240), and Mechanisms of Molecular Biology (CHEM 482) are the lecture courses behind them. Structural Biochemistry (CHEM 489) and Advanced Biochemistry Methods 2 (CHEM 586) come in Winter 2027.</p>
+<p><strong>Bacterial culture and plasmid work.</strong> In the Jensen Lab's September 2026 bootcamp I grew <em>E. coli</em> BL21 Star (DE3) carrying a human ferritin H expression plasmid, made LB and 2×YT media, and ran overnight starters, induction, and a plasmid miniprep on the lab's protocol. I have done the culture steps. Purification and grid preparation come next.</p>
+<p><strong>Cryo-EM sample preparation and imaging.</strong> Thermo Fisher's Resolution Evolution course in October 2026, with time on the Vitrobot for plunge-freezing and on the Krios.</p>
+<p><strong>Electron microscopy.</strong> Two years on a Thermo Fisher G4 Verios, plus a Helios and immersion mode, imaging thin films and measuring their thickness in ImageJ. I taught two newer students to run both.</p>
+<p><strong>Vacuum and surface analysis.</strong> Leak checking, bakeouts, and flange work on a chamber that runs near 10⁻¹⁰ Torr, with X-ray photoelectron spectroscopy and mass spectrometry attached to it.</p>
+<p><strong>Courses with real lab components.</strong> Advanced Biochemistry Methods 1 (CHEM 584, a master's-level course, in progress), Biochemistry Methods (CHEM 384), Molecular and Cellular Biology Lab (MMBIO 241), and Advanced Physiology Lab (CELL 363). The lecture courses behind them are Genetics (PWS 340), Molecular Biology (MMBIO 240), and Mechanisms of Molecular Biology (CHEM 482). Structural Biochemistry (CHEM 489) and Advanced Biochemistry Methods 2 (CHEM 586) come in Winter 2027.</p>
 </article>
+<h2 class="section-split">Chemistry Experiences</h2>
 <article class="block" id="stowers-lab">
 <header class="block-head">
 <h2>Stowers Lab, Surface and Inorganic Chemistry</h2>
-<p class="block-meta"><span class="dates">April 2024 to May 2026</span> <span class="status">Published; second manuscript in preparation</span></p>
+<p class="block-meta"><span class="dates">April 2024 to May 2026</span> <span class="status status-prep">Published; second manuscript in preparation</span></p>
 </header>
 <h3 class="block-label">Problem</h3>
 <p>Metal-organic frameworks are crystalline, porous materials with enormous internal surface area, which makes them interesting for catalysis and separations. Growing them as thin films attached to a surface usually needs a self-assembled monolayer to nucleate on, which adds a step and limits what substrates you can use. We wanted films that grow on a bare substrate, at ambient pressure, with control over how a second metal gets incorporated.</p>
@@ -217,12 +232,12 @@
 <p>I synthesized copper and copper-zinc framework films by spin coating, cycling metal and linker solutions onto the substrate, then characterized them on a scanning electron microscope and measured film thickness in ImageJ. Alongside the films I helped build, repair, and maintain the lab's two custom instruments: a flow reactor for catalysis runs and an ultra-high-vacuum chamber that reaches about 10⁻¹⁰ Torr, carrying X-ray photoelectron spectroscopy and a mass spectrometer. Keeping that chamber running meant leak checking, bakeouts, flange work, and rebuilding the spin coater's vacuum system when it failed. I trained two newer students in spin coating and electron microscopy.</p>
 <h3 class="block-label">Result</h3>
 <p>The work is published in <em>Langmuir</em>, where I am second author, and I presented it at the BYU Student Research Conference in 2025 and 2026 and at the American Chemical Society spring meeting in Atlanta in March 2026. Temperature turned out to control coverage and crystallite size in ways the figures above show directly. A second manuscript, on the decomposition chemistry studied in the vacuum chamber, is in preparation, and I still help finish it although my position ended in May 2026.</p>
-<div class="figures">
-<figure class="shot">
+<div class="figures figures-grid">
+<figure class="shot shot-small">
 <a href="../assets/img/stowers-uhv-chamber.jpg"><img src="../assets/img/stowers-uhv-chamber.jpg" alt="The ultra-high-vacuum chamber in the Stowers Lab, wrapped in foil for a bakeout, with pumps, gauges, and analysis ports." loading="lazy"></a>
 <figcaption>The ultra-high-vacuum chamber, wrapped for a bakeout. It runs near 10⁻¹⁰ Torr with X-ray photoelectron spectroscopy and mass spectrometry attached.</figcaption>
 </figure>
-<figure class="shot">
+<figure class="shot shot-small">
 <a href="../assets/img/stowers-flow-reactor.jpg"><img src="../assets/img/stowers-flow-reactor.jpg" alt="The flow reactor bench in the Stowers Lab, with two tube furnaces, gas lines, flow meters, and a pressure gauge." loading="lazy"></a>
 <figcaption>The flow reactor, with two furnaces on a shared gas manifold.</figcaption>
 </figure>
@@ -239,10 +254,10 @@
 </section>
 <section class="panel" id="ai" role="tabpanel" aria-label="AI">
 <h1 class="panel-title">AI</h1>
-<article class="block" id="ai-cryo-em">
+<article class="block is-ongoing" id="ai-cryo-em">
 <header class="block-head">
 <h2>An AI Agent for Cryo-ET Processing</h2>
-<p class="block-meta"><span class="dates">August 2026 to present</span> <span class="status ongoing">Ongoing, manuscript in preparation</span></p>
+<p class="block-meta"><span class="dates">August 2026 to present</span> <span class="status status-ongoing">Ongoing, manuscript in preparation</span></p>
 </header>
 <h3 class="block-label">Question</h3>
 <p>Turning thousands of tilted images of a frozen cell into a three-dimensional map means chaining together a dozen specialized programs, each with its own settings and its own ways of failing. Learning that chain normally takes months. Can a general-purpose AI coding agent carry a newcomer through it without removing the understanding the work is supposed to build?</p>
@@ -254,7 +269,7 @@
 <article class="block" id="mercer-science-tools">
 <header class="block-head">
 <h2>Mercer Science Tools</h2>
-<p class="block-meta"><span class="dates">2026 to present</span> <span class="status">Open source, ongoing</span></p>
+<p class="block-meta"><span class="dates">2026 to present</span> <span class="status status-plain">Open source, ongoing</span></p>
 </header>
 <p>I release research tooling under the Mercer Science organization on GitHub as it becomes good enough for someone else to use.</p>
 <p><strong>paper-engine</strong> is the main one: skills, scripts, and strategies that take an academic paper from an idea toward a draft. It covers the parts that are mechanical but easy to get wrong, such as keeping an outline, figures, statistics, and references consistent with each other while the draft changes underneath them. I built it out of the manuscript work at UT Southwestern, where I rewrote one paper more than eight times.</p>
@@ -262,16 +277,16 @@
 <p><strong>AI-In-Research</strong> holds the proposal behind the BYU AI Association group I lead.</p>
 <p>More will go up as it stops being specific to my own machine. The repositories are at <a href="https://github.com/mercer-science">github.com/mercer-science</a>.</p>
 <div class="figures">
-<figure class="shot">
+<figure class="shot shot-tiny">
 <a href="../assets/img/mercer-science-logo.png"><img src="../assets/img/mercer-science-logo.png" alt="The Mercer Science organization logo." loading="lazy"></a>
 <figcaption>Mercer Science on GitHub, where I release the tools as they become useful to someone besides me.</figcaption>
 </figure>
 </div>
 </article>
-<article class="block" id="ai-association">
+<article class="block is-ongoing" id="ai-association">
 <header class="block-head">
 <h2>BYU AI Association and AI in Research</h2>
-<p class="block-meta"><span class="dates">September 2026 to present</span> <span class="status ongoing">Ongoing</span></p>
+<p class="block-meta"><span class="dates">September 2026 to present</span> <span class="status status-ongoing">Ongoing</span></p>
 </header>
 <p>I am an officer of the BYU AI Association and lead its weekly AI in Research meeting, a group working out how researchers in different fields can use these tools without handing over the judgment that makes the work theirs. I wrote the proposal for the group, which is public as the AI-In-Research repository.</p>
 <p>What I bring to it is mostly evidence rather than opinion. I built a clinical imaging application with an AI coding agent in weeks instead of months, and I am running a controlled test in the Jensen Lab of where an agent helps and where it gets a pipeline wrong. Both sides of that show up in the meetings.</p>
@@ -287,20 +302,20 @@
 </section>
 <section class="panel" id="human-practices-leadership" role="tabpanel" aria-label="Human Practices and Leadership">
 <h1 class="panel-title">Human Practices and Leadership</h1>
-<article class="block" id="data-sovereignty">
+<article class="block is-ongoing" id="data-sovereignty">
 <header class="block-head">
 <h2>Data Sovereignty and Inclusion</h2>
-<p class="block-meta"><span class="dates">October 2026 to present</span> <span class="status ongoing">Ongoing</span></p>
+<p class="block-meta"><span class="dates">October 2026 to present</span> <span class="status status-ongoing">Ongoing</span></p>
 </header>
 <p>At the AI for Social Innovation Conference in October 2026 I sat at the Data Sovereignty and Inclusion working table as the BYU AI Association's representative. The people around it included a UN ambassador who chairs work on science and technology for development, the chief operating officer of a Māori media organization that built a community-owned speech model, and executives from industry.</p>
 <p>The problems the table named are concrete. Communities whose data and languages train these systems rarely control them or see any of the value. Training data skews Western. Research teams arrive in a community, take its data, publish, and leave. Principles exist in abundance, but almost none have been turned into terms a community and a company could both sign and keep.</p>
 <p>I helped start two pieces of follow-up work: a short op-ed that puts the problem in plain language, and a draft agreement setting out who may use what data, for what purpose, who decides, what returns to the community, and how a community says no. The group means to take a preliminary draft to the UN and to private developers, and the work continues.</p>
 <p>The line from the table I keep coming back to is that data is not the new oil but the new soil, which is a different claim about what sovereignty is for. For me it connects directly to the clinical work: the imaging I processed at UT Southwestern came from patients who will never see the paper, and the question of what the people who generate data are owed does not stay abstract for long.</p>
 </article>
-<article class="block" id="y-serve">
+<article class="block is-ongoing" id="y-serve">
 <header class="block-head">
 <h2>Early Learning Essentials, BYU Y-Serve</h2>
-<p class="block-meta"><span class="dates">August 2024 to present</span> <span class="status ongoing">Ongoing</span></p>
+<p class="block-meta"><span class="dates">August 2024 to present</span> <span class="status status-ongoing">Ongoing</span></p>
 </header>
 <p>I direct Early Learning Essentials, a BYU Y-Serve program that puts student volunteers into preschool classrooms serving families with low incomes. I started as a program director in August 2024 and have been lead program director since March 2025, which means recruiting volunteers, running the leadership team, scheduling the classroom shifts, and keeping the partnership with the Provo center working. I still take classroom shifts myself.</p>
 </article>
@@ -325,75 +340,104 @@
 </section>
 <section class="panel" id="publications" role="tabpanel" aria-label="Publications and Ongoing Research">
 <h1 class="panel-title">Publications and Ongoing Research</h1>
-<article class="block" id="langmuir-2026">
-<header class="block-head">
-<h2>Bimetallic Metal-Organic Framework Thin Films</h2>
-<p class="block-meta"><span class="dates">January 2026</span> <span class="status">Published</span></p>
-</header>
-<p>Ralph AD, <strong>Mercer RW</strong>, Hall SB, Butikofer BC, Collins CS, Sturgill CJ, Minson PS, Stefik M, Stowers KJ. Ambient pressure fabrication of Cu(x)Zn(1−x)(BDC)2DABCO thin films through spin-coating and their temperature-dependent structural development. <em>Langmuir</em> 2026;42(6):4475–4488. <a href="https://doi.org/10.1021/acs.langmuir.5c05182">doi:10.1021/acs.langmuir.5c05182</a></p>
-<p>Second author. Film synthesis, electron microscopy, and film-thickness analysis.</p>
-</article>
 <article class="block" id="lung-dwi">
 <header class="block-head">
-<h2>Lung PULSAR Diffusion MRI on the MR-Linac</h2>
-<p class="block-meta"><span class="dates">October 2026</span> <span class="status">Submitted</span></p>
+<h2>Onboard Intravoxel Incoherent Motion Diffusion-Weighted MRI Tracks Early Tumor-Volume Response in Ultra-Central Lung Tumors Treated With PULSAR</h2>
+<p class="block-meta"><span class="dates">October 2026</span> <span class="status status-submitted">Submitted</span></p>
 </header>
-<p>Submitted to the <em>International Journal of Radiation Oncology, Biology, Physics</em> in October 2026. I designed the analysis, rebuilt the processing, found and fixed the exporter bug that had been capping the key measurement, built the threshold tool, and drafted the manuscript. Full write-up on the Clinical Research tab.</p>
+<figure class="thumb"><a href="../assets/img/mr-linac.jpg"><img src="../assets/img/mr-linac.jpg" alt="The Elekta Unity MR-Linac at UT Southwestern." loading="lazy"></a><figcaption>The Elekta Unity MR-Linac, which records the diffusion scans this study used.</figcaption></figure>
+<p>First author. Submitted to the <em>International Journal of Radiation Oncology, Biology, Physics</em>.</p>
+<p>Ten patients with ultra-central lung tumors received radiation in five pulses about three weeks apart, with diffusion imaging captured on the machine before every fraction. We asked whether those scans, which nobody was using, can show a tumor responding before it shrinks. The biexponential model fit the onboard signal better than the standard one, and tissue diffusion separated responders from non-responders by the third fraction where the conventional measure did not.</p>
 </article>
 <article class="block" id="bgrt">
 <header class="block-head">
-<h2>Biology-Guided Radiotherapy on RefleXion</h2>
-<p class="block-meta"><span class="dates">2026</span> <span class="status">In final co-author circulation</span></p>
+<h2>Dosimetric Cost of a Smaller Target When Using Biology-Guided Radiation Therapy for Lung Cancer</h2>
+<p class="block-meta"><span class="dates">2026</span> <span class="status status-circulating">In Final Co-Author Circulation</span></p>
 </header>
-<p>A dosimetry and outcomes study of PET-guided radiotherapy, in final circulation among co-authors before submission. I wrote the extraction and analysis code, ran the dose-smearing tests, designed the comparison figure, and drafted the manuscript. Full write-up on the Clinical Research tab.</p>
+<figure class="thumb"><a href="../assets/img/reflexion-machine.png"><img src="../assets/img/reflexion-machine.png" alt="The RefleXion biology-guided radiotherapy machine." loading="lazy"></a><figcaption>The RefleXion machine, which steers the beam by the tumor's live PET signal.</figcaption></figure>
+<p>First author.</p>
+<p>Biology-guided radiotherapy follows the tumor's live PET signal during delivery instead of padding the target with margin for breathing, so the treated volume can be smaller. Across 17 patients we measured how much smaller, and what it costs: the target came out 19 percent smaller, and the reduction grew with how far the tumor moved. The trade is a wider intermediate-dose region and higher spinal cord and heart maxima, which originate in planning rather than in delivery.</p>
 </article>
 <article class="block" id="aerframe">
 <header class="block-head">
-<h2>Radiolucent Patient Immobilization</h2>
-<p class="block-meta"><span class="dates">2026</span> <span class="status">In final co-author circulation</span></p>
+<h2>Radiolucent Stereotactic Body Frame for Online Adaptive Radiation Therapy</h2>
+<p class="block-meta"><span class="dates">2026</span> <span class="status status-circulating">In Final Co-Author Circulation</span></p>
 </header>
-<p>A dosimetric comparison of a radiolucent treatment frame against legacy frames, in final circulation among co-authors. I designed the study, hand-screened the records to assemble the cohort, ran the analysis with the physicists, and wrote the first draft. Full write-up on the Clinical Research tab.</p>
+<p>First author.</p>
+<p>Adaptive treatment systems replan on the anatomy of the day, but they typically ignore the frame the patient is lying in. We characterized a new low-density frame built to be dosimetrically negligible, with ion-chamber measurements at three energies and four gantry angles plus calculations across eleven patient plans. Attenuation stayed under 3 percent everywhere except beams crossing a side rail, which means the frame can be used on current adaptive platforms without modeling it in the dose calculation.</p>
+</article>
+<article class="block" id="ethos-conventional">
+<header class="block-head">
+<h2>Benefits of Weekly On-Demand Adaptive Radiation Therapy for Locally Advanced Lung Cancer in Responders</h2>
+<p class="block-meta"><span class="dates">2026</span> <span class="status status-circulating">In Final Co-Author Circulation</span></p>
+</header>
+<p>Co-author.</p>
+<p>Forty-seven patients with locally advanced lung cancer were treated with one online adaptive session a week, 227 sessions in all, with both the adapted and the scheduled plan computed on the same daily anatomy. Tumors regressed in every histology group, and adaptation improved both target coverage and organ sparing. The benefit rotated over the course, from recovering coverage early to sparing lung, esophagus, and heart late, and no pre-treatment feature predicted it well enough to skip the weekly cadence.</p>
+</article>
+<article class="block" id="ethos-sabr">
+<header class="block-head">
+<h2>Online Adaptive Radiation Therapy for Early-Stage Lung SABR</h2>
+<p class="block-meta"><span class="dates">2026</span> <span class="status status-circulating">In Final Co-Author Circulation</span></p>
+</header>
+<p>Co-author.</p>
+<p>Forty patients treated with stereotactic radiation for early-stage lung cancer on an adaptive platform, with three plan states compared on the same daily anatomy at every fraction: the approved plan, the scheduled plan, and the adapted plan actually delivered. The question is which patients gain enough from adaptation to justify a workflow that roughly doubles time on the table, and whether anything measurable at simulation predicts it.</p>
+</article>
+<article class="block" id="langmuir-2026">
+<header class="block-head">
+<h2>Ambient Pressure Fabrication of CuZn(BDC)2DABCO Thin Films Through Spin-Coating and Their Temperature-Dependent Structural Development</h2>
+<p class="block-meta"><span class="dates">January 2026</span> <span class="status status-published">Published</span></p>
+</header>
+<figure class="thumb"><a href="../assets/img/langmuir-fig2.png"><img src="../assets/img/langmuir-fig2.png" alt="Bar charts of film coverage and crystallite size against temperature, beside four electron micrographs." loading="lazy"></a><figcaption>Figure 2: coverage and crystallite size against synthesis temperature.</figcaption></figure>
+<p>Second author. Ralph AD, <strong>Mercer RW</strong>, Hall SB, Butikofer BC, Collins CS, Sturgill CJ, Minson PS, Stefik M, Stowers KJ. <em>Langmuir</em> 2026;42(6):4475–4488. <a href="https://doi.org/10.1021/acs.langmuir.5c05182">doi:10.1021/acs.langmuir.5c05182</a></p>
+<p>Metal-organic framework films usually need a self-assembled monolayer to nucleate on. We grew copper and copper-zinc films directly on a bare substrate by spin coating at ambient pressure, then showed how synthesis temperature controls coverage, crystallite size, and how much of the second metal ends up in the film. I did film synthesis, electron microscopy, and film-thickness analysis.</p>
 </article>
 <article class="block" id="pancreas-dwi">
 <header class="block-head">
 <h2>Diffusion MRI in Pancreatic SBRT</h2>
-<p class="block-meta"><span class="dates">2026 to present</span> <span class="status ongoing">Ongoing, in preparation</span></p>
+<p class="block-meta"><span class="dates">2026 to present</span> <span class="status status-prep">In Preparation</span></p>
 </header>
-<p><strong>Ongoing.</strong> 76 patients processed through the pipeline, 23 with complete imaging and outcome data, with chart review underway under Dr. Jie Deng. Full write-up on the Clinical Research tab.</p>
+<figure class="thumb"><a href="../assets/img/dwi-viewer.png"><img src="../assets/img/dwi-viewer.png" alt="The MRI viewer, showing a diffusion map across treatment sessions." loading="lazy"></a><figcaption>The viewer in the pipeline that processed all 76 patients.</figcaption></figure>
+<p>First author, with Dr. Jie Deng.</p>
+<p>Seventy-six patients processed through the pipeline, 23 of them with both complete diffusion imaging and outcome data, paired with chart review for response and failure. It is where the lung study's threshold tool starts being tested against what actually happened to patients, on a schedule that treats every two or three days rather than weeks apart.</p>
 </article>
 <article class="block" id="ai-cryo-et">
 <header class="block-head">
-<h2>An AI Coding Agent for Cryo-ET Processing</h2>
-<p class="block-meta"><span class="dates">2026 to present</span> <span class="status ongoing">Ongoing, in preparation</span></p>
+<h2>Can an AI Agent Collapse the Cryo-ET Learning Curve?</h2>
+<p class="block-meta"><span class="dates">2026 to present</span> <span class="status status-prep">In Preparation</span></p>
 </header>
-<p><strong>Ongoing</strong>, Jensen Lab. Presented as a poster, <em>Can an AI Agent Collapse the Cryo-ET Learning Curve?</em>, at the Utah CryoEM Symposium at BYU on October 8, 2026. Manuscript in preparation. Full write-up on the Physical Sciences tab.</p>
+<p>First author, with Chitral Chatterjee and Dr. Grant Jensen. Presented as a poster at the Utah CryoEM Symposium, October 8, 2026.</p>
+<p>Cryo-electron tomography processing is a chain of a dozen specialized programs that takes months to learn. We put a general-purpose AI coding agent at the controls of that chain on 39 tilt series of <em>E. coli</em>, with a human approving or overriding every parameter, and logged each recommendation as accepted, overridden, or an error a human caught. The point is to measure where the agent genuinely helps a newcomer and where it needs someone who already knows the science.</p>
 </article>
 <article class="block" id="uhv-chamber">
 <header class="block-head">
-<h2>Ultra-High-Vacuum Surface Chemistry</h2>
-<p class="block-meta"><span class="dates">2026 to present</span> <span class="status ongoing">Ongoing, in preparation</span></p>
+<h2>Surface Chemistry in an Ultra-High-Vacuum Chamber</h2>
+<p class="block-meta"><span class="dates">2026 to present</span> <span class="status status-prep">In Preparation</span></p>
 </header>
-<p><strong>Ongoing</strong>, Stowers Lab, co-author. The decomposition chemistry studied in the ultra-high-vacuum chamber. I still help finish this one although my position in the lab ended in May 2026.</p>
+<p>Co-author, Stowers Lab.</p>
+<p>The decomposition chemistry of metal-organic framework films studied in the lab's ultra-high-vacuum chamber, near 10⁻¹⁰ Torr with X-ray photoelectron spectroscopy and mass spectrometry on the same system. I helped build and maintain that chamber, and I am still contributing to the manuscript although my position in the lab ended in May 2026.</p>
 </article>
-<article class="block" id="utsw-coauthor">
+<h2 class="section-split">Ongoing Research</h2>
+<article class="block is-ongoing" id="bartonella">
 <header class="block-head">
-<h2>Two Further UT Southwestern Manuscripts</h2>
-<p class="block-meta"><span class="dates">2026</span> <span class="status">In preparation</span></p>
+<h2>Bartonella henselae Surface Architecture</h2>
+<p class="block-meta"><span class="dates">October 2026 to present</span> <span class="status status-ongoing">Ongoing, in biosafety approval</span></p>
 </header>
-<p>Two additional UT Southwestern manuscripts are in preparation with me as a co-author. Author order on manuscripts still in review is not final.</p>
+<p>Does the adhesin layer on the surface of <em>B. henselae</em> physically block the secretion system underneath it? A published hypothesis says yes, from phenotypes alone, and no tomogram of any species in this genus exists. I scoped and proposed the project and Dr. Jensen approved it. Nothing has been cultured and no grids have been frozen; the work starts once the biosafety committee approves the protocol. Full write-up on the Physical Sciences tab.</p>
 </article>
-<article class="block" id="ongoing-research">
+<article class="block is-ongoing" id="babesia">
 <header class="block-head">
-<h2>Ongoing Research</h2>
-<p class="block-meta"><span class="dates">2026 to present</span> <span class="status ongoing">Ongoing</span></p>
+<h2>Babesia duncani Apical Complex</h2>
+<p class="block-meta"><span class="dates">October 2026 to present</span> <span class="status status-ongoing">Ongoing, in biosafety approval</span></p>
 </header>
-<p>Work in progress, with no results to report yet. Each line points to its full write-up.</p>
-<p><strong>Bartonella henselae surface architecture</strong>, Jensen Lab. <strong>Ongoing: in biosafety approval.</strong> Cryo-electron tomography of the bacterial surface, asking whether the adhesin layer blocks the secretion system beneath it. Full write-up on the Physical Sciences tab.</p>
-<p><strong>Babesia duncani apical complex</strong>, Jensen Lab. <strong>Ongoing: in biosafety approval.</strong> Would be the first cryo-electron tomography in the genus, and needs a milling workflow that does not exist yet. Full write-up on the Physical Sciences tab.</p>
-<p><strong>Cryo-EM Tacit Knowledge Engine</strong>, Jensen Lab. <strong>Ongoing.</strong> An AI agent that interviews the authors of cryo-EM papers to collect the reasoning that never reaches print. Dr. Jensen originated the idea; nothing is working yet.</p>
-<p><strong>AI agent for cryo-ET processing</strong>, Jensen Lab. <strong>Ongoing</strong>, with a manuscript in preparation and a poster presented in October 2026.</p>
-<p><strong>Ultra-high-vacuum surface chemistry</strong>, Stowers Lab. <strong>Ongoing</strong>, co-author, manuscript in preparation.</p>
-<p><strong>Pancreatic diffusion MRI</strong>, UT Southwestern. <strong>Ongoing.</strong> 76 patients processed, 23 with complete imaging and outcomes, chart review underway.</p>
+<p>What the invasion machinery of this parasite looks like in three dimensions, which would be the first cryo-electron tomography in the genus. It needs a focused ion beam milling workflow that does not exist yet for any <em>Babesia</em>, so building one is part of the project. Nothing ordered, nothing cultured, no grids. Full write-up on the Physical Sciences tab.</p>
+</article>
+<article class="block is-ongoing" id="tacit-knowledge">
+<header class="block-head">
+<h2>Cryo-EM Tacit Knowledge Engine</h2>
+<p class="block-meta"><span class="dates">October 2026 to present</span> <span class="status status-ongoing">Ongoing</span></p>
+</header>
+<figure class="thumb"><a href="../assets/img/mercer-science-logo.png"><img src="../assets/img/mercer-science-logo.png" alt="The Mercer Science organization logo." loading="lazy"></a><figcaption>Built under Mercer Science.</figcaption></figure>
+<p>An AI agent that interviews the authors of cryo-EM papers to collect the reasoning a paper never carries: what they ruled out first, why they tried that, and which step the field quietly does differently. Dr. Jensen originated the idea and I am building it. Nothing is working yet.</p>
 </article>
 </section>
 <section class="panel" id="cv" role="tabpanel" aria-label="CV">

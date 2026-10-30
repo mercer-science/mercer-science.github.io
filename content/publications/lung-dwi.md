@@ -1,13 +1,22 @@
 ---
-title: Lung PULSAR Diffusion MRI on the MR-Linac
+title: Onboard Intravoxel Incoherent Motion Diffusion-Weighted MRI Tracks Early Tumor-Volume Response in Ultra-Central Lung Tumors Treated With PULSAR
 roles: [igem, coding, design, wildcard]
 tabs: [publications]
 status: Submitted
 dates: October 2026
+thumb:
+  src: assets/img/mr-linac.jpg
+  alt: The Elekta Unity MR-Linac at UT Southwestern.
+  caption: The Elekta Unity MR-Linac, which records the diffusion scans this study used.
 images: []
 ---
 
-Submitted to the *International Journal of Radiation Oncology, Biology, Physics* in
-October 2026. I designed the analysis, rebuilt the processing, found and fixed the
-exporter bug that had been capping the key measurement, built the threshold tool, and
-drafted the manuscript. Full write-up on the Clinical Research tab.
+First author. Submitted to the *International Journal of Radiation Oncology, Biology,
+Physics*.
+
+Ten patients with ultra-central lung tumors received radiation in five pulses about three
+weeks apart, with diffusion imaging captured on the machine before every fraction. We asked
+whether those scans, which nobody was using, can show a tumor responding before it shrinks.
+The biexponential model fit the onboard signal better than the standard one, and tissue
+diffusion separated responders from non-responders by the third fraction where the
+conventional measure did not.

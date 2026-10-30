@@ -14,6 +14,12 @@ images:
   - src: assets/img/fit-checker.png
     alt: The fit checker, showing a voxel's measured signal with biexponential IVIM and monoexponential ADC fits.
     caption: The fit checker. Click any point on a map to see its measured signal with both model fits, then export the figure and the data behind it.
+  - src: assets/img/dwi-viewer.png
+    alt: The MRI viewer, showing the same slice across four treatment sessions with a diffusion map overlaid, and a whole-tumor histogram under each one.
+    caption: The viewer. The same slice across treatment sessions, with the diffusion map overlaid and a whole-tumor histogram under each. Scan dates are removed from these screenshots.
+  - src: assets/img/dwi-threshold.png
+    alt: The threshold creator, showing five sessions with a threshold contour drawn on the diffusion map of each.
+    caption: The threshold creator. A cutoff outlines the treatment-resistant core, and the contours export to the treatment planning system.
 ---
 
 ### Problem

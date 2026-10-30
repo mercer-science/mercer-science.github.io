@@ -5,7 +5,8 @@ tabs: [physical-sciences]
 status: ""
 dates: 2024 to present
 images:
-  - src: assets/img/stowers-uhv-chamber.jpg
+  - size: small
+    src: assets/img/stowers-uhv-chamber.jpg
     alt: The ultra-high-vacuum chamber in the Stowers Lab, wrapped in foil for a bakeout, with pumps, gauges, and analysis ports.
     caption: The ultra-high-vacuum chamber I helped keep running, near 10⁻¹⁰ Torr with X-ray photoelectron spectroscopy and mass spectrometry.
 ---

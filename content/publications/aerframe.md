@@ -1,13 +1,17 @@
 ---
-title: Radiolucent Patient Immobilization
+title: Radiolucent Stereotactic Body Frame for Online Adaptive Radiation Therapy
 roles: [igem, coding, design, wildcard]
 tabs: [publications]
-status: In final co-author circulation
+status: In Final Co-Author Circulation
 dates: 2026
 images: []
 ---
 
-A dosimetric comparison of a radiolucent treatment frame against legacy frames, in final
-circulation among co-authors. I designed the study, hand-screened the records to assemble
-the cohort, ran the analysis with the physicists, and wrote the first draft. Full write-up
-on the Clinical Research tab.
+First author.
+
+Adaptive treatment systems replan on the anatomy of the day, but they typically ignore the
+frame the patient is lying in. We characterized a new low-density frame built to be
+dosimetrically negligible, with ion-chamber measurements at three energies and four gantry
+angles plus calculations across eleven patient plans. Attenuation stayed under 3 percent
+everywhere except beams crossing a side rail, which means the frame can be used on current
+adaptive platforms without modeling it in the dose calculation.
