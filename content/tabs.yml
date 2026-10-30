@@ -14,12 +14,12 @@ roles:
       - id: publications
         title: Publications and Ongoing Research
         blocks:
+          - publications/langmuir-2026
           - publications/lung-dwi
           - publications/bgrt
           - publications/aerframe
           - publications/ethos-conventional
           - publications/ethos-sabr
-          - publications/langmuir-2026
           - publications/pancreas-dwi
           - publications/ai-cryo-et
           - publications/uhv-chamber
@@ -62,12 +62,12 @@ roles:
       - id: publications
         title: Publications and Ongoing Research
         blocks:
+          - publications/langmuir-2026
           - publications/lung-dwi
           - publications/bgrt
           - publications/aerframe
           - publications/ethos-conventional
           - publications/ethos-sabr
-          - publications/langmuir-2026
           - publications/pancreas-dwi
           - publications/ai-cryo-et
           - publications/uhv-chamber
@@ -132,12 +132,12 @@ roles:
       - id: publications
         title: Publications and Ongoing Research
         blocks:
+          - publications/langmuir-2026
           - publications/lung-dwi
           - publications/bgrt
           - publications/aerframe
           - publications/ethos-conventional
           - publications/ethos-sabr
-          - publications/langmuir-2026
           - publications/pancreas-dwi
           - publications/ai-cryo-et
           - publications/uhv-chamber

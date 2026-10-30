@@ -4,11 +4,8 @@ roles: [igem, coding, design, wildcard]
 tabs: [publications]
 status: In Preparation
 dates: 2026 to present
-thumb:
-  src: assets/img/dwi-viewer.png
-  alt: The MRI viewer, showing a diffusion map across treatment sessions.
-  caption: The viewer in the pipeline that processed all 76 patients.
 images: []
+needs: A title once the analysis settles, and a pancreas image. The viewer screenshot that was here shows lung data, so it came out.
 needs: A working title once the analysis settles.
 ---
 

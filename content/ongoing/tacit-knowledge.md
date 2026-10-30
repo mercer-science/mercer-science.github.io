@@ -4,10 +4,6 @@ roles: [igem, coding, design, wildcard]
 tabs: [publications]
 status: Ongoing
 dates: October 2026 to present
-thumb:
-  src: assets/img/mercer-science-logo.png
-  alt: The Mercer Science organization logo.
-  caption: Built under Mercer Science.
 images: []
 ---
 
