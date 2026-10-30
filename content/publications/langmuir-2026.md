@@ -5,9 +5,9 @@ tabs: [publications]
 status: Published
 dates: January 2026
 thumb:
-  src: assets/img/langmuir-fig2.png
-  alt: Bar charts of film coverage and crystallite size against temperature, beside four electron micrographs.
-  caption: "Figure 2: coverage and crystallite size against synthesis temperature."
+  src: assets/img/langmuir-sem.png
+  alt: A scanning electron micrograph of a film grown at 42 degrees Celsius, showing square crystallites scattered across the surface.
+  caption: A film grown at 42 degrees Celsius, imaged on the scanning electron microscope.
 images: []
 ---
 

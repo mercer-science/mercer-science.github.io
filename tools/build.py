@@ -108,9 +108,7 @@ def load_block(name):
 def status_state(status):
     """Group a status into one of a few states, so each gets its own color."""
     s = status.lower()
-    if s.startswith("ongoing"):
-        return "ongoing"
-    if "preparation" in s:
+    if s.startswith("ongoing") or "preparation" in s:
         return "prep"
     if "circulation" in s:
         return "circulating"
@@ -259,7 +257,7 @@ def render_block(meta, tab_title="", role_id=""):
                       % inline(str(meta["heading_before"])))
     pieces.append('<article class="block%s%s" id="%s">'
                   % (" block-bare" if is_sheet else "",
-                     " is-ongoing" if state == "ongoing" else "",
+                     " block-%s" % state if state != "plain" else "",
                      slugify(meta["_name"].split("/")[-1])))
     pieces.append('<header class="block-head">')
     if not repeat_title and not is_sheet:

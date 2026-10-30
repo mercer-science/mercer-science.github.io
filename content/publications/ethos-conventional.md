@@ -4,6 +4,10 @@ roles: [igem, coding, design, wildcard]
 tabs: [publications]
 status: In Final Co-Author Circulation
 dates: 2026
+thumb:
+  src: assets/img/crop-ethos-response.png
+  alt: A scatter plot of adapted against scheduled target coverage, with points above the diagonal where adaptation helped and below where it did not.
+  caption: Adapted against scheduled target coverage. Above the line, adaptation helped; 68 percent of sessions landed there.
 images: []
 ---
 

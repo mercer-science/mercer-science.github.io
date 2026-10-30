@@ -2,7 +2,7 @@
 title: Babesia duncani Apical Complex
 roles: [igem, coding, design, wildcard]
 tabs: [publications]
-status: Ongoing, in biosafety approval
+status: In Preparation
 dates: October 2026 to present
 images: []
 ---

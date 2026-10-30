@@ -210,9 +210,13 @@ main { max-width: var(--maxw); margin: 0 auto; }
 .status-published { background: var(--ok-bg); color: var(--ok-ink); }
 .status-submitted { background: var(--accent-soft); color: var(--accent); }
 .status-circulating { background: var(--circ-bg); color: var(--circ-ink); }
-.status-prep { background: var(--prep-bg); color: var(--prep-ink); }
+/* In preparation and ongoing are one state, so they share the amber. */
+.status-prep { background: var(--ongoing-bg); color: var(--ongoing-ink); }
 
-.block.is-ongoing { border-left: 4px solid var(--ongoing-ink); }
+.block-published { border-left: 4px solid var(--ok-ink); }
+.block-submitted { border-left: 4px solid var(--accent); }
+.block-circulating { border-left: 4px solid var(--circ-ink); }
+.block-prep, .block-ongoing { border-left: 4px solid var(--ongoing-ink); }
 
 /* A heading that breaks a long tab into parts. */
 .section-split {

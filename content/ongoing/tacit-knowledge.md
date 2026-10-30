@@ -2,7 +2,7 @@
 title: Cryo-EM Tacit Knowledge Database
 roles: [igem, coding, design, wildcard]
 tabs: [publications]
-status: Ongoing
+status: In Preparation
 dates: October 2026 to present
 images: []
 ---

@@ -2,7 +2,7 @@
 title: Bartonella henselae Surface Architecture
 roles: [igem, coding, design, wildcard]
 tabs: [publications]
-status: Ongoing, in biosafety approval
+status: In Preparation
 dates: October 2026 to present
 heading_before: Ongoing Research
 images: []
