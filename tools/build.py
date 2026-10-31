@@ -137,6 +137,16 @@ def status_state(status):
     return "plain"
 
 
+
+def asset_version(rel):
+    """A short hash of an asset's bytes. Browsers and Pages cache stylesheets and
+    scripts hard, and a stale copy made fixed layouts look broken. Putting the hash
+    in the URL means an edited file is always fetched fresh."""
+    import hashlib
+    path = os.path.join(ROOT, rel)
+    with open(path, "rb") as fh:
+        return hashlib.md5(fh.read()).hexdigest()[:8]
+
 def slugify(text):
     return re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-")
 
@@ -350,8 +360,8 @@ PAGE = """<!doctype html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title} &middot; {site}</title>
 <meta name="description" content="{desc}">
-<link rel="stylesheet" href="../assets/css/style.css">
-<link rel="stylesheet" href="../assets/css/resume-sheet.css">
+<link rel="stylesheet" href="../assets/css/style.css?v={css_v}">
+<link rel="stylesheet" href="../assets/css/resume-sheet.css?v={sheet_v}">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -370,7 +380,7 @@ PAGE = """<!doctype html>
 <a href="https://orcid.org/0009-0003-6387-969X">ORCID</a></p>
 <p class="foot-note">Portfolio prepared for the Crocker Innovation Fellowship, October 2026.</p>
 </footer>
-<script src="../assets/js/tabs.js"></script>
+<script src="../assets/js/tabs.js?v={js_v}"></script>
 </body>
 </html>
 """
@@ -415,6 +425,9 @@ def build_role(rid, role, roles, report):
         switcher=role_switcher(rid, roles),
         tabbar=tab_bar(role["tabs"]),
         panels="\n".join(panels),
+        css_v=asset_version("assets/css/style.css"),
+        sheet_v=asset_version("assets/css/resume-sheet.css"),
+        js_v=asset_version("assets/js/tabs.js"),
     )
     outdir = os.path.join(ROOT, rid)
     os.makedirs(outdir, exist_ok=True)
@@ -430,7 +443,7 @@ LANDING = """<!doctype html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{site}</title>
 <meta name="description" content="Portfolio for the Crocker Innovation Fellowship.">
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/style.css?v={css_v}">
 </head>
 <body>
 <header class="masthead">
@@ -467,7 +480,8 @@ def build_landing(roles):
     )
     with open(os.path.join(ROOT, "index.html"), "w", encoding="utf-8", newline="\n") as fh:
         fh.write(LANDING.format(site=html.escape(SITE_NAME),
-                                tagline=html.escape(TAGLINE), links=links))
+                                tagline=html.escape(TAGLINE), links=links,
+                                css_v=asset_version("assets/css/style.css")))
 
 
 def main():

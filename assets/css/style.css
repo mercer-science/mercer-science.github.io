@@ -329,24 +329,24 @@ main { max-width: var(--maxw); margin: 0 auto; }
 
 .shot { margin: 0; }
 
+/* The box takes the shape of the picture. Giving the image a fixed width and a
+   height cap left a white strip beside any tall image, which read as a bad crop. */
 .shot img {
-  width: 100%;
+  width: auto;
+  max-width: 100%;
   height: auto;
   max-height: 26rem;
-  object-fit: contain;
-  object-position: left top;
   display: block;
   border: 1px solid var(--line);
   border-radius: 8px;
-  background: #fff;
 }
 
 /* A photo does not need the full column the way a screenshot does. */
 /* width:auto so a tall photo does not sit on a white strip. */
-.shot-small img { width: auto; max-width: min(17rem, 100%); max-height: 20rem; }
+.shot-small img { max-width: min(17rem, 100%); max-height: 20rem; }
 /* A poster or a wide figure takes the whole row. */
 .shot-wide { grid-column: 1 / -1; }
-.shot-wide img { max-height: none; }
+.shot-wide img { width: 100%; max-height: none; }
 .shot-tiny img { max-width: 7rem; border: 0; background: none; }
 
 /* A small figure beside the text, for a block with one good image. */

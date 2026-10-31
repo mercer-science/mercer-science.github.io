@@ -16,11 +16,11 @@ images:
     alt: Two rows of four false-color diffusion maps of one responding patient across fractions one, two, three, and five, the top row apparent diffusion coefficient and the bottom row perfusion fraction, with the tumor outlined in red.
     caption: One responding patient across treatment. Apparent diffusion coefficient above, perfusion fraction below, with the tumor outlined. Cropped from a figure in the submitted manuscript.
   - id: map
-    src: assets/img/crop-dwi-map.png
+    src: assets/img/crop-dt-map.png
     alt: A tissue-diffusion map of a lung tumor in false color, with three nested contours drawn on it.
     caption: "A tissue-diffusion map with three contours: the clinical target in yellow, a tighter tumor-only contour in red, and the diffusion-defined core in blue. Cropped from a figure in the submitted manuscript."
   - id: core
-    src: assets/img/crop-resistant-core.png
+    src: assets/img/crop-threshold-target.png
     alt: A grayscale MRI slice of a tumor with yellow, red, and green contours nested inside one another.
     caption: The same idea on anatomy. Green is the treatment-resistant core that a boost would target, inside the clinical contour in red.
 ---
