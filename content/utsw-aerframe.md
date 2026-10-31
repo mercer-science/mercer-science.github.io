@@ -3,48 +3,42 @@ title: Radiolucent Patient Immobilization (AerFrame)
 roles: [igem, coding, wildcard]
 tabs: [clinical-research, clinical-research-software]
 status: In final co-author circulation
-dates: June 2026 to present
+dates: June 2026 – Present
 images:
-  - src: assets/img/crop-frame-dose.png
+  - id: diagram
+    src: assets/img/aerframe-diagram.png
+    alt: A labeled line drawing of the radiolucent frame, naming the base, rails, compression arch, compression plate and screw, coordinate arch, laser box, and head rest.
+    caption: The frame, labeled. The rails are the parts a beam can cross, which is where attenuation is highest. Device developed by Dr. Westover; figure from the manuscript.
+  - id: setup
+    src: assets/img/aerframe-setup.png
+    alt: A schematic of the ion chamber measurement, with a block of solid water lying in the frame and beam angles of 0, 62.1, 90, and 180 degrees marked.
+    caption: The ion chamber setup, and the beam angles we measured at. Cropped from a figure in the manuscript.
+  - id: bysite
+    src: assets/img/aerframe-by-site.png
+    alt: A paired plot of target dose change for the legacy frame in red and the new frame in blue across lung, prostate, spine, and abdomen cases, with the new frame losing less dose in every site.
+    caption: Dose to the target for each patient with the legacy frame and the new one. Cropped from a figure in the manuscript.
+  - id: dose
+    src: assets/img/crop-frame-dose.png
     alt: A dose distribution in false color through a phantom lying in the treatment frame, with the frame rails visible underneath.
-    caption: Dose through a phantom lying in the frame. The rails are the parts that matter, since a beam crossing one is where attenuation climbs. Cropped from a figure in the manuscript.
+    caption: Dose through a phantom lying in the frame. Cropped from a figure in the manuscript.
 ---
 
-### Problem
+Dr. Westover developed and patented a patient immobilization frame made from a composite designed to let radiation pass through with minimal interference. The frame has been used at UT Southwestern for more than a year and is expected to be marketed to other treatment centers, but its effect on radiation delivery had not been systematically evaluated. Our study examined whether the frame allows radiation to reach the tumor without meaningfully changing the planned dose.
 
-Dr. Westover invented and patented a patient immobilization frame built from a composite
-that is nearly transparent to radiation. It has been in use at UT Southwestern for over a
-year and will be marketed to other centers, but no physics study existed to show how much
-dose the older frames were absorbing before the beam reached the tumor.
+[figure: diagram]
 
-### Solution
+Identifying suitable patients required manually screening approximately 50 medical records. Patients had to meet several criteria: treatment on a specific machine, an initial simulation using a legacy frame, and at least one treatment using the new frame. I excluded patients with unusable scans, incomplete treatment records, or unfamiliar immobilization devices, then selected 11 patients to represent several common treatment sites and techniques. The cohort included spine, prostate, lung, and abdominal tumors; different radiation delivery methods; patients with and without titanium hardware; and both front- and back-facing target positions.
 
-The cohort did not exist in any database. A patient had to have been treated on a specific
-machine, simulated in a legacy frame, and treated at least once in the new one, so I
-hand-screened about 50 patients' records and threw out warped scans, patients never
-treated, and unfamiliar frames. From what was left I picked 11 patients to mirror real
-practice: 3 spine, 3 prostate, 3 lung, and 2 abdomen, mixing fixed-field and arc therapy,
-some with titanium hardware, across two legacy frame types and both anterior and posterior
-target positions. I ran the attenuation calculations with the physicists, compared
-12-field, 18-field, and arc plans with the frame masked to air against the frame present,
-and added ion-chamber bench measurements at 6, 10, and 15 MV across several beam angles.
+Working with the medical physicists, I compared radiation doses with the frame present against doses calculated as if the frame were not there. We evaluated several treatment plans and supplemented the patient analysis with physical measurements using an ion chamber at three radiation energies and several beam angles.
 
-### Result
+[figure: setup, dose]
 
-The new frame reads at about −928 Hounsfield units on patient imaging against −713 for the
-legacy frame, which is the physical reason for everything that follows. Measured
-attenuation stayed under 2 percent anywhere away from the side rails, and crossed 3 percent
-only for beams passing through a rail at the lowest energy. Across the phantom and patient
-plans it stayed between 0.6 and 2.5 percent.
+The new frame was substantially more transparent to radiation than the older frames. Across phantom measurements and patient treatment plans, it reduced the delivered dose by only 0.6% to 2.5%. Attenuation remained below 2% except when radiation passed directly through the side rails at the lowest energy, where it exceeded 3%.
 
-That number matters more than it sounds. Adaptive systems replan on the anatomy of the day
-and typically do not model the frame at all, so a frame this transparent can be used on
-current platforms without modeling it, and a legacy frame cannot. I wrote the first draft
-and the manuscript is in final circulation among co-authors. The limits are plain: eleven
-patients at one institution, with a dosimetric endpoint rather than a clinical one.
+[figure: bysite]
 
-Working title: *Radiolucent Stereotactic Body Frame for Online Adaptive Radiation
-Therapy.*
+**Put simply, the new frame allows nearly all the radiation to pass through it and reach the tumor as planned.** This means clinicians can use it without having to modify their radiation treatment plans to account for the frame, unlike older immobilization devices that absorb more radiation. That is particularly useful for adaptive radiation therapy, where treatment plans are updated to match a patient's anatomy each day.
 
-The device diagram comes from Dr. Westover's patent and stays off this site until he says
-otherwise.
+I wrote the first manuscript draft, which is now in final circulation among co-authors.
+
+**Working title:** *Radiolucent Stereotactic Body Frame for Online Adaptive Radiation Therapy.*
