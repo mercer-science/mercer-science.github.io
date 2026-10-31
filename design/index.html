@@ -13,13 +13,7 @@
 <header class="masthead">
 <p class="name">Russell Mercer</p>
 <p class="tagline">Biochemistry, clinical software, and AI at Brigham Young University</p>
-<nav class="roles" aria-label="Application">
-<span class="roles-label">Application:</span>
-<a class="chip" href="../igem/">iGEM</a>
-<a class="chip" href="../coding/">Coding</a>
-<span class="chip chip-on" aria-current="page">Design</span>
-<a class="chip" href="../wildcard/">Wild Card</a>
-</nav>
+
 </header>
 <nav class="tabs" role="tablist" aria-label="Sections">
 <a class="tab tab-on" href="#resume" data-tab="resume" role="tab" aria-selected="true">Resume</a>
@@ -81,85 +75,143 @@
 </section>
 <section class="panel" id="other-ui-projects" role="tabpanel" aria-label="Other UI Projects">
 <h1 class="panel-title">Other UI Projects</h1>
-<article class="block placeholder"><header class="block-head"><h2>Heart and Blood Pressure App</h2></header><p>This section is reserved and has nothing in it yet.</p></article>
+<article class="block" id="heart-bp-app">
+<header class="block-head">
+<h2>Heart and Blood Pressure App</h2>
+<p class="block-meta"><span class="dates">2026</span> <span class="status status-plain">Personal project</span></p>
+</header>
+<p>A personal project I built to track my own blood pressure and heart rate. It logs a reading in a few taps, records the context that changes the number (position, arm, time of day, and an orthostatic POTS check), and keeps the history.</p>
+<div class="figures figures-inline">
+<figure class="shot">
+<a href="../assets/img/heart-bp-reading.png"><img src="../assets/img/heart-bp-reading.png" alt="The BP Monitor reading screen, with large systolic, diastolic, and pulse tiles, a time stamp, and position and arm selectors, plus a POTS Check tab." loading="lazy"></a>
+<figcaption>Logging a reading. Three numbers up front, then the context a reading needs to mean something.</figcaption>
+</figure>
+</div>
+<p>The design problem is the same one every health app has: a single number means little, so the app shows each reading against the AHA cutoffs and rolls the history into averages by window and by context, rather than leaving a wall of numbers to read.</p>
+<div class="figures figures-inline">
+<figure class="shot">
+<a href="../assets/img/heart-bp-trend.png"><img src="../assets/img/heart-bp-trend.png" alt="A blood pressure trend chart plotting systolic and diastolic over three weeks, with dashed AHA cutoff lines and one reading&#x27;s details called out below." loading="lazy"></a>
+<figcaption>The trend, against the AHA cutoffs. One reading expands to its full detail on hover.</figcaption>
+</figure>
+<figure class="shot">
+<a href="../assets/img/heart-bp-averages.png"><img src="../assets/img/heart-bp-averages.png" alt="The BP Monitor averages screen, showing seated averages over 7 and 30 days and by context (wake-up, post-gym, bedtime) above a dated reading history." loading="lazy"></a>
+<figcaption>Averages by window and by context, so a single high reading does not read as a trend.</figcaption>
+</figure>
+</div>
+</article>
 <article class="block" id="cadence">
 <header class="block-head">
 <h2>Cadence, a Spaced-Repetition App</h2>
 <p class="block-meta"><span class="dates">2026 to present</span> <span class="status status-plain">Ongoing, early MVP</span></p>
 </header>
-<h3 class="sub sub-first">Problem</h3>
-<p>Anki is the tool most medical students live in, and its interface is a decade of accreted options stacked on a scheduler most users never see. The scheduling is the good part. The experience of sitting down to 400 due cards is not.</p>
-<h3 class="sub">Solution</h3>
-<p>Cadence is a rewrite of the parts that matter, built with React, TypeScript, and the FSRS scheduler, which models memory directly rather than nudging intervals by fixed multipliers. The design work is deciding what to leave out: a card should take one decision, the queue should tell you how long it will take before you start, and the settings a user actually changes should not be buried under the ones they never will.</p>
-<h3 class="sub">Status</h3>
-<p><strong>Ongoing.</strong> It is an early minimum viable product, and the repository is private, so the screenshots are what I can show.</p>
+<p>Anki is widely used by medical students, but its interface has accumulated years of features and settings that can make daily studying feel more complicated than it needs to be. Its underlying spaced-repetition scheduling is valuable; the challenge is making the study experience simpler and more manageable, especially when users face hundreds of due cards.</p>
+<p>I am building Cadence as a streamlined alternative using React, TypeScript, and the FSRS scheduling algorithm, which models memory to determine when cards should be reviewed. The design focuses on reducing friction: making each card easy to review, showing users how much time their queue will take before they begin, and keeping frequently used settings accessible without overwhelming the interface.</p>
+<div class="figures figures-inline">
+<figure class="shot">
+<a href="../assets/img/cadence-home.jpg"><img src="../assets/img/cadence-home.jpg" alt="The Cadence home screen, showing a Your Decks list with a starter deck card, the number of cards due, and a Study Now button." loading="lazy"></a>
+<figcaption>The deck list. How many cards are ready, and one button into the session.</figcaption>
+</figure>
+<figure class="shot">
+<a href="../assets/img/cadence-deck.jpg"><img src="../assets/img/cadence-deck.jpg" alt="A Cadence deck view listing each card&#x27;s question and answer, with Add Card and Study Now actions." loading="lazy"></a>
+<figcaption>Inside a deck. Every card at a glance, with add and study one tap away.</figcaption>
+</figure>
+</div>
+<div class="figures figures-inline">
+<figure class="shot">
+<a href="../assets/img/cadence-study-question.jpg"><img src="../assets/img/cadence-study-question.jpg" alt="The Cadence study screen showing a card&#x27;s question, a progress count of cards left, and a Show Answer button." loading="lazy"></a>
+<figcaption>Studying. One card, one decision, and the count of what is left.</figcaption>
+</figure>
+<figure class="shot">
+<a href="../assets/img/cadence-study-answer.jpg"><img src="../assets/img/cadence-study-answer.jpg" alt="The Cadence answer screen with the card revealed and Again, Hard, Good, and Easy grading buttons, each labeled with its next interval and one marked Suggested." loading="lazy"></a>
+<figcaption>The answer, with each grade's next interval and the FSRS-suggested choice marked.</figcaption>
+</figure>
+</div>
+<p>In addition, the app will include LLM incorporation, altering each card to enhance the learning process.</p>
+<div class="figures figures-inline">
+<figure class="shot">
+<a href="../assets/img/cadence-settings.jpg"><img src="../assets/img/cadence-settings.jpg" alt="The Cadence settings screen for connecting an AI provider (Claude, ChatGPT, or Gemini) with your own API key, and a Gentle Rephrasing toggle." loading="lazy"></a>
+<figcaption>AI settings. Bring your own provider key; Gentle Rephrasing reshapes a card to test the idea, not the wording.</figcaption>
+</figure>
+</div>
+<p>The project is an ongoing early-stage. The source repository is private, so screenshots currently provide the best view of the application.</p>
 </article>
 </section>
 <section class="panel" id="figures" role="tabpanel" aria-label="Figures and Visual Communication">
 <h1 class="panel-title">Figures and Visual Communication</h1>
 <article class="block" id="bgrt-flow-chart">
 <header class="block-head">
-<h2>Explaining a Treatment Machine in One Figure</h2>
+<h2>RefleXion Treatment Workflow Figure</h2>
 <p class="block-meta"><span class="dates">August 2026</span> <span class="status status-plain">Designed August 2026</span></p>
 </header>
-<h3 class="sub sub-first">Problem</h3>
-<p>The RefleXion paper had to explain, to readers who had never seen the machine, how PET-guided delivery differs from standard image-guided delivery, and it had to do so inside a strict word limit against almost 4,000 words of supplement. Prose was not going to carry it. Reviewers needed to see the two workflows side by side and find the one point where they diverge.</p>
-<h3 class="sub">Solution</h3>
-<p>I designed a flow chart that runs both pathways in parallel from simulation through delivery, so the divergence lands visually instead of being asserted in a sentence. I built it in PowerPoint with Claude working in the same file: I directed the layout and the logic, and the agent handled alignment, color, and scaling, which is the part that eats hours and produces no insight. Then I wired the figure-rendering code to convert the slide to an image and assemble it with the R-generated panels automatically, so the whole figure rebuilds from source whenever the data changes.</p>
-<h3 class="sub">Result</h3>
-<p>It is the final figure in the manuscript, which is in co-author circulation. The method is the part worth keeping: when a figure is assembled by a script rather than by hand, revising it eight times costs nothing, and I revised that paper more than eight times.</p>
-<div class="figures">
+<p>The RefleXion manuscript needed to explain how PET-guided radiation delivery differs from conventional image-guided delivery. The distinction is not easy to communicate to readers unfamiliar with the system, particularly within a strict word limit and alongside nearly 4,000 words of supplementary material. A side-by-side visual was more effective than trying to explain both workflows in prose.</p>
+<p>I designed a flowchart showing both treatment pathways in parallel, from simulation through delivery, making the key differences immediately visible. I built the figure in PowerPoint with Claude assisting directly in the file. I directed the layout and scientific logic while using the agent to handle alignment, color, and scaling.</p>
+<div class="figures figures-inline">
 <figure class="shot">
 <a href="../assets/img/crop-bgrt-flow.png"><img src="../assets/img/crop-bgrt-flow.png" alt="A flow chart running the PET-guided pathway along the top and the image-guided pathway along the bottom, from simulation through delivery." loading="lazy"></a>
 <figcaption>Part of the finished figure. Both pathways run in parallel from simulation to delivery, so the divergence lands visually instead of in a sentence.</figcaption>
 </figure>
 </div>
+<p>I then developed a figure-generation workflow that converts the PowerPoint slide into an image and combines it with panels generated in R. This allows the complete figure to be rebuilt automatically from its source components whenever the underlying data or manuscript needs to change.</p>
+<p>The figure is included in the manuscript, which is currently in final co-author circulation.</p>
 </article>
 <article class="block" id="publication-figures">
 <header class="block-head">
 <h2>Publication Figures and Reproducible Pipelines</h2>
 <p class="block-meta"><span class="dates">2024 to present</span></p>
 </header>
-<p>Most of my figure work is not drawing. It is building the thing that draws the figure, so the twelfth revision costs the same as the first.</p>
-<p>For the radiation oncology studies I wrote R scripts that generate every figure and table straight from the raw export. About 20 figures were drafted for the RefleXion paper and narrowed to a main set plus supplements; six tables generate themselves. When I found a bug that had been capping a key measurement in the lung study, fixing it meant re-exporting and rerunning, and every figure rebuilt correctly without anyone touching a plot.</p>
-<p>Inside the imaging application, the image creator does the same job for the parts a script cannot choose: a physician picks slices and structures, previews at low resolution, and then renders a publication-quality panel, with upsampling past the scanner's native resolution when the figure needs it.</p>
-<p>The design judgment that matters here is what goes in a panel together. The published figure above puts coverage and crystallite size next to the micrographs of the films themselves, because a reader who sees a bar chart alone has to take the claim on faith.</p>
-<div class="figures">
+<p>I build tools that make scientific figures reproducible from the moment they are configured. Rather than manually assembling plots in software, I have developed exportable interfaces that let researchers select the data, images, measurements, and visual elements they want to present, preview the result, and generate publication-ready figures from the same underlying configuration.</p>
+<p>For the radiation oncology studies, I wrote R pipelines that generate figures and tables directly from raw data exports. Approximately 20 figures were developed for the RefleXion manuscript, alongside six automatically generated tables. When an error in the lung study was found to be capping a key measurement, correcting the data and rerunning the pipeline regenerated the figures consistently without manual editing.</p>
+<div class="figures figures-inline">
 <figure class="shot">
-<a href="../assets/img/langmuir-fig2.png"><img src="../assets/img/langmuir-fig2.png" alt="Bar charts of film coverage and crystallite size against temperature, beside four electron micrographs of films grown at 22, 32, 42, and 52 degrees Celsius." loading="lazy"></a>
-<figcaption>A published figure from our Langmuir paper. Charts and micrographs in one panel, so the numbers and the material they came from sit together. Ralph et al., Langmuir 2026;42(6):4475–4488.</figcaption>
+<a href="../assets/img/crop-ethos-response.png"><img src="../assets/img/crop-ethos-response.png" alt="An R-generated line chart titled The reason to adapt changes, plotting the benefit of adapting for PTV coverage, lung V20, and esophagus sparing across six treatment weeks, with p-values." loading="lazy"></a>
+<figcaption>An R-generated figure from the adaptive study, built straight from the raw export. Change the data, rerun, and the plot rebuilds itself.</figcaption>
 </figure>
 </div>
+<p>I also developed an image-generation interface within the imaging application. Researchers can select image slices and anatomical structures, arrange them into panels, preview the layout at low resolution, and export publication-quality images. The interface preserves those selections and settings so that figures can be regenerated consistently, including at resolutions beyond the scanner's native output when needed.</p>
+<div class="figures figures-inline">
+<figure class="shot">
+<a href="../assets/img/crop-responder-maps.png"><img src="../assets/img/crop-responder-maps.png" alt="A multi-panel figure of ADC and perfusion-fraction diffusion maps for one responding patient across treatment fractions, each with the tumor contour overlaid." loading="lazy"></a>
+<figcaption>A panel assembled in the imaging app's image creator: chosen slices and structures, rendered at publication quality and reproducible from the saved selection.</figcaption>
+</figure>
+</div>
+<p>The goal across these projects is to make a figure an exportable, reproducible product of its underlying data and configuration, rather than a manually assembled image that must be recreated whenever something changes.</p>
 </article>
 <article class="block" id="posters-slides">
 <header class="block-head">
-<h2>Posters and Slides</h2>
+<h2>Posters and Scientific Presentations</h2>
 <p class="block-meta"><span class="dates">2025 to 2026</span></p>
 </header>
-<p>I have presented six times across three fields, which means designing for three different audiences who read a poster differently.</p>
-<p>The Utah CryoEM Symposium poster, <em>Can an AI Agent Collapse the Cryo-ET Learning Curve?</em>, had to make a claim about AI credible to structural biologists who are rightly skeptical of it. The design answer was to lead with the logged record of what the agent got right and wrong, rather than with the pipeline diagram.</p>
-<p>For the Simmons Center talk in August 2026 I built the slides for the summer's radiation oncology work, and for the BYU Medical Society poster that month I shared the design with the other intern. Earlier, the Stowers chemistry work went to the BYU Student Research Conference twice and to the American Chemical Society spring meeting in Atlanta.</p>
-<p>The design problem on a poster is that nobody reads it in order. Numbered sections let someone start at the conversation excerpts in the middle, or at the numbers in the corner, and still find the argument.</p>
-<div class="figures">
+<p>I have presented research six times across three fields, adapting the visual presentation to different audiences, disciplines, and formats. Each presentation requires more than summarizing results; it requires deciding what an audience needs to understand, what evidence will make the findings credible, and how to organize the information so that the central argument is easy to follow.</p>
+<p>For the Utah Cryo-EM Symposium, I designed <em>Can an AI Agent Collapse the Cryo-ET Learning Curve?</em>, a poster introducing AI-assisted image processing to structural biologists who may be skeptical of its reliability. Rather than leading with the technical pipeline, I organized the poster around a documented record of the agent's successes and failures, making its actual capabilities and limitations the focus.</p>
+<div class="figures figures-inline">
 <figure class="shot shot-wide">
 <a href="../assets/img/cryoet-poster.png"><img src="../assets/img/cryoet-poster.png" alt="The conference poster, titled Can an AI Agent Collapse the Cryo-ET Learning Curve, laid out in six numbered sections across three columns." loading="lazy"></a>
-<figcaption>The Utah CryoEM Symposium poster, October 2026. Six numbered sections, so a reader can enter anywhere and still follow the argument.</figcaption>
+<figcaption>The Utah Cryo-EM Symposium poster, October 2026. Numbered sections, so a reader can enter anywhere and still follow the argument.</figcaption>
 </figure>
 </div>
+<p>In August 2026, I designed slides for the Simmons Center presentation of our summer radiation oncology research and collaborated with another intern on a poster for the BYU Medical Society. Earlier presentations included two appearances at the BYU Student Research Conference and a presentation at the American Chemical Society spring meeting in Atlanta, showcasing my work in the Stowers chemistry lab.</p>
+<div class="figures figures-inline">
+<figure class="shot shot-wide">
+<a href="../assets/img/spri-poster.png"><img src="../assets/img/spri-poster.png" alt="The poster titled From Bench to Beam, Five Studies Across Emerging Radiotherapy Platforms, laid out as five numbered studies across a wide grid." loading="lazy"></a>
+<figcaption>From Bench to Beam, the summer radiation oncology poster. Five studies on one wall, each a self-contained panel with its own headline numbers.</figcaption>
+</figure>
+</div>
+<p>Across these projects, I pay particular attention to how people actually engage with scientific visuals. Posters are rarely read from beginning to end, so I use clear section numbering, visual hierarchy, and strategically placed results to let viewers enter the presentation at different points and still follow the research.</p>
 </article>
 <article class="block" id="spri-logo">
 <header class="block-head">
 <h2>SPRI Program Mark</h2>
-<p class="block-meta"><span class="dates">August 2026</span> <span class="status status-plain">Awaiting Russell's choice of version</span></p>
+<p class="block-meta"><span class="dates">August 2026</span> <span class="status status-plain">Design system and interactive logo generator</span></p>
 </header>
-<h3 class="sub sub-first">Problem</h3>
-<p>The Summer Premedical Research Internship needed a program mark. My first design was a DNA double helix unzipping into a Y, with serpent heads at the tips: Y for BYU, DNA for research, serpents for medicine. Three ideas in one shape.</p>
-<h3 class="sub">Solution</h3>
-<p>Viewers told me it read as female reproductive anatomy, with the serpent heads reading as sperm. That is not a matter of taste; it is structural. Three cues stack: a smooth ovoid with a single eye-dot at the end of a curving stroke is how sperm is drawn in a textbook, the arms spread wider than they rise, and a narrowing coiled column descends from the junction. Any one is harmless. Together they draw the whole diagram, and fixing any two collapses the reading.</p>
-<p>So I rebuilt the mark on an axis model rather than as a fixed set of drawings. Form, flare, arm path, head shape, stroke weight, rung treatment, and whether the fork reads as a replication fork each became a dimension you can set independently, which made combinations reachable that the old list of thirteen finished drawings had no button for. Narrowing the flare cuts the spread from 92 units to 64 and flips the rise-to-spread ratio from 0.83 to 1.41, which is the difference between a fallopian tube and a letter Y.</p>
-<h3 class="sub">Result</h3>
-<p>An interactive kit with four presets, built as HTML so anyone can click through the axes rather than request a revision. It went to BYU Media. The lesson I keep: when feedback says a design reads wrong, the useful move is to find which cues produce the reading and break enough of them, instead of defending the intent.</p>
-<p>The logo files are picked from the kit; Russell confirms which version goes here.</p>
+<p>This summer I participated in the Summer Premedical Research Internship. Before a poster session, I realized that they needed a visual identity. I built the logo as a parameterized design system using Claude. I separated its geometry into independently adjustable variables, including the overall form, branching angle, arm curvature, head shape, stroke weight, and DNA rung treatment. This replaced a collection of 13 fixed logo variations with an interactive system capable of generating combinations that had not previously been explored. For example, narrowing the branching angle reduced the horizontal spread from 92 to 64 units and changed the rise-to-spread ratio from 0.83 to 1.41, shifting the silhouette toward a recognizable Y.</p>
+<div class="figures figures-inline">
+<figure class="shot shot-small">
+<a href="../assets/img/spri-logo-default.svg"><img src="../assets/img/spri-logo-default.svg" alt="The default SPRI program mark, a DNA double helix branching into a Y with rounded ends, above the letters SPRI, Summer Premedical Research Internship, Brigham Young University." loading="lazy"></a>
+<figcaption>The default mark generated by the system, a DNA double helix resolving into a Y.</figcaption>
+</figure>
+</div>
+<p>I built the resulting design kit as an interactive HTML application with four presets, allowing reviewers to adjust the design parameters and compare variations themselves rather than request individual revisions. The kit was submitted to the internship organizers.</p>
+<p><strong><a href="https://claude.ai/artifact/YQ6nnqQ3xDPq7bhbixjwBd?sk=qTFaqskE9eSsb2IV_LuxOg">Open the interactive logo generator</a></strong> to set the parameters and compare variations yourself.</p>
 </article>
 </section>
 <section class="panel" id="ai" role="tabpanel" aria-label="AI">
@@ -179,23 +231,123 @@
 <h2>AI for Social Innovation Conference</h2>
 <p class="block-meta"><span class="dates">October 2026</span></p>
 </header>
-<p>I attended the AI for Social Innovation Conference at Aspen Grove on October 21, 2026, run by BYU's Ballard Center, as the BYU AI Association's representative. The organizers wanted someone from the association and I was given a seat at the Data Sovereignty and Inclusion working table, alongside a UN ambassador, the chief operating officer of a Māori media organization that built a community-owned speech model, and people from industry and other universities. The table's question was who owns community data, the models trained on it, and the value those models create.</p>
+<p>I represented the BYU AI Association at the Ballard Center's AI for Social Innovation Conference at Aspen Grove on October 21, 2026. I was invited to participate in the Data Sovereignty and Inclusion working group, alongside a UN ambassador, the COO of a Māori media organization that developed a community-owned speech model, and representatives from industry and other universities. Our discussion focused on who should own community data, the AI models trained on it, and the value those models generate.</p>
+<p>From our discussion, we are creating a social contract to be proposed at the United Nations in Geneva.</p>
 </article>
 </section>
 <section class="panel" id="physical-sciences" role="tabpanel" aria-label="Physical Sciences">
 <h1 class="panel-title">Physical Sciences</h1>
-<article class="block" id="physical-sciences-short">
+<h2 class="section-split">Jensen Lab</h2>
+<article class="block" id="jensen-lab">
 <header class="block-head">
-<h2>Physical Sciences in Brief</h2>
-<p class="block-meta"><span class="dates">2024 to present</span></p>
+<p class="block-meta"><span class="dates">August 2026 to present</span></p>
 </header>
-<p><strong>Jensen Lab, BYU, August 2026 to present.</strong> Two cryo-electron tomography projects I scoped and proposed, and that Dr. Jensen approved: the surface architecture of <em>Bartonella henselae</em>, asking whether its adhesin layer blocks the secretion system underneath, and the apical complex of <em>Babesia duncani</em>, which would be the first tomography in that genus. Both are <strong>ongoing and in biosafety approval</strong>, so nothing has been cultured or frozen yet. I also run the lab's AI cryo-ET agent project, which I presented as a poster at the Utah CryoEM Symposium in October 2026.</p>
-<p><strong>Stowers Lab, BYU, April 2024 to May 2026.</strong> Metal-organic framework thin films grown by spin coating and characterized by electron microscopy, published in <em>Langmuir</em> with me as second author. I helped build and maintain a flow reactor and an ultra-high-vacuum chamber running near 10⁻¹⁰ Torr with X-ray photoelectron spectroscopy and mass spectrometry, and trained two newer students on spin coating and microscopy. A second manuscript on the vacuum-chamber chemistry is in preparation.</p>
-<p><strong>Bench training.</strong> Vitrobot and Krios through Thermo Fisher's Resolution Evolution course, bacterial culture and plasmid work in the Jensen Lab's apoferritin bootcamp, electron microscopy and film analysis in the Stowers Lab, plus the biochemistry lab sequence at BYU through CHEM 584, a master's-level methods course.</p>
-<div class="figures">
+<p>I joined Dr. Grant Jensen's lab in August 2026, where I work with cryo-electron tomography (cryo-ET). The technique involves rapidly freezing cells to preserve their native structure, then imaging them from multiple angles to reconstruct their internal organization at molecular resolution. My work in the lab has two main parts: imaging bacteria and parasites that have not previously been studied using cryo-ET, and exploring AI agents and skills to help researchers carry out the image-processing workflow.</p>
+<div class="figures figures-inline">
+<figure class="shot shot-wide">
+<a href="../assets/img/cryoet-pipeline.png"><img src="../assets/img/cryoet-pipeline.png" alt="Diagrams of the cryo-ET workflow, from growing cells through plunge freezing, milling a lamella, and tilting the specimen for imaging." loading="lazy"></a>
+<figcaption>How a cell becomes a tilt series: grow, freeze, thin, then image from many angles.</figcaption>
+</figure>
+</div>
+<h3 class="sub">Imaging Bartonella henselae and Babesia duncani</h3>
+<p>I proposed two projects involving organisms associated with tick-borne infections. Both can occur alongside Lyme disease, and patients may be infected with multiple organisms at once. I have tested positive for both of these pathogens through PCR. Neither genus has been studied using cryo-ET, so these projects will provide the first structural images of either organism using this technique.</p>
+<p><em>Bartonella henselae</em> a gram-negative bacterium primarily transmitted through scratches or bites from infected cats and is the primary cause of cat-scratch disease. It commonly causes swollen, tender lymph nodes, fever, fatigue, and headaches, but can occasionally lead to more serious neurological, ocular, or cardiac complications. Its cells are approximately 0.3–0.5 µm wide, allowing them to be frozen and imaged whole on BYU's Krios microscope without additional thinning. They also divide approximately every three hours, making it practical to maintain cultures.</p>
+<p>There is also an interesting biological question behind the project. <em>B. henselae</em> has a dense surface layer of adhesins, and one published hypothesis proposes that this layer interferes with the bacterium's secretion system, which it uses to deliver proteins into host cells. This hypothesis is based on observed phenotypes rather than direct structural evidence. Cryo-ET could help determine whether the proposed interaction is supported by the organism's actual structure.</p>
+<p>The second project focuses on <em>Babesia duncani</em>. These parasites invade red blood cells using a specialized structure at one end of the cell called the apical complex. They are a tick-borne, malaria-like parasite that infects red blood cells and causes babesiosis. Symptoms commonly include fever, chills, fatigue, sweating, headaches, and hemolytic anemia due to the destruction of infected red blood cells. Severe infections can cause organ dysfunction, particularly in immunocompromised individuals or those without a functioning spleen. A 2026 study identified a previously unreported tubulin rosette in the apical region of a related species using light microscopy. However, that technique cannot resolve the rosette's detailed molecular organization. Cryo-ET could provide a closer look.</p>
+<p>This project presents additional technical challenges. <em>Babesia</em> cells are too thick to image intact, so they will require focused ion beam (FIB) milling at the University of Utah. No established FIB-milling workflow exists for <em>Babesia</em>, so developing and optimizing one is part of the project.</p>
+<p>I developed the proposals and experimental plans for both projects, which Dr. Jensen approved in October 2026.</p>
+<p>These studies are promising for biology and medical science because as someone learns the structure of a bacteria (through cryo-ET) it becomes a lot easier to develop therapeutics, etc for them.</p>
+<h3 class="sub">Using AI to Accelerate Cryo-ET Processing</h3>
+<p>Processing cryo-ET data requires coordinating approximately a dozen specialized programs, each with its own parameters and potential failure points. Learning the workflow can take a researcher several months. Data in general is very difficult to process, and it is usually the bottle neck of this field of research.</p>
+<p>In a separate project, I developed a workflow in which a general-purpose AI coding agent operates this processing pipeline. I tested it on 39 <em>E. coli</em> tilt series. The agent can recommend and execute processing steps. I also logged each recommendation as accepted, overridden, or an error identified by the human reviewer. This makes it possible to evaluate the agent's performance rather than simply judging whether it appears to work.</p>
+<div class="figures figures-inline">
+<figure class="shot shot-wide">
+<a href="../assets/img/cryoet-agent-loop.png"><img src="../assets/img/cryoet-agent-loop.png" alt="A diagram with the student on the left, the AI agent in the middle, and the computers on the right, with arrows running both ways between them." loading="lazy"></a>
+<figcaption>The loop, and the rules it runs under. The agent proposes and executes; I approve, override, or correct at every step.</figcaption>
+</figure>
+</div>
+<p>During testing, the agent identified two incorrect values recorded by the microscope and independently checked the tools it was using. It also made mistakes, which have been documented as part of the evaluation. In every case, it eventually caught itself. I presented this work at the Utah CryoEM Symposium on October 8, 2026. A manuscript is currently in preparation, after a few instructory videos will be made. This is a collaborative project with Chitral Chatterjee.</p>
+<div class="figures figures-inline">
+<figure class="shot shot-wide">
+<a href="../assets/img/cryoet-numbers.png"><img src="../assets/img/cryoet-numbers.png" alt="A summary panel reading 39 tilt series, 1,210 raw movies, zero workflow steps given, four packages installed, two wrong microscope values caught, and 24 minutes to the first tomogram." loading="lazy"></a>
+<figcaption>The test set, and what the agent did with it.</figcaption>
+</figure>
+</div>
+<div class="figures figures-inline">
+<figure class="shot shot-wide">
+<a href="../assets/img/cryoet-poster.png"><img src="../assets/img/cryoet-poster.png" alt="The conference poster, titled Can an AI Agent Collapse the Cryo-ET Learning Curve, laid out in six numbered sections across three columns." loading="lazy"></a>
+<figcaption>The poster I presented at the Utah CryoEM Symposium, October 8, 2026. Click it to read the panels.</figcaption>
+</figure>
+</div>
+<h3 class="sub">Building a Cryo-EM Knowledge Database</h3>
+<p>Another project in the lab addresses something that is difficult to learn from published papers: the practical knowledge researchers accumulate while developing and troubleshooting experiments. Papers generally describe the final methods, but not necessarily the approaches that were abandoned, the problems encountered, or the small adjustments that made a protocol work.</p>
+<p>Dr. Jensen proposed creating a database to preserve this knowledge. I am developing an AI agent that interviews authors of cryo-EM papers and collects details about their experimental decisions and troubleshooting processes. It will then compile all of their information into a universal database that researchers around the world can use to learn and to train their AI agents. The project is still in development, and a working system has not yet been completed.</p>
+</article>
+<h2 class="section-split">Stowers Lab</h2>
+<article class="block" id="stowers-lab">
+<header class="block-head">
+<p class="block-meta"><span class="dates">April 2024 to May 2026</span></p>
+</header>
+<h3 class="sub sub-first">Metal-Organic Framework Thin Films</h3>
+<p>I spent two years in Dr. Kara Stowers' inorganic chemistry lab researching metal-organic framework (MOF) thin films. MOFs are porous crystalline materials with potential applications in catalysis and chemical separations. Our research focused on growing these films directly on untreated substrates, without the self-assembled monolayers typically used to initiate growth, while controlling the incorporation of a second metal.</p>
+<div class="figures figures-inline">
+<figure class="shot shot-wide">
+<a href="../assets/img/langmuir-fig1.png"><img src="../assets/img/langmuir-fig1.png" alt="Synthesis schematic showing copper and zinc ions plus two organic linkers deposited by spin coating in repeated cycles onto a bare silicon substrate." loading="lazy"></a>
+<figcaption>The synthesis, from our Langmuir paper. The film grows on a bare substrate in repeated spin-coating cycles, with no self-assembled monolayer underneath. Ralph et al., Langmuir 2026;42(6):4475–4488.</figcaption>
+</figure>
+</div>
+<p>I synthesized copper and copper-zinc framework films through sequential spin coating, cycling metal and linker solutions onto the substrate. I characterized the resulting films using scanning electron microscopy and measured film thicknesses in ImageJ. Our work examined how growth temperature affected film coverage and crystallite size.</p>
+<div class="figures figures-inline">
+<figure class="shot shot-wide">
+<a href="../assets/img/langmuir-fig2.png"><img src="../assets/img/langmuir-fig2.png" alt="Bar charts of film coverage and crystallite size against temperature, beside four electron micrographs of films grown at 22, 32, 42, and 52 degrees Celsius." loading="lazy"></a>
+<figcaption>Coverage and crystallite size against growth temperature, with the micrographs those numbers came from. Ralph et al., Langmuir 2026;42(6):4475–4488.</figcaption>
+</figure>
+</div>
+<h3 class="sub">Building and Maintaining Instruments</h3>
+<p>I also spent considerable time building, troubleshooting, and maintaining two custom laboratory instruments: a flow reactor used for catalysis experiments and an ultra-high-vacuum chamber equipped with X-ray photoelectron spectroscopy and a mass spectrometer. The chamber operated at pressures approaching 10⁻¹⁰ Torr. Maintaining it involved leak checking, bakeouts, flange work, and troubleshooting the vacuum system. I also helped rebuild the spin coater's vacuum system when it failed.</p>
+<div class="figures figures-inline">
 <figure class="shot shot-small">
 <a href="../assets/img/stowers-uhv-chamber.jpg"><img src="../assets/img/stowers-uhv-chamber.jpg" alt="The ultra-high-vacuum chamber in the Stowers Lab, wrapped in foil for a bakeout, with pumps, gauges, and analysis ports." loading="lazy"></a>
-<figcaption>The ultra-high-vacuum chamber I helped keep running, near 10⁻¹⁰ Torr with X-ray photoelectron spectroscopy and mass spectrometry.</figcaption>
+<figcaption>The ultra-high-vacuum chamber, wrapped for a bakeout.</figcaption>
+</figure>
+<figure class="shot shot-small">
+<a href="../assets/img/stowers-flow-reactor.jpg"><img src="../assets/img/stowers-flow-reactor.jpg" alt="The flow reactor bench in the Stowers Lab, with two tube furnaces, gas lines, flow meters, and a pressure gauge." loading="lazy"></a>
+<figcaption>The flow reactor, with two furnaces on a shared gas manifold.</figcaption>
+</figure>
+</div>
+<h3 class="sub">Training, Publication, and Presentations</h3>
+<p>Alongside my own work, I trained two newer students in spin coating and scanning electron microscopy. The research resulted in a publication in <em>Langmuir</em>, where I am a second author. I presented the work at the BYU Student Research Conference in 2025 and 2026 and at the American Chemical Society spring meeting in Atlanta in March 2026.</p>
+<p>A second manuscript examining decomposition chemistry using the vacuum chamber is in preparation. Although my lab position ended in May 2026, I have continued contributing to that manuscript.</p>
+</article>
+<h2 class="section-split">Biochemistry and Molecular Biology Coursework</h2>
+<article class="block" id="lab-coursework">
+<header class="block-head">
+<p class="block-meta"><span class="dates">2024–2027</span></p>
+</header>
+<p>In addition to extensive laboratory experience, my coursework at BYU has included both foundational science classes and upper-division laboratory courses.I have completed almost the entire biochemistry major. These courses have given me a background in the molecular structure, function, and interactions of biological systems, with an increasing emphasis on the experimental methods used to study them. In terms of lab courses, I completed CHEM 384 (Biochemistry Methods), MMBIO 241 (Molecular and Cellular Biology Lab), and CELL 363 (Advanced Physiology Lab), which gave me practical experience applying concepts from biochemistry, molecular biology, and physiology in a laboratory setting.</p>
+<p>This semester, I am taking CHEM 584 (Advanced Biochemistry Methods 1), a master's-level course focused on more advanced biochemical laboratory methods. The course has us mutate CMG2, a human receptor protein commonly known for its involvement with Anthrax. We had to find our own mutation, develop our own primers, clone our mutation, and express the mutation. In Winter 2027, I will continue the study in CHEM 586 (Advanced Biochemistry Methods 2), where we will express our mutated proteins and visualize how they effect the human cell. I also plan to take CHEM 489 (Structural Biochemistry) continuing into structural biology and advanced experimental techniques.</p>
+<div class="figures figures-inline">
+<figure class="shot">
+<a href="../assets/img/cmg2-delabd-product-map.png"><img src="../assets/img/cmg2-delabd-product-map.png" alt="Map of the expected PCR product plasmid, with the region encoding the cytoplasmic actin-binding domain removed." loading="lazy"></a>
+<figcaption>The product we designed primers to make, with the actin-binding domain deleted.</figcaption>
+</figure>
+<figure class="shot shot-small">
+<a href="../assets/img/cmg2-pcr-gel.jpg"><img src="../assets/img/cmg2-pcr-gel.jpg" alt="An agarose gel photographed under UV light, with a smeared lane of a PCR reaction beside a DNA ladder." loading="lazy"></a>
+<figcaption>Our PCR, run as a raw, uncleaned reaction. One lane on this gel is another group's.</figcaption>
+</figure>
+<figure class="shot">
+<a href="../assets/img/cmg2-transformation-plate.jpg"><img src="../assets/img/cmg2-transformation-plate.jpg" alt="An agar plate marked in pen into numbered quadrants, with dense bacterial colonies across the upper half." loading="lazy"></a>
+<figcaption>Our transformation plate. The whole plate is the delABD construct.</figcaption>
+</figure>
+</div>
+<div class="figures figures-inline">
+<figure class="shot">
+<a href="../assets/img/cmg2-primer-forward.png"><img src="../assets/img/cmg2-primer-forward.png" alt="The delABD Forward primer sequence boxed above the original CMG2 sequence, with one base in the primer highlighted and the encoded residues below." loading="lazy"></a>
+<figcaption>Our forward primer on the original CMG2 sequence. The boxed A is a silent base change.</figcaption>
+</figure>
+<figure class="shot">
+<a href="../assets/img/cmg2-primer-reverse.png"><img src="../assets/img/cmg2-primer-reverse.png" alt="The delABD Reverse primer sequence boxed below the original CMG2 sequence, with the encoded residues above." loading="lazy"></a>
+<figcaption>Our reverse primer on the original CMG2 sequence.</figcaption>
 </figure>
 </div>
 </article>

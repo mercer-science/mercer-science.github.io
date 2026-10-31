@@ -5,25 +5,24 @@ tabs: [figures]
 status: ""
 dates: 2024 to present
 images:
-  - src: assets/img/langmuir-fig2.png
-    alt: Bar charts of film coverage and crystallite size against temperature, beside four electron micrographs of films grown at 22, 32, 42, and 52 degrees Celsius.
-    caption: A published figure from our Langmuir paper. Charts and micrographs in one panel, so the numbers and the material they came from sit together. Ralph et al., Langmuir 2026;42(6):4475–4488.
+  - id: rpipe
+    src: assets/img/crop-ethos-response.png
+    alt: An R-generated line chart titled The reason to adapt changes, plotting the benefit of adapting for PTV coverage, lung V20, and esophagus sparing across six treatment weeks, with p-values.
+    caption: An R-generated figure from the adaptive study, built straight from the raw export. Change the data, rerun, and the plot rebuilds itself.
+  - id: panel
+    src: assets/img/crop-responder-maps.png
+    alt: A multi-panel figure of ADC and perfusion-fraction diffusion maps for one responding patient across treatment fractions, each with the tumor contour overlaid.
+    caption: "A panel assembled in the imaging app's image creator: chosen slices and structures, rendered at publication quality and reproducible from the saved selection."
 ---
 
-Most of my figure work is not drawing. It is building the thing that draws the figure, so
-the twelfth revision costs the same as the first.
+I build tools that make scientific figures reproducible from the moment they are configured. Rather than manually assembling plots in software, I have developed exportable interfaces that let researchers select the data, images, measurements, and visual elements they want to present, preview the result, and generate publication-ready figures from the same underlying configuration.
 
-For the radiation oncology studies I wrote R scripts that generate every figure and table
-straight from the raw export. About 20 figures were drafted for the RefleXion paper and
-narrowed to a main set plus supplements; six tables generate themselves. When I found a bug
-that had been capping a key measurement in the lung study, fixing it meant re-exporting and
-rerunning, and every figure rebuilt correctly without anyone touching a plot.
+For the radiation oncology studies, I wrote R pipelines that generate figures and tables directly from raw data exports. Approximately 20 figures were developed for the RefleXion manuscript, alongside six automatically generated tables. When an error in the lung study was found to be capping a key measurement, correcting the data and rerunning the pipeline regenerated the figures consistently without manual editing.
 
-Inside the imaging application, the image creator does the same job for the parts a script
-cannot choose: a physician picks slices and structures, previews at low resolution, and
-then renders a publication-quality panel, with upsampling past the scanner's native
-resolution when the figure needs it.
+[figure: rpipe]
 
-The design judgment that matters here is what goes in a panel together. The published
-figure above puts coverage and crystallite size next to the micrographs of the films
-themselves, because a reader who sees a bar chart alone has to take the claim on faith.
+I also developed an image-generation interface within the imaging application. Researchers can select image slices and anatomical structures, arrange them into panels, preview the layout at low resolution, and export publication-quality images. The interface preserves those selections and settings so that figures can be regenerated consistently, including at resolutions beyond the scanner's native output when needed.
+
+[figure: panel]
+
+The goal across these projects is to make a figure an exportable, reproducible product of its underlying data and configuration, rather than a manually assembled image that must be recreated whenever something changes.

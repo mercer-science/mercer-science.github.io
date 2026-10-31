@@ -422,7 +422,9 @@ def build_role(rid, role, roles, report):
         site=html.escape(SITE_NAME),
         tagline=html.escape(TAGLINE),
         desc=html.escape("Portfolio for the Crocker Innovation Fellowship: %s." % role["title"]),
-        switcher=role_switcher(rid, roles),
+        # The role switcher is intentionally omitted: each application is shared
+        # as a standalone link, so a reviewer cannot hop to the other roles.
+        switcher="",
         tabbar=tab_bar(role["tabs"]),
         panels="\n".join(panels),
         css_v=asset_version("assets/css/style.css"),

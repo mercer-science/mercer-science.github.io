@@ -2,15 +2,11 @@
 title: Cryo-EM Tacit Knowledge Database
 roles: [coding]
 tabs: [ai]
-status: Ongoing
+status: In Development
 dates: October 2026 to present
 images: []
 ---
 
-A paper tells you what worked. It rarely tells you why the authors tried that, what they
-ruled out first, or which step everyone in the field quietly knows to do differently. The
-Cryo-EM Tacit Knowledge Database collects that reasoning while the authors still remember
-it, through an AI agent that interviews them.
+Scientific papers document experimental results, but often leave out the reasoning behind them: why researchers chose one approach over another, which alternatives they considered, and what practical lessons they learned along the way. The Cryo-EM Tacit Knowledge Database aims to capture this knowledge through an AI agent that interviews researchers about their experimental decisions and experience.
 
-Dr. Jensen originated the idea and I am building it. **Ongoing**, and nothing is working
-yet.
+Dr. Jensen originated the concept, and I am developing the AI agent and database infrastructure. The project is in its early stages, and the system is not yet functional.

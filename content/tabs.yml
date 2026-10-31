@@ -34,10 +34,7 @@ roles:
         blocks: [dwi-pipeline, utsw-lung-dwi, utsw-bgrt, utsw-aerframe, utsw-pancreas]
       - id: ai
         title: AI
-        blocks: [ai-association, ai-conference, mercer-science-tools, ai-cryo-em-short]
-      - id: human-practices
-        title: Human Practices
-        blocks: [data-sovereignty, y-serve, mentoring]
+        blocks: [ai-association, ai-conference, mercer-science-tools]
       - id: cv
         title: CV
         blocks: [cv]
@@ -54,10 +51,10 @@ roles:
         blocks: [dwi-pipeline, utsw-bgrt, utsw-lung-dwi, utsw-aerframe, utsw-pancreas]
       - id: ai
         title: AI
-        blocks: [ai-cryo-em, ai-association, ai-conference, mercer-science-tools, tacit-knowledge-database]
+        blocks: [ai-cryo-em, ai-association, ai-conference, tacit-knowledge-database]
       - id: software-projects
         title: Software Projects
-        blocks: [mercer-science-tools, analysis-pipelines, chess-app, cs-training]
+        blocks: [mercer-science-tools, cadence, heart-bp-app, chess-app, cs-training]
       - id: publications
         title: Publications and Ongoing Research
         blocks:
@@ -75,7 +72,7 @@ roles:
           - ongoing/tacit-knowledge
       - id: physical-sciences
         title: Physical Sciences
-        blocks: [physical-sciences-short]
+        blocks: [jensen-lab, stowers-lab, lab-coursework]
       - id: cv
         title: CV
         blocks: [cv]
@@ -101,7 +98,7 @@ roles:
         blocks: [ai-in-design, ai-conference]
       - id: physical-sciences
         title: Physical Sciences
-        blocks: [physical-sciences-short]
+        blocks: [jensen-lab, stowers-lab, lab-coursework]
       - id: cv
         title: CV
         blocks: [cv]
@@ -125,9 +122,9 @@ roles:
       - id: ai
         title: AI
         blocks: [ai-cryo-em, mercer-science-tools, ai-association, ai-conference]
-      - id: human-practices-leadership
-        title: Human Practices and Leadership
-        blocks: [data-sovereignty, y-serve, mentoring, healthcare-leadership-talk]
+      - id: software-projects
+        title: Software Projects
+        blocks: [cadence, heart-bp-app]
       - id: publications
         title: Publications and Ongoing Research
         blocks:

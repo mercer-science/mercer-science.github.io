@@ -271,7 +271,9 @@ LEADERSHIP = {
             "org": "BYU Y-Serve, Early Learning Essentials",
             "dates": "Aug 2024 – Present",
             "lines": [],
-            "bullets": ["Run a volunteer program serving preschoolers from low-income families"],
+            "bullets": ["Lead director since Mar 2025: recruit volunteers, run the leadership "
+                        "team, schedule classroom shifts, and manage the partnership with the "
+                        "Provo preschool center serving low-income families"],
         },
         {
             "role": "Pre-Med Peer Mentor",

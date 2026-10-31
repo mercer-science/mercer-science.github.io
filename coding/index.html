@@ -13,13 +13,7 @@
 <header class="masthead">
 <p class="name">Russell Mercer</p>
 <p class="tagline">Biochemistry, clinical software, and AI at Brigham Young University</p>
-<nav class="roles" aria-label="Application">
-<span class="roles-label">Application:</span>
-<a class="chip" href="../igem/">iGEM</a>
-<span class="chip chip-on" aria-current="page">Coding</span>
-<a class="chip" href="../design/">Design</a>
-<a class="chip" href="../wildcard/">Wild Card</a>
-</nav>
+
 </header>
 <nav class="tabs" role="tablist" aria-label="Sections">
 <a class="tab tab-on" href="#resume" data-tab="resume" role="tab" aria-selected="true">Resume</a>
@@ -215,12 +209,12 @@
 <h2>Diffusion MRI in Pancreatic SBRT</h2>
 <p class="block-meta"><span class="dates">August 2026 to present</span> <span class="status status-plain">Ongoing</span></p>
 </header>
-<h3 class="sub sub-first">Problem</h3>
-<p>The lung study produced a threshold tool that outlines treatment-resistant tissue, but nothing tied it to what happened to the patients. Dr. Deng brought me onto a pancreas study to start closing that gap: do the same diffusion measurements track how pancreatic tumors respond to stereotactic radiation?</p>
-<h3 class="sub">Solution</h3>
-<p>I ran all 76 patients through the pipeline I had rebuilt, and 23 of them turned out to have both complete diffusion imaging and outcome data. I did the chart review for response at three months and for local and distant failure over time, since most three-month results in this last-line population were stable or not evaluable. A Python script rebuilds each patient's plot and notes from the chart-review sheet, so adding a patient does not mean redrawing anything.</p>
-<h3 class="sub">Result</h3>
-<p>One early signal is worth the work: a patient who failed both locally and distantly about eight months after treatment showed tissue diffusion falling by the third fraction, the opposite of what a dying tumor does, while a patient with stable disease showed it rising. In principle a physician could have seen that early enough to change the plan. The trends run opposite to the lung study, and I think the spacing explains it, since these patients were treated every two or three days rather than weeks apart, leaving less time for tissue remodeling between pulses. Analysis is still underway.</p>
+<h3 class="sub sub-first">The Study</h3>
+<p>Building on our lung study, I joined Dr. Deng's pancreatic cancer study to investigate whether diffusion MRI measurements track tumor response to stereotactic radiation. I processed all 76 patients through the pipeline I rebuilt and identified 23 with both complete imaging and outcome data. I then reviewed their medical records to document treatment response and track local and distant disease progression.</p>
+<h3 class="sub">An Early Signal</h3>
+<p>One early observation is particularly interesting: a patient who later experienced both local and distant disease progression showed decreasing tissue diffusion by the third treatment fraction, while a patient with stable disease showed increasing diffusion. These trends are opposite to what we observed in the lung study. I suspect the difference may relate to treatment timing: pancreatic patients receive radiation every two to three days rather than several weeks apart, potentially leaving less time for tissue remodeling between treatments.</p>
+<h3 class="sub">Automating the Analysis</h3>
+<p>I also developed a Python script that automatically generates patient-specific plots and summaries from the chart-review data. Analysis is ongoing, and we are evaluating whether these early diffusion changes consistently correspond to treatment outcomes across the cohort.</p>
 </article>
 </section>
 <section class="panel" id="ai" role="tabpanel" aria-label="AI">
@@ -242,41 +236,26 @@
 <h2>BYU AI Association and AI in Research</h2>
 <p class="block-meta"><span class="dates">September 2026 to present</span> <span class="status status-plain">Ongoing</span></p>
 </header>
-<p>I am an officer of the BYU AI Association and lead its weekly AI in Research meeting, a group working out how researchers in different fields can use these tools without handing over the judgment that makes the work theirs. I wrote the proposal for the group, which is public as the AI-In-Research repository.</p>
-<p>What I bring to it is mostly evidence rather than opinion. I built a clinical imaging application with an AI coding agent in weeks instead of months, and I am running a controlled test in the Jensen Lab of where an agent helps and where it gets a pipeline wrong. Both sides of that show up in the meetings.</p>
-<p>I am also honest about the cost. These tools make research faster, and they change how people think, not only what they produce. As more writing and reasoning gets handed over, the average output gets more capable while the individual gets less practiced: less nuance, less argument, less of the slow work understanding is made of. Holding the acceleration and the cost at the same time is why I would rather help shape how AI enters science than just use it.</p>
+<figure class="thumb"><a href="../assets/img/aia-logo.jpg" title="The BYU AI Association logo."><img src="../assets/img/aia-logo.jpg" alt="The BYU AI Association logo, a cougar head rendered with circuit nodes on a navy field." loading="lazy"></a></figure>
+<p>I am an officer of the BYU AI Association and lead its weekly AI in Research meetings. The group explores how researchers across disciplines can use AI tools effectively without giving up the judgment and responsibility that make the work their own.</p>
+<p>The group is expanding its work across campus. I recently presented our initiative to a BYU Healthcare Leadership course and will be presenting to faculty in the College of Physical and Mathematical Sciences. Our officers are also beginning to meet with research labs to understand their needs and develop AI tools tailored to the problems their principal investigators want to solve.</p>
+<p>I also want our group to consider the costs of adopting AI. These tools can make research faster and expand what individuals can accomplish, but relying on them too heavily may weaken the writing, reasoning, and problem-solving skills that develop through doing the work ourselves. I believe researchers need to understand both the capabilities and limitations of AI so they can use it to advance science without losing the skills that make good research possible.</p>
 </article>
 <article class="block" id="ai-conference">
 <header class="block-head">
 <h2>AI for Social Innovation Conference</h2>
 <p class="block-meta"><span class="dates">October 2026</span></p>
 </header>
-<p>I attended the AI for Social Innovation Conference at Aspen Grove on October 21, 2026, run by BYU's Ballard Center, as the BYU AI Association's representative. The organizers wanted someone from the association and I was given a seat at the Data Sovereignty and Inclusion working table, alongside a UN ambassador, the chief operating officer of a Māori media organization that built a community-owned speech model, and people from industry and other universities. The table's question was who owns community data, the models trained on it, and the value those models create.</p>
-</article>
-<article class="block" id="mercer-science-tools">
-<header class="block-head">
-<h2>Mercer Science Tools</h2>
-<p class="block-meta"><span class="dates">2026 to present</span> <span class="status status-plain">Open source, ongoing</span></p>
-</header>
-<p>I release research tooling under the Mercer Science organization on GitHub as it becomes good enough for someone else to use.</p>
-<p><strong>paper-engine</strong> is the main one: skills, scripts, and strategies that take an academic paper from an idea toward a draft. It covers the parts that are mechanical but easy to get wrong, such as keeping an outline, figures, statistics, and references consistent with each other while the draft changes underneath them. I built it out of the manuscript work at UT Southwestern, where I rewrote one paper more than eight times.</p>
-<p><strong>github-ai-project-manager</strong> is a set of skills and hooks that let an AI command-line agent maintain a research project on GitHub on its own, so the record of what happened keeps up with the work.</p>
-<p><strong>AI-In-Research</strong> holds the proposal behind the BYU AI Association group I lead.</p>
-<p>More will go up as it stops being specific to my own machine. The repositories are at <a href="https://github.com/mercer-science">github.com/mercer-science</a>.</p>
-<div class="figures">
-<figure class="shot shot-tiny">
-<a href="../assets/img/mercer-science-logo.png"><img src="../assets/img/mercer-science-logo.png" alt="The Mercer Science organization logo." loading="lazy"></a>
-<figcaption>Mercer Science on GitHub, where I release the tools as they become useful to someone besides me.</figcaption>
-</figure>
-</div>
+<p>I represented the BYU AI Association at the Ballard Center's AI for Social Innovation Conference at Aspen Grove on October 21, 2026. I was invited to participate in the Data Sovereignty and Inclusion working group, alongside a UN ambassador, the COO of a Māori media organization that developed a community-owned speech model, and representatives from industry and other universities. Our discussion focused on who should own community data, the AI models trained on it, and the value those models generate.</p>
+<p>From our discussion, we are creating a social contract to be proposed at the United Nations in Geneva.</p>
 </article>
 <article class="block" id="tacit-knowledge-database">
 <header class="block-head">
 <h2>Cryo-EM Tacit Knowledge Database</h2>
-<p class="block-meta"><span class="dates">October 2026 to present</span> <span class="status status-plain">Ongoing</span></p>
+<p class="block-meta"><span class="dates">October 2026 to present</span> <span class="status status-plain">In Development</span></p>
 </header>
-<p>A paper tells you what worked. It rarely tells you why the authors tried that, what they ruled out first, or which step everyone in the field quietly knows to do differently. The Cryo-EM Tacit Knowledge Database collects that reasoning while the authors still remember it, through an AI agent that interviews them.</p>
-<p>Dr. Jensen originated the idea and I am building it. <strong>Ongoing</strong>, and nothing is working yet.</p>
+<p>Scientific papers document experimental results, but often leave out the reasoning behind them: why researchers chose one approach over another, which alternatives they considered, and what practical lessons they learned along the way. The Cryo-EM Tacit Knowledge Database aims to capture this knowledge through an AI agent that interviews researchers about their experimental decisions and experience.</p>
+<p>Dr. Jensen originated the concept, and I am developing the AI agent and database infrastructure. The project is in its early stages, and the system is not yet functional.</p>
 </article>
 </section>
 <section class="panel" id="software-projects" role="tabpanel" aria-label="Software Projects">
@@ -286,50 +265,89 @@
 <h2>Mercer Science Tools</h2>
 <p class="block-meta"><span class="dates">2026 to present</span> <span class="status status-plain">Open source, ongoing</span></p>
 </header>
-<p>I release research tooling under the Mercer Science organization on GitHub as it becomes good enough for someone else to use.</p>
-<p><strong>paper-engine</strong> is the main one: skills, scripts, and strategies that take an academic paper from an idea toward a draft. It covers the parts that are mechanical but easy to get wrong, such as keeping an outline, figures, statistics, and references consistent with each other while the draft changes underneath them. I built it out of the manuscript work at UT Southwestern, where I rewrote one paper more than eight times.</p>
-<p><strong>github-ai-project-manager</strong> is a set of skills and hooks that let an AI command-line agent maintain a research project on GitHub on its own, so the record of what happened keeps up with the work.</p>
-<p><strong>AI-In-Research</strong> holds the proposal behind the BYU AI Association group I lead.</p>
-<p>More will go up as it stops being specific to my own machine. The repositories are at <a href="https://github.com/mercer-science">github.com/mercer-science</a>.</p>
-<div class="figures">
-<figure class="shot shot-tiny">
-<a href="../assets/img/mercer-science-logo.png"><img src="../assets/img/mercer-science-logo.png" alt="The Mercer Science organization logo." loading="lazy"></a>
-<figcaption>Mercer Science on GitHub, where I release the tools as they become useful to someone besides me.</figcaption>
+<figure class="thumb"><a href="../assets/img/mercer-science-logo.png" title="Mercer Science on GitHub."><img src="../assets/img/mercer-science-logo.png" alt="The Mercer Science organization logo." loading="lazy"></a></figure>
+<p>I recently began publishing research tools through the Mercer Science organization on GitHub. While several projects are still under development and remain private, I have begun making tools publicly available as they become ready for broader use.</p>
+<p><strong>paper-engine</strong> is my primary public project: a collection of skills, scripts, and workflows designed to streamline manuscript development, from an initial research idea to a submission-ready draft. It addresses the often tedious but important work of keeping outlines, figures, statistical results, and references consistent as a manuscript evolves. I developed it from firsthand experience at UT Southwestern, where I worked through more than eight revisions of a research manuscript and identified opportunities to automate much of the process.</p>
+<p><strong>github-ai-project-manager</strong> is a project in development that uses skills and hooks to enable AI command-line agents to manage research projects through GitHub. Its goal is to keep documentation, progress tracking, and records of decisions and changes synchronized with the actual work.</p>
+<p><strong>AI-In-Research</strong> contains the founding proposal and organizational framework for the BYU AI Association group I lead, which explores practical applications of AI in research.</p>
+<p>I plan to continue expanding Mercer Science with tools that extend beyond my own workflows and can benefit other researchers. Several additional projects are in development, including a redesigned spaced-repetition platform inspired by Anki, a popular flashcard application among medical students.</p>
+<p>The repositories are available at <a href="https://github.com/mercer-science">github.com/mercer-science</a>.</p>
+</article>
+<article class="block" id="cadence">
+<header class="block-head">
+<h2>Cadence, a Spaced-Repetition App</h2>
+<p class="block-meta"><span class="dates">2026 to present</span> <span class="status status-plain">Ongoing, early MVP</span></p>
+</header>
+<p>Anki is widely used by medical students, but its interface has accumulated years of features and settings that can make daily studying feel more complicated than it needs to be. Its underlying spaced-repetition scheduling is valuable; the challenge is making the study experience simpler and more manageable, especially when users face hundreds of due cards.</p>
+<p>I am building Cadence as a streamlined alternative using React, TypeScript, and the FSRS scheduling algorithm, which models memory to determine when cards should be reviewed. The design focuses on reducing friction: making each card easy to review, showing users how much time their queue will take before they begin, and keeping frequently used settings accessible without overwhelming the interface.</p>
+<div class="figures figures-inline">
+<figure class="shot">
+<a href="../assets/img/cadence-home.jpg"><img src="../assets/img/cadence-home.jpg" alt="The Cadence home screen, showing a Your Decks list with a starter deck card, the number of cards due, and a Study Now button." loading="lazy"></a>
+<figcaption>The deck list. How many cards are ready, and one button into the session.</figcaption>
+</figure>
+<figure class="shot">
+<a href="../assets/img/cadence-deck.jpg"><img src="../assets/img/cadence-deck.jpg" alt="A Cadence deck view listing each card&#x27;s question and answer, with Add Card and Study Now actions." loading="lazy"></a>
+<figcaption>Inside a deck. Every card at a glance, with add and study one tap away.</figcaption>
 </figure>
 </div>
+<div class="figures figures-inline">
+<figure class="shot">
+<a href="../assets/img/cadence-study-question.jpg"><img src="../assets/img/cadence-study-question.jpg" alt="The Cadence study screen showing a card&#x27;s question, a progress count of cards left, and a Show Answer button." loading="lazy"></a>
+<figcaption>Studying. One card, one decision, and the count of what is left.</figcaption>
+</figure>
+<figure class="shot">
+<a href="../assets/img/cadence-study-answer.jpg"><img src="../assets/img/cadence-study-answer.jpg" alt="The Cadence answer screen with the card revealed and Again, Hard, Good, and Easy grading buttons, each labeled with its next interval and one marked Suggested." loading="lazy"></a>
+<figcaption>The answer, with each grade's next interval and the FSRS-suggested choice marked.</figcaption>
+</figure>
+</div>
+<p>In addition, the app will include LLM incorporation, altering each card to enhance the learning process.</p>
+<div class="figures figures-inline">
+<figure class="shot">
+<a href="../assets/img/cadence-settings.jpg"><img src="../assets/img/cadence-settings.jpg" alt="The Cadence settings screen for connecting an AI provider (Claude, ChatGPT, or Gemini) with your own API key, and a Gentle Rephrasing toggle." loading="lazy"></a>
+<figcaption>AI settings. Bring your own provider key; Gentle Rephrasing reshapes a card to test the idea, not the wording.</figcaption>
+</figure>
+</div>
+<p>The project is an ongoing early-stage. The source repository is private, so screenshots currently provide the best view of the application.</p>
 </article>
-<article class="block" id="analysis-pipelines">
+<article class="block" id="heart-bp-app">
 <header class="block-head">
-<h2>Extraction and Analysis Pipelines</h2>
-<p class="block-meta"><span class="dates">2026</span></p>
+<h2>Heart and Blood Pressure App</h2>
+<p class="block-meta"><span class="dates">2026</span> <span class="status status-plain">Personal project</span></p>
 </header>
-<h3 class="sub sub-first">Problem</h3>
-<p>Every one of the radiation oncology studies ran on data that a hospital generated for treating patients, not for analysis. Structures are named differently by each physician, sessions go missing, file names carry no information, and the same measurement means different things on different machines. You cannot ask a clinical question until something cleans that up, and doing it by hand means the answer changes every time you redo it.</p>
-<h3 class="sub">Solution</h3>
-<p><strong>C# inside the treatment planning system.</strong> A script that walks every patient and plan, finds the relevant structures despite inconsistent naming, pulls the dose data into organized spreadsheets, and asks a human only when it genuinely cannot resolve a duplicate.</p>
-<p><strong>Python for the parts with judgment in them.</strong> Filtering raw exports into templates designed with the physician; reconstructing respiratory motion from backup-plan contours and running about 1,000 geometric checks per patient; recovering imaging dates for files whose names had lost them; rebuilding per-patient outcome plots from a chart-review sheet.</p>
-<p><strong>R for everything that becomes a figure or table.</strong> Every panel and every table in those manuscripts generates from the raw data. About 20 figures were drafted for one paper and cut to a main set plus supplements, and six tables build themselves.</p>
-<h3 class="sub">Result</h3>
-<p>When I found the exporter bug that had been capping a key measurement, fixing it meant rerunning the pipeline, and every figure in the paper rebuilt correctly. That is the argument for writing the pipeline instead of the figure. The code itself belongs to UT Southwestern and is tied to its systems, so it is not public.</p>
+<p>A personal project I built to track my own blood pressure and heart rate. It logs a reading in a few taps, records the context that changes the number (position, arm, time of day, and an orthostatic POTS check), and keeps the history.</p>
+<div class="figures figures-inline">
+<figure class="shot">
+<a href="../assets/img/heart-bp-reading.png"><img src="../assets/img/heart-bp-reading.png" alt="The BP Monitor reading screen, with large systolic, diastolic, and pulse tiles, a time stamp, and position and arm selectors, plus a POTS Check tab." loading="lazy"></a>
+<figcaption>Logging a reading. Three numbers up front, then the context a reading needs to mean something.</figcaption>
+</figure>
+</div>
+<p>The design problem is the same one every health app has: a single number means little, so the app shows each reading against the AHA cutoffs and rolls the history into averages by window and by context, rather than leaving a wall of numbers to read.</p>
+<div class="figures figures-inline">
+<figure class="shot">
+<a href="../assets/img/heart-bp-trend.png"><img src="../assets/img/heart-bp-trend.png" alt="A blood pressure trend chart plotting systolic and diastolic over three weeks, with dashed AHA cutoff lines and one reading&#x27;s details called out below." loading="lazy"></a>
+<figcaption>The trend, against the AHA cutoffs. One reading expands to its full detail on hover.</figcaption>
+</figure>
+<figure class="shot">
+<a href="../assets/img/heart-bp-averages.png"><img src="../assets/img/heart-bp-averages.png" alt="The BP Monitor averages screen, showing seated averages over 7 and 30 days and by context (wake-up, post-gym, bedtime) above a dated reading history." loading="lazy"></a>
+<figcaption>Averages by window and by context, so a single high reading does not read as a trend.</figcaption>
+</figure>
+</div>
 </article>
 <article class="block" id="chess-app">
 <header class="block-head">
 <h2>Client-Server Chess Application</h2>
-<p class="block-meta"><span class="dates">Fall 2026</span> <span class="status status-plain">Coursework</span></p>
+<p class="block-meta"><span class="dates">Fall 2026 to present</span> <span class="status status-plain">Coursework, ongoing</span></p>
 </header>
-<p>A full-stack Java chess application built for C S 240, Advanced Software Construction: game logic, a server with a REST API and WebSocket play, user authentication, a database layer, and a terminal client, with unit and integration tests throughout. It is coursework rather than research, and it is the project where I learned to design an interface between parts of a system before writing either side. The repository is on my personal GitHub.</p>
+<p>A full-stack Java chess application I am building for C S 240, Advanced Software Construction: game logic, a server with a REST API and WebSocket play, user authentication, a database layer, and a terminal client, with unit and integration tests throughout. It is coursework rather than research, and it is the project where I learned to design an interface between parts of a system before writing either side. The repository is on my personal GitHub.</p>
 </article>
 <article class="block" id="cs-training">
 <header class="block-head">
 <h2>Computer Science Training</h2>
 <p class="block-meta"><span class="dates">2024 to 2028</span></p>
 </header>
-<p>Computer science minor with a machine learning emphasis, alongside the biochemistry major.</p>
-<p><strong>Completed:</strong> C S 111 Introduction to Computer Science, C S 235 Data Structures, C S 236 Discrete Structures.</p>
-<p><strong>In progress, Fall 2026:</strong> C S 240 Advanced Software Construction, MATH 213 Elementary Linear Algebra, MATH 215 Computational Linear Algebra.</p>
-<p><strong>Planned:</strong> C S 312 and C S 470, which carry the machine learning emphasis.</p>
-<p><strong>Also taken:</strong> STAT 121 Introduction to Statistical Data Analysis.</p>
-<p>The languages I use on real projects are Python, R, C#, Java, and shell. Most of what I know about building software, though, came from the clinical work rather than from coursework: inheriting a system nobody could run, and having to make one that someone else could.</p>
+<p>In addition to personal projects, I am pursuing a computer science minor alongside my biochemistry major, with an emphasis on machine learning.</p>
+<p>My coursework has covered programming fundamentals, data structures, interpreters, discrete mathematics, linear algebra, and statistics.</p>
+<p>I use Python, R, C#, Java, and shell scripting in research and software projects. Much of my practical software experience, however, has come outside the classroom through clinical research: taking over a system that others could not run and rebuilding it into something another researcher could use and maintain.</p>
 </article>
 </section>
 <section class="panel" id="publications" role="tabpanel" aria-label="Publications and Ongoing Research">
@@ -436,18 +454,117 @@
 </section>
 <section class="panel" id="physical-sciences" role="tabpanel" aria-label="Physical Sciences">
 <h1 class="panel-title">Physical Sciences</h1>
-<article class="block" id="physical-sciences-short">
+<h2 class="section-split">Jensen Lab</h2>
+<article class="block" id="jensen-lab">
 <header class="block-head">
-<h2>Physical Sciences in Brief</h2>
-<p class="block-meta"><span class="dates">2024 to present</span></p>
+<p class="block-meta"><span class="dates">August 2026 to present</span></p>
 </header>
-<p><strong>Jensen Lab, BYU, August 2026 to present.</strong> Two cryo-electron tomography projects I scoped and proposed, and that Dr. Jensen approved: the surface architecture of <em>Bartonella henselae</em>, asking whether its adhesin layer blocks the secretion system underneath, and the apical complex of <em>Babesia duncani</em>, which would be the first tomography in that genus. Both are <strong>ongoing and in biosafety approval</strong>, so nothing has been cultured or frozen yet. I also run the lab's AI cryo-ET agent project, which I presented as a poster at the Utah CryoEM Symposium in October 2026.</p>
-<p><strong>Stowers Lab, BYU, April 2024 to May 2026.</strong> Metal-organic framework thin films grown by spin coating and characterized by electron microscopy, published in <em>Langmuir</em> with me as second author. I helped build and maintain a flow reactor and an ultra-high-vacuum chamber running near 10⁻¹⁰ Torr with X-ray photoelectron spectroscopy and mass spectrometry, and trained two newer students on spin coating and microscopy. A second manuscript on the vacuum-chamber chemistry is in preparation.</p>
-<p><strong>Bench training.</strong> Vitrobot and Krios through Thermo Fisher's Resolution Evolution course, bacterial culture and plasmid work in the Jensen Lab's apoferritin bootcamp, electron microscopy and film analysis in the Stowers Lab, plus the biochemistry lab sequence at BYU through CHEM 584, a master's-level methods course.</p>
-<div class="figures">
+<p>I joined Dr. Grant Jensen's lab in August 2026, where I work with cryo-electron tomography (cryo-ET). The technique involves rapidly freezing cells to preserve their native structure, then imaging them from multiple angles to reconstruct their internal organization at molecular resolution. My work in the lab has two main parts: imaging bacteria and parasites that have not previously been studied using cryo-ET, and exploring AI agents and skills to help researchers carry out the image-processing workflow.</p>
+<div class="figures figures-inline">
+<figure class="shot shot-wide">
+<a href="../assets/img/cryoet-pipeline.png"><img src="../assets/img/cryoet-pipeline.png" alt="Diagrams of the cryo-ET workflow, from growing cells through plunge freezing, milling a lamella, and tilting the specimen for imaging." loading="lazy"></a>
+<figcaption>How a cell becomes a tilt series: grow, freeze, thin, then image from many angles.</figcaption>
+</figure>
+</div>
+<h3 class="sub">Imaging Bartonella henselae and Babesia duncani</h3>
+<p>I proposed two projects involving organisms associated with tick-borne infections. Both can occur alongside Lyme disease, and patients may be infected with multiple organisms at once. I have tested positive for both of these pathogens through PCR. Neither genus has been studied using cryo-ET, so these projects will provide the first structural images of either organism using this technique.</p>
+<p><em>Bartonella henselae</em> a gram-negative bacterium primarily transmitted through scratches or bites from infected cats and is the primary cause of cat-scratch disease. It commonly causes swollen, tender lymph nodes, fever, fatigue, and headaches, but can occasionally lead to more serious neurological, ocular, or cardiac complications. Its cells are approximately 0.3–0.5 µm wide, allowing them to be frozen and imaged whole on BYU's Krios microscope without additional thinning. They also divide approximately every three hours, making it practical to maintain cultures.</p>
+<p>There is also an interesting biological question behind the project. <em>B. henselae</em> has a dense surface layer of adhesins, and one published hypothesis proposes that this layer interferes with the bacterium's secretion system, which it uses to deliver proteins into host cells. This hypothesis is based on observed phenotypes rather than direct structural evidence. Cryo-ET could help determine whether the proposed interaction is supported by the organism's actual structure.</p>
+<p>The second project focuses on <em>Babesia duncani</em>. These parasites invade red blood cells using a specialized structure at one end of the cell called the apical complex. They are a tick-borne, malaria-like parasite that infects red blood cells and causes babesiosis. Symptoms commonly include fever, chills, fatigue, sweating, headaches, and hemolytic anemia due to the destruction of infected red blood cells. Severe infections can cause organ dysfunction, particularly in immunocompromised individuals or those without a functioning spleen. A 2026 study identified a previously unreported tubulin rosette in the apical region of a related species using light microscopy. However, that technique cannot resolve the rosette's detailed molecular organization. Cryo-ET could provide a closer look.</p>
+<p>This project presents additional technical challenges. <em>Babesia</em> cells are too thick to image intact, so they will require focused ion beam (FIB) milling at the University of Utah. No established FIB-milling workflow exists for <em>Babesia</em>, so developing and optimizing one is part of the project.</p>
+<p>I developed the proposals and experimental plans for both projects, which Dr. Jensen approved in October 2026.</p>
+<p>These studies are promising for biology and medical science because as someone learns the structure of a bacteria (through cryo-ET) it becomes a lot easier to develop therapeutics, etc for them.</p>
+<h3 class="sub">Using AI to Accelerate Cryo-ET Processing</h3>
+<p>Processing cryo-ET data requires coordinating approximately a dozen specialized programs, each with its own parameters and potential failure points. Learning the workflow can take a researcher several months. Data in general is very difficult to process, and it is usually the bottle neck of this field of research.</p>
+<p>In a separate project, I developed a workflow in which a general-purpose AI coding agent operates this processing pipeline. I tested it on 39 <em>E. coli</em> tilt series. The agent can recommend and execute processing steps. I also logged each recommendation as accepted, overridden, or an error identified by the human reviewer. This makes it possible to evaluate the agent's performance rather than simply judging whether it appears to work.</p>
+<div class="figures figures-inline">
+<figure class="shot shot-wide">
+<a href="../assets/img/cryoet-agent-loop.png"><img src="../assets/img/cryoet-agent-loop.png" alt="A diagram with the student on the left, the AI agent in the middle, and the computers on the right, with arrows running both ways between them." loading="lazy"></a>
+<figcaption>The loop, and the rules it runs under. The agent proposes and executes; I approve, override, or correct at every step.</figcaption>
+</figure>
+</div>
+<p>During testing, the agent identified two incorrect values recorded by the microscope and independently checked the tools it was using. It also made mistakes, which have been documented as part of the evaluation. In every case, it eventually caught itself. I presented this work at the Utah CryoEM Symposium on October 8, 2026. A manuscript is currently in preparation, after a few instructory videos will be made. This is a collaborative project with Chitral Chatterjee.</p>
+<div class="figures figures-inline">
+<figure class="shot shot-wide">
+<a href="../assets/img/cryoet-numbers.png"><img src="../assets/img/cryoet-numbers.png" alt="A summary panel reading 39 tilt series, 1,210 raw movies, zero workflow steps given, four packages installed, two wrong microscope values caught, and 24 minutes to the first tomogram." loading="lazy"></a>
+<figcaption>The test set, and what the agent did with it.</figcaption>
+</figure>
+</div>
+<div class="figures figures-inline">
+<figure class="shot shot-wide">
+<a href="../assets/img/cryoet-poster.png"><img src="../assets/img/cryoet-poster.png" alt="The conference poster, titled Can an AI Agent Collapse the Cryo-ET Learning Curve, laid out in six numbered sections across three columns." loading="lazy"></a>
+<figcaption>The poster I presented at the Utah CryoEM Symposium, October 8, 2026. Click it to read the panels.</figcaption>
+</figure>
+</div>
+<h3 class="sub">Building a Cryo-EM Knowledge Database</h3>
+<p>Another project in the lab addresses something that is difficult to learn from published papers: the practical knowledge researchers accumulate while developing and troubleshooting experiments. Papers generally describe the final methods, but not necessarily the approaches that were abandoned, the problems encountered, or the small adjustments that made a protocol work.</p>
+<p>Dr. Jensen proposed creating a database to preserve this knowledge. I am developing an AI agent that interviews authors of cryo-EM papers and collects details about their experimental decisions and troubleshooting processes. It will then compile all of their information into a universal database that researchers around the world can use to learn and to train their AI agents. The project is still in development, and a working system has not yet been completed.</p>
+</article>
+<h2 class="section-split">Stowers Lab</h2>
+<article class="block" id="stowers-lab">
+<header class="block-head">
+<p class="block-meta"><span class="dates">April 2024 to May 2026</span></p>
+</header>
+<h3 class="sub sub-first">Metal-Organic Framework Thin Films</h3>
+<p>I spent two years in Dr. Kara Stowers' inorganic chemistry lab researching metal-organic framework (MOF) thin films. MOFs are porous crystalline materials with potential applications in catalysis and chemical separations. Our research focused on growing these films directly on untreated substrates, without the self-assembled monolayers typically used to initiate growth, while controlling the incorporation of a second metal.</p>
+<div class="figures figures-inline">
+<figure class="shot shot-wide">
+<a href="../assets/img/langmuir-fig1.png"><img src="../assets/img/langmuir-fig1.png" alt="Synthesis schematic showing copper and zinc ions plus two organic linkers deposited by spin coating in repeated cycles onto a bare silicon substrate." loading="lazy"></a>
+<figcaption>The synthesis, from our Langmuir paper. The film grows on a bare substrate in repeated spin-coating cycles, with no self-assembled monolayer underneath. Ralph et al., Langmuir 2026;42(6):4475–4488.</figcaption>
+</figure>
+</div>
+<p>I synthesized copper and copper-zinc framework films through sequential spin coating, cycling metal and linker solutions onto the substrate. I characterized the resulting films using scanning electron microscopy and measured film thicknesses in ImageJ. Our work examined how growth temperature affected film coverage and crystallite size.</p>
+<div class="figures figures-inline">
+<figure class="shot shot-wide">
+<a href="../assets/img/langmuir-fig2.png"><img src="../assets/img/langmuir-fig2.png" alt="Bar charts of film coverage and crystallite size against temperature, beside four electron micrographs of films grown at 22, 32, 42, and 52 degrees Celsius." loading="lazy"></a>
+<figcaption>Coverage and crystallite size against growth temperature, with the micrographs those numbers came from. Ralph et al., Langmuir 2026;42(6):4475–4488.</figcaption>
+</figure>
+</div>
+<h3 class="sub">Building and Maintaining Instruments</h3>
+<p>I also spent considerable time building, troubleshooting, and maintaining two custom laboratory instruments: a flow reactor used for catalysis experiments and an ultra-high-vacuum chamber equipped with X-ray photoelectron spectroscopy and a mass spectrometer. The chamber operated at pressures approaching 10⁻¹⁰ Torr. Maintaining it involved leak checking, bakeouts, flange work, and troubleshooting the vacuum system. I also helped rebuild the spin coater's vacuum system when it failed.</p>
+<div class="figures figures-inline">
 <figure class="shot shot-small">
 <a href="../assets/img/stowers-uhv-chamber.jpg"><img src="../assets/img/stowers-uhv-chamber.jpg" alt="The ultra-high-vacuum chamber in the Stowers Lab, wrapped in foil for a bakeout, with pumps, gauges, and analysis ports." loading="lazy"></a>
-<figcaption>The ultra-high-vacuum chamber I helped keep running, near 10⁻¹⁰ Torr with X-ray photoelectron spectroscopy and mass spectrometry.</figcaption>
+<figcaption>The ultra-high-vacuum chamber, wrapped for a bakeout.</figcaption>
+</figure>
+<figure class="shot shot-small">
+<a href="../assets/img/stowers-flow-reactor.jpg"><img src="../assets/img/stowers-flow-reactor.jpg" alt="The flow reactor bench in the Stowers Lab, with two tube furnaces, gas lines, flow meters, and a pressure gauge." loading="lazy"></a>
+<figcaption>The flow reactor, with two furnaces on a shared gas manifold.</figcaption>
+</figure>
+</div>
+<h3 class="sub">Training, Publication, and Presentations</h3>
+<p>Alongside my own work, I trained two newer students in spin coating and scanning electron microscopy. The research resulted in a publication in <em>Langmuir</em>, where I am a second author. I presented the work at the BYU Student Research Conference in 2025 and 2026 and at the American Chemical Society spring meeting in Atlanta in March 2026.</p>
+<p>A second manuscript examining decomposition chemistry using the vacuum chamber is in preparation. Although my lab position ended in May 2026, I have continued contributing to that manuscript.</p>
+</article>
+<h2 class="section-split">Biochemistry and Molecular Biology Coursework</h2>
+<article class="block" id="lab-coursework">
+<header class="block-head">
+<p class="block-meta"><span class="dates">2024–2027</span></p>
+</header>
+<p>In addition to extensive laboratory experience, my coursework at BYU has included both foundational science classes and upper-division laboratory courses.I have completed almost the entire biochemistry major. These courses have given me a background in the molecular structure, function, and interactions of biological systems, with an increasing emphasis on the experimental methods used to study them. In terms of lab courses, I completed CHEM 384 (Biochemistry Methods), MMBIO 241 (Molecular and Cellular Biology Lab), and CELL 363 (Advanced Physiology Lab), which gave me practical experience applying concepts from biochemistry, molecular biology, and physiology in a laboratory setting.</p>
+<p>This semester, I am taking CHEM 584 (Advanced Biochemistry Methods 1), a master's-level course focused on more advanced biochemical laboratory methods. The course has us mutate CMG2, a human receptor protein commonly known for its involvement with Anthrax. We had to find our own mutation, develop our own primers, clone our mutation, and express the mutation. In Winter 2027, I will continue the study in CHEM 586 (Advanced Biochemistry Methods 2), where we will express our mutated proteins and visualize how they effect the human cell. I also plan to take CHEM 489 (Structural Biochemistry) continuing into structural biology and advanced experimental techniques.</p>
+<div class="figures figures-inline">
+<figure class="shot">
+<a href="../assets/img/cmg2-delabd-product-map.png"><img src="../assets/img/cmg2-delabd-product-map.png" alt="Map of the expected PCR product plasmid, with the region encoding the cytoplasmic actin-binding domain removed." loading="lazy"></a>
+<figcaption>The product we designed primers to make, with the actin-binding domain deleted.</figcaption>
+</figure>
+<figure class="shot shot-small">
+<a href="../assets/img/cmg2-pcr-gel.jpg"><img src="../assets/img/cmg2-pcr-gel.jpg" alt="An agarose gel photographed under UV light, with a smeared lane of a PCR reaction beside a DNA ladder." loading="lazy"></a>
+<figcaption>Our PCR, run as a raw, uncleaned reaction. One lane on this gel is another group's.</figcaption>
+</figure>
+<figure class="shot">
+<a href="../assets/img/cmg2-transformation-plate.jpg"><img src="../assets/img/cmg2-transformation-plate.jpg" alt="An agar plate marked in pen into numbered quadrants, with dense bacterial colonies across the upper half." loading="lazy"></a>
+<figcaption>Our transformation plate. The whole plate is the delABD construct.</figcaption>
+</figure>
+</div>
+<div class="figures figures-inline">
+<figure class="shot">
+<a href="../assets/img/cmg2-primer-forward.png"><img src="../assets/img/cmg2-primer-forward.png" alt="The delABD Forward primer sequence boxed above the original CMG2 sequence, with one base in the primer highlighted and the encoded residues below." loading="lazy"></a>
+<figcaption>Our forward primer on the original CMG2 sequence. The boxed A is a silent base change.</figcaption>
+</figure>
+<figure class="shot">
+<a href="../assets/img/cmg2-primer-reverse.png"><img src="../assets/img/cmg2-primer-reverse.png" alt="The delABD Reverse primer sequence boxed below the original CMG2 sequence, with the encoded residues above." loading="lazy"></a>
+<figcaption>Our reverse primer on the original CMG2 sequence.</figcaption>
 </figure>
 </div>
 </article>

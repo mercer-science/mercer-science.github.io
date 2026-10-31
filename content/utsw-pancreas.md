@@ -7,28 +7,14 @@ dates: August 2026 to present
 images: []
 ---
 
-### Problem
+### The Study
 
-The lung study produced a threshold tool that outlines treatment-resistant tissue, but
-nothing tied it to what happened to the patients. Dr. Deng brought me onto a pancreas
-study to start closing that gap: do the same diffusion measurements track how pancreatic
-tumors respond to stereotactic radiation?
+Building on our lung study, I joined Dr. Deng's pancreatic cancer study to investigate whether diffusion MRI measurements track tumor response to stereotactic radiation. I processed all 76 patients through the pipeline I rebuilt and identified 23 with both complete imaging and outcome data. I then reviewed their medical records to document treatment response and track local and distant disease progression.
 
-### Solution
+### An Early Signal
 
-I ran all 76 patients through the pipeline I had rebuilt, and 23 of them turned out to have
-both complete diffusion imaging and outcome data. I did the chart review for response at
-three months and for local and distant failure over time, since most three-month results
-in this last-line population were stable or not evaluable. A Python script rebuilds each
-patient's plot and notes from the chart-review sheet, so adding a patient does not mean
-redrawing anything.
+One early observation is particularly interesting: a patient who later experienced both local and distant disease progression showed decreasing tissue diffusion by the third treatment fraction, while a patient with stable disease showed increasing diffusion. These trends are opposite to what we observed in the lung study. I suspect the difference may relate to treatment timing: pancreatic patients receive radiation every two to three days rather than several weeks apart, potentially leaving less time for tissue remodeling between treatments.
 
-### Result
+### Automating the Analysis
 
-One early signal is worth the work: a patient who failed both locally and distantly about
-eight months after treatment showed tissue diffusion falling by the third fraction, the
-opposite of what a dying tumor does, while a patient with stable disease showed it rising.
-In principle a physician could have seen that early enough to change the plan. The trends
-run opposite to the lung study, and I think the spacing explains it, since these patients
-were treated every two or three days rather than weeks apart, leaving less time for tissue
-remodeling between pulses. Analysis is still underway.
+I also developed a Python script that automatically generates patient-specific plots and summaries from the chart-review data. Analysis is ongoing, and we are evaluating whether these early diffusion changes consistently correspond to treatment outcomes across the cohort.
