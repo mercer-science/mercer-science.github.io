@@ -11,8 +11,7 @@ thumb:
 images: []
 ---
 
-First author. Submitted to the *International Journal of Radiation Oncology, Biology,
-Physics*.
+First author. Submitted to *Practical Radiation Oncology*.
 
 Ten patients with ultra-central lung tumors received radiation in five pulses about three
 weeks apart, with diffusion imaging captured on the machine before every fraction. We asked

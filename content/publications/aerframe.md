@@ -2,8 +2,8 @@
 title: Radiolucent Stereotactic Body Frame for Online Adaptive Radiation Therapy
 roles: [igem, coding, design, wildcard]
 tabs: [publications]
-status: In Final Co-Author Circulation
-dates: 2026
+status: Submitted
+dates: November 2026
 thumb:
   src: assets/img/crop-frame-dose.png
   alt: A dose distribution in false color through a phantom lying in the treatment frame.
@@ -11,7 +11,7 @@ thumb:
 images: []
 ---
 
-First author.
+First author. Submitted to the *Journal of Applied Clinical Medical Physics*.
 
 Adaptive treatment systems replan on the anatomy of the day, but they typically ignore the
 frame the patient is lying in. We characterized a new low-density frame built to be

@@ -15,9 +15,8 @@ percentile.
 Research Assistant, UT Southwestern Medical Center (radiation oncology, then medical
 physics), May 2026 to present. Stowers Lab, BYU (surface chemistry), April 2024 to May 2026.
 
-**Writing.** One paper published in *Langmuir* as second author, one manuscript submitted
-to the *International Journal of Radiation Oncology, Biology, Physics*, two in final
-co-author circulation, and one in preparation. First author on those four, and a
+**Writing.** One paper published in *Langmuir* as second author, three manuscripts submitted
+for peer review, and one in preparation. First author on those four, and a
 co-author on several more in preparation.
 
 **Speaking.** Six research presentations across chemistry, medicine, and structural

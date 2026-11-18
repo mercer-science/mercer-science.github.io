@@ -2,7 +2,7 @@
 title: Radiolucent Patient Immobilization (AerFrame)
 roles: [igem, coding, wildcard]
 tabs: [clinical-research, clinical-research-software]
-status: In final co-author circulation
+status: Manuscript submitted
 dates: June 2026 – Present
 images:
   - id: diagram
@@ -39,6 +39,6 @@ The new frame was substantially more transparent to radiation than the older fra
 
 **Put simply, the new frame allows nearly all the radiation to pass through it and reach the tumor as planned.** This means clinicians can use it without having to modify their radiation treatment plans to account for the frame, unlike older immobilization devices that absorb more radiation. That is particularly useful for adaptive radiation therapy, where treatment plans are updated to match a patient's anatomy each day.
 
-I wrote the first manuscript draft, which is now in final circulation among co-authors.
+I wrote the first manuscript draft. The manuscript was submitted to the *Journal of Applied Clinical Medical Physics* in November 2026.
 
-**Working title:** *Radiolucent Stereotactic Body Frame for Online Adaptive Radiation Therapy.*
+**Submitted manuscript:** *Radiolucent Stereotactic Body Frame for Online Adaptive Radiation Therapy.*

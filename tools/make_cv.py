@@ -93,8 +93,8 @@ SECTIONS = [
                     "August 2026 and remote since",
                     "Four studies: lung and pancreas diffusion-weighted MRI on the Elekta Unity "
                     "MR-Linac, biology-guided radiotherapy on RefleXion, and radiolucent patient "
-                    "immobilization. First author on three manuscripts, one submitted and two in "
-                    "final co-author circulation, with more in preparation",
+                    "immobilization. First author on three manuscripts, all submitted for peer "
+                    "review, with more in preparation",
                     "Rebuilt the department's diffusion MRI processing pipeline into a web "
                     "application with a bulk runner, viewer, threshold tool, and fit checker; "
                     "ran 76 patients in about 2.5 days of server time, and hospital IT moved it "
@@ -137,14 +137,15 @@ SECTIONS = [
             {"subhead": "Submitted"},
             {"text": "<b>Mercer RW</b>, et al. Onboard intravoxel incoherent motion "
                      "diffusion-weighted MRI tracks early tumor-volume response in ultra-central "
-                     "lung tumors treated with PULSAR. UT Southwestern. Submitted to the "
-                     "<i>International Journal of Radiation Oncology, Biology, Physics</i>, "
-                     "October 2026."},
-            {"subhead": "In Co-Author Circulation"},
+                     "lung tumors treated with PULSAR. UT Southwestern. Submitted to "
+                     "<i>Practical Radiation Oncology</i>, October 2026."},
             {"text": "<b>Mercer RW</b>, et al. Dosimetric cost of a smaller target when using "
-                     "biology-guided radiation therapy for lung cancer. UT Southwestern."},
+                     "biology-guided radiation therapy for lung cancer. UT Southwestern. "
+                     "Submitted to <i>Practical Radiation Oncology</i>, November 2026."},
             {"text": "<b>Mercer RW</b>, et al. Radiolucent stereotactic body frame for online "
-                     "adaptive radiation therapy. UT Southwestern."},
+                     "adaptive radiation therapy. UT Southwestern. Submitted to the "
+                     "<i>Journal of Applied Clinical Medical Physics</i>, November 2026."},
+            {"subhead": "In Co-Author Circulation"},
             {"text": "Benefits of weekly on-demand adaptive radiation therapy for locally "
                      "advanced lung cancer in responders. Co-author. UT Southwestern."},
             {"text": "Online adaptive radiation therapy for early-stage lung SABR. Co-author. "

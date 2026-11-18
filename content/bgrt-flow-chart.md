@@ -19,4 +19,4 @@ I designed a flowchart showing both treatment pathways in parallel, from simulat
 
 I then developed a figure-generation workflow that converts the PowerPoint slide into an image and combines it with panels generated in R. This allows the complete figure to be rebuilt automatically from its source components whenever the underlying data or manuscript needs to change.
 
-The figure is included in the manuscript, which is currently in final co-author circulation.
+The figure is included in the manuscript, which has been submitted to *Practical Radiation Oncology*.

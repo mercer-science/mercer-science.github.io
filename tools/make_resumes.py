@@ -69,7 +69,7 @@ RESEARCH = {
             "lines": [],
             "bullets": [
                 "Four studies of MR-guided and biology-guided radiotherapy; first author on three "
-                "manuscripts, one submitted and two in final co-author circulation",
+                "manuscripts, all three submitted for peer review",
                 "Rebuilt the department's diffusion MRI pipeline into a web application now "
                 "held by the Radiation Oncology Application Team",
                 "Wrote the C#, Python, and R extraction and figure pipelines behind the studies",
@@ -111,7 +111,7 @@ RESEARCH_SHORT = {
             "lines": [],
             "bullets": [
                 "Four studies of MR-guided and biology-guided radiotherapy; first author on three "
-                "manuscripts, one submitted and two in final co-author circulation",
+                "manuscripts, all three submitted for peer review",
             ],
         },
         {
@@ -306,8 +306,8 @@ SIDE_PUBS = {
     "heading": "Publications",
     "items": [
         "Ralph AD, <b>Mercer RW</b>, et al. <i>Langmuir</i> 2026;42(6):4475–88.",
-        "<b>First author on three manuscripts:</b> one submitted (<i>Int J Radiat Oncol "
-        "Biol Phys</i>) and two in final co-author circulation.",
+        "<b>First author on three manuscripts,</b> all submitted for peer review "
+        "(<i>Int J Radiat Oncol Biol Phys</i>, <i>Pract Radiat Oncol</i>, <i>J Appl Clin Med Phys</i>).",
         "Co-author on two more in final circulation, with others in preparation.",
     ],
 }

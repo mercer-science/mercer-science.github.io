@@ -2,7 +2,7 @@
 title: Biology-Guided Radiotherapy on RefleXion
 roles: [igem, coding, wildcard]
 tabs: [clinical-research, clinical-research-software]
-status: In final co-author circulation
+status: Manuscript submitted
 dates: May 2026 – Present
 images:
   - id: machine
@@ -34,6 +34,6 @@ Across 17 patients, the PET-guided plans treated a target volume 19% smaller tha
 
 [figure: flow]
 
-A physicist on the team shared our organ-dose findings with manufacturer contacts around the summer physics meeting. The company is now revising its post-treatment evaluation process for an upcoming release. The manuscript presents both the advantages and limitations of the technology, including findings that are less favorable than the commercially appealing narrative. After more than eight rounds of revision, including two complete restarts, it is now in final circulation among the co-authors.
+A physicist on the team shared our organ-dose findings with manufacturer contacts around the summer physics meeting. The company is now revising its post-treatment evaluation process for an upcoming release. The manuscript presents both the advantages and limitations of the technology, including findings that are less favorable than the commercially appealing narrative. After more than eight rounds of revision, including two complete restarts, it was submitted to *Practical Radiation Oncology* in November 2026.
 
-**Manuscript:** *Dosimetric Cost of a Smaller Target When Using Biology-Guided Radiation Therapy for Lung Cancer.*
+**Submitted manuscript:** *Dosimetric Cost of a Smaller Target When Using Biology-Guided Radiation Therapy for Lung Cancer.*

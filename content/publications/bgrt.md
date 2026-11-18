@@ -2,8 +2,8 @@
 title: Dosimetric Cost of a Smaller Target When Using Biology-Guided Radiation Therapy for Lung Cancer
 roles: [igem, coding, design, wildcard]
 tabs: [publications]
-status: In Final Co-Author Circulation
-dates: 2026
+status: Submitted
+dates: November 2026
 thumb:
   src: assets/img/reflexion-machine.png
   alt: The RefleXion biology-guided radiotherapy machine.
@@ -11,7 +11,7 @@ thumb:
 images: []
 ---
 
-First author.
+First author. Submitted to *Practical Radiation Oncology*.
 
 Biology-guided radiotherapy follows the tumor's live PET signal during delivery instead of
 padding the target with margin for breathing, so the treated volume can be smaller. Across
